@@ -1,0 +1,198 @@
+\section{Functions}\label{sc:functions}
+
+This section will present the functions in the system. Table \ref{tab:functions} shows all the top-level functions that the system will be able to perform. All the tables describing functions have columns with the name of the function, the complexity and the type of function.
+
+\begin{table}[H]
+\centering
+%\resizebox{\textwidth}{!}{%
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \textbf{Function} & \textbf{Complexity} & \textbf{Type} \\
+        \hline
+        \hline
+        Add Asset & Complex & Update\\
+        \hline
+        Remove Asset & Medium & Update\\
+        \hline
+        Edit Asset & Complex & Update\\
+        \hline
+        Search Asset & Medium & Compute/Read\\
+        \hline
+        View Asset & Simple & Read\\
+        \hline
+        Add Template & Complex & Update\\
+        \hline
+        Remove Template & Medium & Update\\
+        \hline
+        Edit Template & Complex & Update\\
+        \hline
+        Add Tag & Simple & Update\\
+        \hline
+        Remove Tag & Medium & Update\\
+        \hline
+        Rename Tag & Simple & Update\\
+        \hline
+        Tag Asset & Simple & Update\\
+        \hline
+        Untag Asset & Simple & Update\\
+        \hline
+        Authenticate User & Simple & Read\\
+        \hline
+        Check access level & Simple & Read\\
+        \hline
+        Export report & Complex & Compute/Read\\
+        \hline
+    
+    \end{tabular}
+%}
+\caption{Table showing all the different top-level functions as well as their complexity and type.}\label{tab:functions}
+\end{table}
+
+\par
+
+Table \ref{tab:functions} contains several functions rated complex. These functions have been divided into several smaller functions, with a lower complexity.
+% Beskriver hvorfor det er gjort, ved ikke om det skal med, men det er god fyldertekst
+This is done in order to divide the complex problems, into smaller problems, which are easier to implement. 
+ 
+\begin{center}
+    \textbf{Adding an asset}
+\end{center}
+
+% Add asset table
+\begin{table}[H]
+\centering
+%\resizebox{\textwidth}{!}{%
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \textbf{Function} & \textbf{Complexity} & \textbf{Type} \\
+        \hline
+        \hline
+        Load Template & Medium & Read\\
+        \hline
+        Add Fields & Medium & Update\\
+        \hline
+        Add Tags & Simple & Update\\
+        \hline
+        Remove Tag & Simple & Update\\
+        \hline
+        Save Asset to model & Medium & Update\\
+        \hline
+        Load Fields & Medium & Read\\
+        \hline
+        
+    \end{tabular}
+%}
+\caption{Table showing the different functions involved in adding an asset along with their complexity and type.}\label{tab:AddAssetFunctions}
+\end{table}
+
+\par
+
+\begin{center}
+    \textbf{Editing an asset}
+\end{center}
+
+% Edit Asset Table
+\begin{table}[H]
+\centering
+%\resizebox{\textwidth}{!}{%
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \textbf{Function} & \textbf{Complexity} & \textbf{Type} \\
+        \hline
+        \hline
+        Load Asset & Simple & Read\\
+        \hline
+        Save date & Medium & Update\\
+        \hline
+        Add Tags & Simple & Update\\
+        \hline
+        Remove Tags & Simple & Update\\
+        \hline
+        Add Fields & Simple & Update\\
+        \hline
+        Remove Fields & Simple & Update\\
+        \hline
+        
+    \end{tabular}
+%}
+\caption{Table showing the different functions involved in editing an asset along with their complexity and type.}\label{tab:EditAssetFunctions}
+\end{table}
+
+\par
+
+\begin{center}
+    \textbf{Adding a template}
+\end{center}
+
+% Add template table 
+\begin{table}[H]
+\centering
+%\resizebox{\textwidth}{!}{%
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \textbf{Function} & \textbf{Complexity} & \textbf{Type} \\
+        \hline
+        \hline
+        Add Field & Simple & Update\\
+        \hline
+        Save Template & Medium & Update\\
+        \hline
+        
+    \end{tabular}
+%}
+\caption{Table showing the different functions involved in adding a template along with their complexity and type.}\label{tab:AddTemplateFunctions}
+\end{table}
+
+\par
+
+\begin{center}
+    \textbf{Editing a template}
+\end{center}
+
+% Edit template table
+\begin{table}[H]
+\centering
+%\resizebox{\textwidth}{!}{%
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \textbf{Function} & \textbf{Complexity} & \textbf{Type} \\
+        \hline
+        \hline
+        Add Field & Simple & Update\\
+        \hline
+        Remove Field & Simple & Update\\
+        \hline
+        Load Template & Medium & Read\\
+        \hline
+        Save Template & Medium & Update\\
+        \hline
+        
+    \end{tabular}
+%}
+\caption{Table showing the different functions involved in editing a template along with their complexity and type.}\label{tab:EditTemplateFunctions}
+\end{table}
+
+\par
+
+\begin{center}
+    \textbf{Exporting a report}
+\end{center}
+
+% Export report table
+\begin{table}[H]
+\centering
+%\resizebox{\textwidth}{!}{%
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \textbf{Function} & \textbf{Complexity} & \textbf{Type} \\
+        \hline
+        \hline
+        Get searched Assets & Simple & Read\\
+        \hline
+        Export to CSV & Medium & Compute\\
+        \hline
+        
+    \end{tabular}
+%}
+\caption{Table showing the different functions involved in exporting a report along with their complexity and type.}\label{tab:ExportReportFunctions}
+\end{table}

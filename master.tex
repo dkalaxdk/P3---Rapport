@@ -1,0 +1,73 @@
+%  A simple AAU report template.
+%  2015-05-08 v. 1.2.0
+%  Copyright 2010-2015 by Jesper Kjær Nielsen <jkn@es.aau.dk>
+%
+%  This is free software: you can redistribute it and/or modify
+%  it under the terms of the GNU General Public License as published by
+%  the Free Software Foundation, either version 3 of the License, or
+%  (at your option) any later version.
+%
+%  This is distributed in the hope that it will be useful,
+%  but WITHOUT ANY WARRANTY; without even the implied warranty of
+%  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%  GNU General Public License for more details.
+%
+%  You can find the GNU General Public License at <http://www.gnu.org/licenses/>.
+%
+\input{setup/preamble.tex}% package inclusion and set up of the document
+\input{setup/hyphenations.tex}% 
+\input{setup/macros.tex}% my new macros
+
+\begin{document}
+%frontmatter
+\pagestyle{empty} %disable headers and footers
+\pagenumbering{roman} %use roman page numbering in the frontmatter
+\input{sections/frontmatter/frontpage.tex}
+\newgeometry{top=20mm, bottom=20mm}
+    \input{sections/frontmatter/colophon.tex}
+    \input{sections/frontmatter/titlepages.tex}
+\restoregeometry
+\cleardoublepage
+\pdfbookmark[0]{Contents}{label:contents}
+\pagestyle{fancy} %enable headers and footers again
+\tableofcontents
+\listoftodos \todo[inline] {Fjern den her!} 
+\input{sections/frontmatter/preface.tex}
+\cleardoublepage
+%mainmatter
+\pagenumbering{arabic} %use arabic page numbering in the mainmatter
+
+%%% The main stuff
+\input{sections/Introduction.tex}
+\input{sections/ExistingSolutions.tex}
+% Background
+\input{sections/ProblemAnalyse/AalborgZoo/AalborgZoo.tex}
+\input{sections/ProblemAnalyse/AalborgZoo/requirements.tex}
+\input{sections/ProblemAnalyse/AalborgZoo/ProblemDefinition.tex}
+\input{sections/ProblemAnalyse/AalborgZoo/SystemDefinition.tex}
+% Problem domain analysis
+\input{sections/ProblemAnalyse/ProblemDomain/ProblemDomain.tex}
+\input{sections/ProblemAnalyse/ProblemDomain/Classes.tex}
+\input{sections/ProblemAnalyse/ProblemDomain/Events.tex}
+% Application Domain Analysis
+\input{sections/ProblemAnalyse/ApplicationDomain/ApplicationDomainAnalysis.tex}
+\input{sections/ProblemAnalyse/ApplicationDomain/Actors.tex}
+\input{sections/ProblemAnalyse/ApplicationDomain/use-cases.tex}
+\input{sections/ProblemAnalyse/ApplicationDomain/ActorTable.tex}
+\input{sections/ProblemAnalyse/ApplicationDomain/Functions.tex}
+\input{sections/ProblemAnalyse/ApplicationDomain/PACT.tex}
+\input{sections/ProblemAnalyse/ApplicationDomain/ScopeOfApplication.tex}
+% Design...
+\input{sections/Design/Design.tex}
+\input{sections/Design/Implementation.tex}
+% Conclusion
+\input{sections/conclusion.tex}
+
+
+
+%%% End of document
+\printbibliography[heading=bibintoc]
+\label{bib:mybiblio}
+\appendix
+%\input{sections/appAname.tex}
+\end{document}

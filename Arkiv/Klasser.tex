@@ -1,0 +1,24 @@
+% A template is a collection of fields, which can be filled out to add a new asset. A \textit{field} can be required to be filled. A tag is simply a form of identifier, which makes it possible to group assets. An \textit{Asset} contains zero or more tags and a \textit{tag} can be attached to zero or more \textit{assets}. This depicts a many-to-many relation between the two classes, which enables multiple assets with the same tag and multiple tags attached to an asset. A template has many assets based on it, but an asset is only based upon one template.
+%\par
+%A \textit{tag} can be either a tag or a sub tag, which translates to either an overarching tag (such as 'location' or 'user') or a tag, which can belong to an overarching tag (such as 'the warehouse' to 'location' or 'John' to 'user').
+%\par
+%A \textit{user} can have one of two roles. One role is as an admin, which gives the ability to add, edit, and remove assets and tags. An admin user can also print reports and view all assets. The other role is as a viewer, who can only view the assets.\\
+%When an admin user makes any changes to the database, the change will be saved in a log.
+%\par
+%A \textit{log} consists of one or more entries, and each entry contains what has been changed, the time of the change, (if possible) the previous value, the new value, and the account who made the change.
+
+% Beskriv de enkelte klasser
+% Hvad gør de? Hvorfor har vi dem?
+%\textbf{Department} contains a unique identifier and the name of the department. A department can have several templates and assets attached. 
+
+%\par
+%The \textbf{Template} class contains a unique identifier, a name, and a reference to the fields the template contains. A template can be used by several assets.
+
+%\par
+%The \textbf{Asset} class represents the assets the IT department has. They have a unique identifier as well as a name and description. An asset also contains attributes with information about when they were registered and potentially when they expire. An expiration date is not necessarily relevant for all assets. The assets also contain a reference to the templates they use.
+
+%\par
+%The \textbf{Field} class has a unique identifier as well as a description. The \textit{Required} attribute determines whether or not the field needs to be filled before an asset can be created. The \textit{Type} attribute determines the contents datatype. The \textit{Name} attribute contains the name of the field. 
+%\par
+
+%\textbf{Tag} contains a unique identifier, a name and a parent id. The parent id is used to link the tag to another tag, hereby allowing grouping of tags.
