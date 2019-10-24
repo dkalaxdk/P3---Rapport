@@ -21,6 +21,34 @@
 
 \DeclareCaptionType{use_case}[Use Case]
 \DeclareCaptionType{actor}[Actor]
+\DeclareCaptionType{function}[Function]
+
+\newcommand{\fancyLayout}[5]{
+% CaptionType
+% Title
+% Caption text
+% Label
+% Content
+    \vskip 0.8cm
+    \begin{#1}[H]
+        \hrule
+        \vskip 0.3cm
+        \normalsize
+        \begin{center}
+            \textbf{#2}
+        \end{center}
+        \vskip 0.1cm
+        \hrule
+        \vskip 0.2cm
+        \normalsize
+        #5
+        \vskip 0.4cm
+        \hrule
+        \vskip 0.2cm
+        \caption{#3} \label{#4}
+    \end{#1}
+    \vskip 0.5cm
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Macros for the titlepage

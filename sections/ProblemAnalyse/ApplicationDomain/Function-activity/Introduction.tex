@@ -1,0 +1,114 @@
+\section{Function activity}\label{sc:function}
+% intro intro
+Based on the use cases it is possible to determine the functions necessary for the system to adequately fulfill the requirements. These functions have been classified by their type and complexity in the following functions list. The complex functions have then been further split into smaller functions, to explain the process of the complex functions.
+
+% Beskriv de overordnede funktioner brugeren skal kunne udføre (Håndtag) (Ikke noget system specifikt
+
+% Funktionstabeller med beskrivelser
+
+\vspace{0.5cm}
+
+\begin{table}[H]
+\centering
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \textbf{Function} & \textbf{Complexity} & \textbf{Type} \\
+        \hline
+        \hline
+        Add asset & Complex & Update\\
+        \hline
+        Remove asset & Simple & Update\\
+        \hline
+        Update asset information & Complex & Update\\
+        \hline
+        Search for asset & Medium & Compute/Read\\
+        \hline
+        View asset & Simple & Read\\
+        \hline
+        Authenticate user & Simple & Read\\
+        \hline
+        Check access level & Simple & Read\\
+        \hline
+        Export report & Complex & Compute/Read\\
+        \hline
+    \end{tabular}
+\caption{Table showing all the different top-level functions as well as their complexity and type.}\label{tab:functions}
+\end{table}
+
+\vspace{0.5cm}
+
+The functions table (see \autoref{tab:functions}) has been constructed with multiple complex functions. As mentioned earlier, these function has been further split into smaller functions, to better understand the operations. 
+
+
+\fancyLayout
+    {function}
+    {Add asset}
+    {The table shows the different functions involved in adding an asset as well as their complexity.}
+    {function:add_asset}
+    {
+        \centering
+        \begin{tabular}{|l|l|l|}
+            \hline
+            \textbf{Function} & \textbf{Complexity} & \textbf{Type}\\
+            \hline
+            \hline
+            Add relevant information about the asset & Simple & Update \\
+            \hline
+            Save Asset to model & Medium & Update \\
+            \hline
+            Save time of addition & Medium & Update \\
+            \hline
+        \end{tabular}
+}
+
+The \textit{add asset} function consists of 5 smaller functions, as seen in \autoref{function:add_asset}. The functions appear in the listed order. When adding an asset, first the user enter the relevant information, and this information is then saved with the asset to the model. Lastly, the time of the action is saved.
+
+\fancyLayout
+    {function}
+    {Update asset information}
+    {The table shows the different functions involved in updating an assets information.}
+    {function:update_asset_information}
+    {
+        \centering
+        \begin{tabular}{|l|l|l|}
+            \hline
+            \textbf{Function} & \textbf{Complexity} & \textbf{Type}\\
+            \hline
+            \hline
+            Load asset from model & Simple & Read \\
+            \hline
+            Determine changes & Medium & Compute \\
+            \hline
+            Save asset to model & Medium & Update \\
+            \hline
+            Save time of change & Medium & Update \\
+            \hline
+        \end{tabular}
+}
+
+The \textit{update asset information} function is made up of the smaller functions, as shown in \autoref{function:update_asset_information}, in shown order. First, the asset is loaded from the model, and formatted as an asset in the system. Then the user makes the changes to the asset, and the changes is determined and saved. Then the asset is saved to the model with the changes and the time of the change is saved as well.
+
+\fancyLayout
+    {function}
+    {Export report}
+    {The table shows the different functions involved in exporting a report.}
+    {function:export_report}
+    {
+        \centering
+        \begin{tabular}{|l|l|l|}
+            \hline
+            \textbf{Function} & \textbf{Complexity} & \textbf{Type}\\
+            \hline
+            \hline
+            Get searched assets & Simple & Read \\
+            \hline
+            Create entries in report & Simple & Update \\
+            \hline
+            Export to CSV-format & Medium & Compute \\
+            \hline
+        \end{tabular}
+}
+
+The \textit{export report} function involves the three smaller function listed in \autoref{function:export_report}, in order. First the admin searches for assets to be contained in the report and selects the assets. Then the assets are added to the report and finally, the report is exported to the admin computer in a file containing Comma Separated Values (CSV).
+\par
+With the actors and use cases defined, decisions for the user interface have been made, based on these definitions.

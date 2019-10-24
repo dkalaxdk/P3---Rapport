@@ -1,27 +1,28 @@
 \section{System Definition}
-The system will be developed to help the IT department at Aalborg Zoo track their corporate assets.
+As explained in the previous section, the system has been developed to help the IT department at Aalborg Zoo track their corporate assets.
 \par
 The primary functionality of the system is to give the user the ability to add, edit, remove, and search through all assets. The search will be based on the assets' unique IDs, names, and other identifiers specified by the user, and is limited to the chosen department. When adding a new asset to the system, the user will be able to add predefined tags to the asset. These tags can contain fields that should be filled out for the specific assets.
 \par
-Secondly, the system will have the functionality to tag assets with their location, the person borrowing the asset, and other attributes. These tags will be usable as identifiers for search queries. The user will be able to add new tags dynamically to the system and assign these to super tags, such as\todo[inline]{Kunne sætningen være: The user will be able to dynamically add tags, and group these using super tags, such as...} 'Locations' or 'Users'. The super tags will act as tag groups, and can also be dynamically added by the user. 
+Secondly, the system will have the functionality to tag assets with their location, the person borrowing the asset, and other attributes. These tags will be usable as identifiers for search queries. The user will be able to add new tags dynamically to the system and assign these to parent tags, such as 'Locations' or 'Users'. The parent tags will act as tag groups, and can also be dynamically added by the user. 
 \par
-Another secondary functionality of the system is logging activities. The system will be able to provide a history of events for each asset. Events include adding an asset, editing an asset, adding and removing tags on an asset. The user will also be able to attach events performed outside of the system, such as updating the OS of a computer and installing new software to an asset. Every event will have the username of the person who made the change attached.
+Another secondary functionality of the system is logging of interactions. The system will be able to provide a history of events for each asset. Events include adding an asset, editing an asset, adding and removing tags on an asset. The user will also be able to attach events performed outside of the system, such as updating the OS of a computer and installing new software to an asset. Every event will have the username of the person who made the change attached.
 \par
-The system will be used by the IT department, and have a group of users who can manage the system, logging in automatically using their Active Directory (AD) username. All employees will be able to view and comment on the assets, but only the assigned administrators will have the ability to manage them. 
+The system is developed to be used by the IT department, and have a group of users who can manage the system, logging in automatically using their Active Directory (AD) username. All employees will be able to view and comment on the assets, but only the assigned administrators will have the ability to manage them. 
 \par
 The interface will be simple and easy to use, dynamically changing depending on the department selected. The user will be able to generate a list of assets and export it as a file. The user will also have the ability to dynamically create and edit assets, by adding and removing tags with fields, in order to track specific elements of different assets. It will also be possible to create new tags and attach these to assets dynamically.
 \par
-The system will be programmed using the C\# language and will be developed for for a Windows PC. The system will be communicating with an MSSQL server and an AD on the internal network. The graphical user interface will be created with the Windows Presentation Foundation (WPF) framework.
+The system will be programmed using the C\# language and will be developed for for a Windows PC. The system will be communicating with an MySQL server and an AD on the internal network. The graphical user interface will be created with the Windows Presentation Foundation (WPF) framework.
 \par
 The objects in the problem domain are: 
 \begin{itemize}
     \item \textbf{Asset}: Corporate assets in Aalborg Zoo, such as a computer, a switch, a phone, etc.
 
-    \item \textbf{Department}: The different departments within Aalborg Zoo, such as finance, IT, etc.
+    % \item \textbf{Department}: The different departments within Aalborg Zoo, such as finance, IT, etc.
+    
+    \item \textbf{Employee}: Every employee can access the system and see every asset. Some employees can be granted further access to functionality, at which point they become an admin.
     
     \item \textbf{Admin}: Users with access to manage and lend assets to other employees.
-    
-    \item \textbf{Viewer}: Users with access to the system, but not the ability to change anything.
-    
-    %\item \textbf{Borrower}: The employees borrowing assets from the IT department.
 \end{itemize}
+\todo{Include all class diagram classes}
+
+\input{sections/ProblemAnalyse/AalborgZoo/Factor.tex}

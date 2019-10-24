@@ -1,40 +1,45 @@
 \section{PACT analysis}\label{sc:PACT}
-
+A PACT analysis has been performed to better understand the interactions between the users and the sysetm. The analysis gives a better description of the users, their needs and restrictions, the context in which the system is used, the activities surrounding the system, and the technologies involved.
 
 \textbf{People}:
 %(Physiological differences, Psychological differences, Social differences, Domain Expertise)
+It is important to analyse the interactions with the system, to ensure ease of use for the people using the system. It is important to take into consideration, how these people are different from each other and what special needs they might have. First we list the people who will interact with the system:
+
 \begin{itemize}
+    \setlength\itemsep{0.05em}
     \item Morten (IT)
     \item Kasper (IT)
     \item Employees at the zoo
 \end{itemize}
 
-\par
-No physiological, physiological or social differences to speak of. Morten and Kasper are both IT people, which means they are used to working with computers. However, they have requested the interface to be minimalistic and easy to use, which means most people should be able to use it.
-The other employees at the zoo have experience with other computer-based systems through their work.
+The presented people have no psychological, physiological, or social differences to speak of. Morten and Kasper both work in the IT department, which means they are used to working with computers. However, they have requested the interface to be minimalistic and easy to use. The other employees at the zoo have experience with other computer-based systems through their work, but not as deep of an understanding as Morten and Kasper.
 \par
 
 \textbf{Activities}: \\
 %(Purpose of activities to be supported by the system, Temporal aspects, Collaboration, Complexity, Safety criticality, Nature of system content) \\
-The system will support registration of assets, and helping users keep track of them. The IT-department adds, edits, updates and removes assets from the system and exports list of assets. They also log changes to the assets and keep track of the assets. On occasion they want a specific asset, which should be easily available to them.
-The rest of the employees only use the system to see assets and their current state.
+The users of the system will be using the system to keep track of assets and export lists of assets. They will keep track of the assets, by adding them to, editing them in, and removing them from the system. They will also print out a list of changes made to the assets. On occasion they also want a specific asset, and will search through the database. Some users will only use the system to see assets and their state, and comment them.
 \par
 
 \textbf{Context}: \\
 %(Physical, Social, Organizational) \\
-The system will be used at Aalborg Zoo, primarily on a desktop or laptop located in the office of the IT department. The laptops might be moved around the premise of the zoo. The software does not contain any elements geared towards any social aspects.
-Within Aalborg Zoo the program is developed specifically for the IT department.
+The system will be used at Aalborg Zoo, primarily on a desktop or laptop located in the office of the IT department. The laptops might be moved around the premise of the zoo. The software does not contain any elements geared towards any social aspects. Within Aalborg Zoo the program is developed specifically for the IT department.
 \par
  
 \textbf{Technology}:
 %(That could support users in the domain)
+The relevant technologies related to the system and its implementation include the following:
+
 \begin{itemize}
+    \setlength\itemsep{0.05em}
     \item Computer
-    \item Barcode scanner
     \item Screen
+    \item Barcode scanner
     \item Mouse
     \item Keyboard
-    \item Internet
     \item Database
-    \item Active Directory (AD)
+    \item Internet
 \end{itemize}
+
+The computer will be used to run the system, and the screen will be used as an output device. The barcode scanner, mouse, and keyboard will be used for input. The database will function as storage for everything added to the system, such as assets and comments. The internet will be used in the context of connecting to the database.
+\par
+With a deeper understanding of the people, activities, context, and technologies surrounding the system, it is easier to construct an architectural design for the system.

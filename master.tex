@@ -37,30 +37,97 @@
 %mainmatter
 \pagenumbering{arabic} %use arabic page numbering in the mainmatter
 
-%%% The main stuff
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Introduction to the report
 \input{sections/Introduction.tex}
-\input{sections/ExistingSolutions.tex}
+
+
 % Background
 \input{sections/ProblemAnalyse/AalborgZoo/AalborgZoo.tex}
-\input{sections/ProblemAnalyse/AalborgZoo/requirements.tex}
 \input{sections/ProblemAnalyse/AalborgZoo/ProblemDefinition.tex}
+\input{sections/ProblemAnalyse/AalborgZoo/Requirements.tex}
 \input{sections/ProblemAnalyse/AalborgZoo/SystemDefinition.tex}
+\input{sections/ProblemAnalyse/AalborgZoo/Method.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Problem domain analysis
-\input{sections/ProblemAnalyse/ProblemDomain/ProblemDomain.tex}
-\input{sections/ProblemAnalyse/ProblemDomain/Classes.tex}
-\input{sections/ProblemAnalyse/ProblemDomain/Events.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Introduction
+\input{sections/ProblemAnalyse/ProblemDomain/Introduction.tex}
+
+% Class activity
+\input{sections/ProblemAnalyse/ProblemDomain/Class-activity/Introduction.tex}
+\input{sections/ProblemAnalyse/ProblemDomain/Class-activity/Classes.tex}
+\input{sections/ProblemAnalyse/ProblemDomain/Class-activity/Events.tex}
+\input{sections/ProblemAnalyse/ProblemDomain/Class-activity/Event-table.tex}
+
+% Structure activity
+\input{sections/ProblemAnalyse/ProblemDomain/Structure-activity/Introduction.tex}
+
+% Behavior activity
+\input{sections/ProblemAnalyse/ProblemDomain/Behavior-activity/State-charts.tex}
+
+% Summary
+\input{sections/ProblemAnalyse/ProblemDomain/Summary.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Application Domain Analysis
-\input{sections/ProblemAnalyse/ApplicationDomain/ApplicationDomainAnalysis.tex}
-\input{sections/ProblemAnalyse/ApplicationDomain/Actors.tex}
-\input{sections/ProblemAnalyse/ApplicationDomain/use-cases.tex}
-\input{sections/ProblemAnalyse/ApplicationDomain/ActorTable.tex}
-\input{sections/ProblemAnalyse/ApplicationDomain/Functions.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{sections/ProblemAnalyse/ApplicationDomain/Introduction.tex}
+
+% Usage activity
+\input{sections/ProblemAnalyse/ApplicationDomain/Usage-activity/Introduction.tex}
+\input{sections/ProblemAnalyse/ApplicationDomain/Usage-activity/Actors.tex}
+\input{sections/ProblemAnalyse/ApplicationDomain/Usage-activity/Use-cases.tex}
+
+% Function activity
+\input{sections/ProblemAnalyse/ApplicationDomain/Function-activity/Introduction.tex}
+\input{sections/ProblemAnalyse/ApplicationDomain/Function-activity/Functions.tex}
+
+% User interface
+\input{sections/ProblemAnalyse/ApplicationDomain/User-interface/Introduction.tex}
 \input{sections/ProblemAnalyse/ApplicationDomain/PACT.tex}
-\input{sections/ProblemAnalyse/ApplicationDomain/ScopeOfApplication.tex}
-% Design...
-\input{sections/Design/Design.tex}
-\input{sections/Design/Implementation.tex}
+
+% Summary
+\input{sections/ProblemAnalyse/ApplicationDomain/Summary.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Architectural Design
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{sections/ArchitecturalDesign/Introduction.tex}
+
+% Technical Platform
+\input{sections/ArchitecturalDesign/TechnicalPlatform/Introduction.tex}
+\input{sections/ArchitecturalDesign/TechnicalPlatform/Database.tex}
+\input{sections/ArchitecturalDesign/TechnicalPlatform/WPF.tex}
+\input{sections/ArchitecturalDesign/TechnicalPlatform/DotNETCore.tex}
+
+% Criteria
+\input{sections/ArchitecturalDesign/Criteria.tex}
+
+% Component design
+\input{sections/ArchitecturalDesign/Components.tex}
+
+% Model component
+\input{sections/ArchitecturalDesign/ModelComponent.tex}
+
+% Function component
+\input{sections/ArchitecturalDesign/FunctionComponent.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Implementation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{sections/Implementation/Introduction.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Conclusion
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{sections/conclusion.tex}
 
 

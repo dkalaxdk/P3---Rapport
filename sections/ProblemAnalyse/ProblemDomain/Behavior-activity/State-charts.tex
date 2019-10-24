@@ -1,0 +1,47 @@
+\section{Behavior} \label{sc:behavoir}
+% intro intro
+In the following section, the behavior of each class will be examined and illustrated. A deeper understanding of these behaviours will be achieved through state charts.
+% Indsæt statecharts med beskrivelser
+
+\large{\textbf{Asset}}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/StateChart_Asset.png}
+    \caption{State chart diagram for Asset}
+    \label{fig:asset_statechart}
+\end{figure}
+
+An asset object is created when the asset is acquired. At first its state is available, and when the asset is loaned out to an employee, it changes state to loaned out. From any of these two states, the asset can be disposed of and no longer exist within the problem domain.
+\\\\
+
+\large{\textbf{Employee}}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/StateChart_Employee.png}
+    \caption{State chart diagram for Employee}
+    \label{fig:employee_statechart}
+\end{figure}
+
+An employee object is created when a person is hired at the zoo and gains the status employed. An employee can potentially be granted admin access, which can later be revoked as well. An employee can also borrow an asset and return it later. The employee object seizes to exist when the person is fired. 
+\\\\
+
+\large{\textbf{Admin}}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/StateChart_Admin.png}
+    \caption{State chart diagram for Admin}
+    \label{fig:admin_statechart}
+\end{figure}
+
+The admin object is created when an employee id granted admin access. An an admin, the employee is responsible for loaning out assets to other employees and receiving the assets when they are returned. The admin object is terminated when the employee's admin access is revoked. 
+\\\\
+
+\large{\textbf{Loan}}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/StateChart_Loan.png}
+    \caption{State chart diagram for Loan}
+    \label{fig:loan_statechart}
+\end{figure}
+
+A loan object is created when an asset is loaned out and seizes to exist when the asset is returned.

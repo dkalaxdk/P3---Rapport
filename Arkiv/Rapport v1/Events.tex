@@ -1,0 +1,83 @@
+\section{Events}\label{sc:events}
+
+In the system the classes, described in section \ref{sc:classes}, interact with each other and the system model. These interactions can be described by events. An event table (table \ref{tab:events}) has been set up to illustrate the connections between classes and events. 
+
+\begin{table}[H]
+\centering
+\resizebox{\textwidth}{!}{%
+    \begin{tabular}{|l||c|c|c|c|c|}
+        \hline
+        & Asset & Department & Employee & Admin & Loan \\
+        \hline
+        \hline
+        Asset acquired & + & $\pmb{\times}$ & & & \\
+        \hline
+        Asset disposed of & + & * & & & \\
+        \hline
+        Asset loaned out & * & & * & * & +\\
+        \hline
+        Asset returned & * & & * & * & +\\
+        \hline
+        Employee access gained & & & + & & \\
+        \hline
+        Employee access revoked & & & + & & \\
+        % \hline
+        % Employee assigned to department & & * & * & & \\
+        % \hline
+        % Employee removed from department & & * & * & & \\
+        \hline
+        Admin access gained & & & * & + & \\
+        \hline
+        Admin access revoked & & & * & + & \\
+        \hline
+        Department activated & & + & & & \\
+        \hline
+        Department deactivated & & + & & &  \\
+        \hline
+    \end{tabular}
+}
+\caption{Event table showing which classes are involved with the different events. An event can happen once (+) or several (*) times for each class.}\label{tab:events}
+\end{table}
+
+\textbf{Asset acquired:}\\
+\textit{Asset acquired} is the event occurring, when the zoo or a department. The event involves the acquired asset and the related department.\\
+%A specific asset can only be created or removed once in its lifetime, hence the '+' symbol, but it can be edited or tagged multiple times. Admins however, can create, remove, edit, or tag many assets, and is therefore involved for every of these events. Logging is also done for every of these events, for all assets and not just a specific asset, hence '*'. Tagging an asset requires a tag, the parent and child tag classes are involved. Assets can also be tagged multiple times with different tags.
+
+\textbf{Asset disposed of:}\\
+\textit{Asset disposed of} happens when an asset is either disposed of by an admin or lost by an employee. This event affects the disposed asset and the related department. \\
+%The \textit{asset added} event occurs when an admin adds an asset to the system. The event is initiated by an admin and affects the asset class, as another instance of the class is created.
+
+\textbf{Asset loaned out:}\\
+\textit{Asset loaned out} is an event occurring whenever an admin loans out an asset to an employee. It involves the asset, an employee, whom the asset is loaned to, and an admin creating the loan, which is also involved.\\
+%A department can only be added or removed once in its lifetime, which involves the department class. However, editing can be done multiple times. All of these actions requires an admin, who can add, remove, or edit multiple departments. These actions are also logged with the log class, of which is logging all departments involving it multiple times.
+
+\textbf{Asset returned:}\\
+\textit{Asset returned} is an event occurring whenever an admin receives an asset loaned out to an employee. This event involves the same classes as \textit{asset loaned out}, as it is just the reversed event.\\
+%The adding and removing action of a parent tag can only happen once in the lifetime of a tag, hence '+' for the parent tag class. Editing however, can be done an infinite amount of times for a single tag hence '*'. As all of these actions requires an admin and is logged, these classes are involved multiple times. An admin can add, remove, or rename multiple parent tags, and the logging happens for every parent tag event. When renaming a parent tag, the child tag is involved since every one of them needs to know about their parent changing name.
+
+\textbf{Employee hired:}\\
+\textit{Employee hired} happens whenever a new employee is hired. This only affects the employee hired.\\
+%Adding or removing a child tag can only be done once in the lifetime of a child tag, hence the '+' for the child tag class. To add a child tag, it is also necessary to have a parent tag to add it to. Likewise it is necessary to notify the parent when a child has been removed. All of these actions requires an admin and must be logged, involving the admin and log classes. Since admins can add or remove multiple child tags, it is involved multiple times. Logging is also done for all child tags, involving it multiple times.
+
+\textbf{Employee terminated:}\\
+\textit{Employee terminated} is the event of an employee going from working at the zoo, to no longer working at the zoo. This only affects the employee hired.\\
+%When manipulating fields like add or remove, the field class is involved once, since this action can only happen once in the lifetime of the field. Edit however, can be done multiple times throughout the field's lifetime involving the field class every time. Since all of these actions requires the user to have admin rights, and it is logged every time the admin and log classes are involved multiple times. An admin can do these actions for all fields, and the logging is done for all fields.
+
+\textbf{Employee assigned to department:}\\
+\textit{Employee assigned to department} is the event occurring when an employee is assigned to a department. The event affects the employee assigned, and the department, which the employee is assigned to.
+
+\textbf{Employee designated as admin:}\\
+\textit{Employee designated as admin} happens when an employee is assigned the status of admin, and the employee can from that point loan out assets of the department. This affects the employee and admin classes, as the employee is assigned the role of admin.\\
+%Adding or removing comments can only happen once when we look at the comment class. However, since a comment can be edited multiple times, the comment class is involved multiple times. The asset is involved every time a comment is created, removed or edited since a comment requires an asset to be attached to. However, assets can have multiple comment associated, hence the '*' symbol. Admins and viewers can both have multiple comments, involving them multiple times and logging is done for every comment.
+
+\textbf{Employee dismissed as admin:}\\
+\textit{Employee dismissed as admin} is the event of an admin employee loosing the privileges of an admin. The event involves the employee and admin classes.\\
+
+\textbf{Department established:}\\
+\textit{Department established} is the event of a department being established, within the zoo. The event only affects the established department.\\
+
+\textbf{Department closed:}\\
+\textit{Department closed} is the event of a department being shut down. The event involves the department being shut down.\\
+\par
+
+The problem domain analysis has given an understanding of the classes in the problem domain and their mutual relations. This knowledge has been used later in the project, to design and implement the best possible solution to the problems.
