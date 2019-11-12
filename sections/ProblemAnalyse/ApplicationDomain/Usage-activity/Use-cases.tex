@@ -1,5 +1,5 @@
 \subsection{Use cases}\label{ssc:usecases}
-Below, the use cases from the actor table (see \autoref{tab:actor_table}), have been described. The description include the way the interactions with the system will take place, which actors are involved, and which functions are called, within the system, to complete the actions in the use cases.
+Below, the use cases from the actor table (see \autoref{tab:actor_table}), have been described. The description includes how the interactions with the system will take place, which actors are involved, and which functions are called, within the system, to complete the actions in the use cases.
 \par
 Each use case has been described and is followed by a diagram of the interaction.
 % In the system definition it was stated that the admin should be able to print out a report of assets from the system. The report will consist of a number of assets, and take shape as a file, saved on the admins computer.
@@ -9,11 +9,11 @@ Each use case has been described and is followed by a diagram of the interaction
     {Use case for adding an asset}
     {use_case:add_an_asset}
     {
-        \textbf{Use Case:} Adding an asset is done by the admin. An admin goes to the add asset page and fills in all the information about the asset, including the location of the asset and which department it belongs to. After all the information have been added to the asset, the asset is saved in the system and is visible to all employees and can be loaned out.
+        \textbf{Use Case:} Adding an asset is done by the admin. An admin goes to the add asset page and fills in all the information about the asset, including the location of the asset and which department it belongs to. After all the information has been added to the asset, the asset is saved in the system and is visible to all employees and can be loaned out.
     
         \vskip 0.2cm
         
-        \textbf{Objects:} Admin, Asset, Department, Location
+        \textbf{Objects:} Admin, Asset
         
         \vskip 0.2cm
         
@@ -49,7 +49,7 @@ Each use case has been described and is followed by a diagram of the interaction
     \includegraphics[width=0.8\textwidth]{figures/UC_Loan_out_asset.png}
     \caption{User interface state chart diagram for loaning out an asset}
     \label{fig:loan_out_asse_statechart}
-t\end{figure}
+\end{figure}
  
  \newpage
  
@@ -129,7 +129,7 @@ t\end{figure}
     {Use case for searching for an asset}
     {use_case:search_for_an_asset}
     {
-        \textbf{Use Case:} If an employee needs to know something about an asset, the employee goes to the search page, chooses a department and types in some information about the asset in the search field. The system then returns a list of assets complying with the search query. The employee can then chose an asset and go to its page.
+        \textbf{Use Case:} If an employee needs to know something about an asset, the employee goes to the search page, chooses a department and enters in some information about the asset in the search field. The system then returns a list of assets complying with the search query. The employee can then chose an asset and go to its page.
     
         \vskip 0.2cm
         
@@ -196,5 +196,40 @@ t\end{figure}
 \end{figure}
 
 \par
+Based on the system definition and requirements, the use cases have been constructed (see \autoref{tab:actor_table}). These are the relevant use cases to handle the assets.
 
-The defined use cases have then been used to extract relevant functions and, later in the report, construct the user interface.
+\begin{table}[H]
+    \centering
+    % \hrule
+    \vspace{0.2cm}
+    \hspace{6cm} \vspace{0.6cm} \textbf{Actors}
+    \begin{tabular}{p{0.5\textwidth} || p{0.2\textwidth} p{0.2\textwidth}}
+        \textbf{Use cases} & Admin & Employee \vspace{0.2cm}\\
+        \hline \hline
+        Add an asset & \hspace{0.34cm} \checkmark & \\
+        \hline
+        Loan out an asset & \hspace{0.34cm} \checkmark & \hspace{0.6cm} \checkmark \\
+        \hline
+        Return an asset & \hspace{0.34cm} \checkmark & \hspace{0.6cm} \checkmark \\
+        \hline
+        Change the information about an asset & \hspace{0.34cm} \checkmark & \\
+        \hline
+        Remove an asset & \hspace{0.34cm} \checkmark & \\
+        \hline
+        Search for an asset & \hspace{0.34cm} \checkmark & \hspace{0.6cm} \checkmark \\
+        \hline
+        Print a report of assets & \hspace{0.34cm} \checkmark & \\
+        \hline
+        Comment an asset & \hspace{0.34cm} \checkmark & \\
+    \end{tabular}
+    \vspace{0.2cm}
+    % \hrule
+    \vspace{0.2cm}
+    \caption{Actor table of the relations between actors and use cases.}
+    \label{tab:actor_table}
+\end{table}
+
+In the actor table above (see \autoref{tab:actor_table}), it has become clear that the admin takes part in every use case. This can be explained by the way the system will be used. The system should function almost like an interface to a database, so it makes sense that the admin will be involved in all the changes made to the system and, as an effect of this, the database.
+
+\par
+The defined use cases have then been used to extract relevant functions and, later in the report, construct the user interface. For most of these use cases, the system desires to know which employee or admin committed the changes to the system, and therefore two more functions are needed. \textit{Authenticate user} and \textit{Check access level} are used to satisfy this desire and is executed on login and most of the described use cases above.

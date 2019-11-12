@@ -1,8 +1,8 @@
 \subsection{Event table}\label{ssc:eventtable}
 % Vis relationen mellem klasser og events med et event table
-To give a visual overview of the events, classes and their relations, an event table has been constructed (\autoref{tab:events}).
+To give a visual overview of the events, classes and their relations, an event table has been constructed (see \autoref{tab:events}).
 %To create a better overview of the events and the connections between these and the classes, an event table (\autoref{tab:events}) has been constructed.
-Based on the event table a new class has been added to the system, the \textit{Loan} class. The reason for adding the \textit{Loan} class is explained beneath the event table.
+Based on this event table, a new class has been added to the system. This class is called \textit{Loan}, and represents the loan of an asset to an employee. The reason for adding this class is explained below.
 % \par
 % As the admin is involved in nearly every change or addition within the system, and these actions need to be saved, these relations have been excluded from the rest of the analysis. This is done to simplify the illustrations and remove cluttering.
 
@@ -11,16 +11,16 @@ Based on the event table a new class has been added to the system, the \textit{L
 %\resizebox{\textwidth}{!}{%
     \begin{tabular}{|l||c|c|c||c|}
         \hline
-        \textbf{Event} & \textbf{Asset} & \textbf{Employee} & \textbf{Admin} & \textbf{Loan} \\
+        \textbf{Event} & \textbf{Asset} & \textbf{Employee} & \textbf{Admin} & \textit{\textbf{Loan}} \\
         \hline
         \hline
         Asset acquired & + & & * & \\
         \hline
         Asset disposed of & + & & * & \\
         \hline
-        Asset loaned out & * & * & * & + \\
+        Asset loaned out & * & * & * & \textit{+} \\
         \hline
-        Asset returned & * & * & * & + \\
+        Asset returned & * & * & * & \textit{+} \\
         \hline
         Employee hired & & + & & \\
         \hline
@@ -32,13 +32,11 @@ Based on the event table a new class has been added to the system, the \textit{L
         \hline
     \end{tabular}
 %}
-\caption{Event table showing which classes are involved with the different events. An event can happen once (+) or several (*) times for each class.}\label{tab:events}
+\caption{Event table showing which classes are involved with the different events. An event can happen once (+) or several times (*) for each class.}\label{tab:events}
 \end{table}
-
-Now that the events and there participating classes have been illustrated in the event table, one change has been made.
 \par
 \textbf{Loan}\\
-The \textit{Loan} has not been mentioned prior to the event table, but has been added, because the \textit{Asset loaned out} and \textit{Asset returned}, both have three participating classes. The events can both happen multiple times for all three classes, which is not ideal. To avoid this, another class has been added to the system, the \textit{Loan} class. The \textit{Loan} class connects assets and employees, and stores the id of both. The \textit{Loan} is also an easier way for the \textit{Admin} to administrate the loans.
+The \textit{Loan} class has been added to the problem domain because the events \textit{Asset loaned out} and \textit{Asset returned} both have three participating classes. These events also occur for all three classes multiple times, which is not ideal. The \textit{Loan} class connects assets and employees, and stores the objects within itself. This gives a superior way of implementing the \textit{Asset loaned out} and \textit{Asset returned} events in the system. The \textit{Loan} also offers an easier way for the \textit{Admin} to administrate relations between employees and assets.
 
 % Beskriv at Loan blev tilføjet, da der var en mange til mange relation
 

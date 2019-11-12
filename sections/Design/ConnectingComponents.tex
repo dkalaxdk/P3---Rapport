@@ -1,0 +1,12 @@
+\section{Connecting Components} \label{sc:connecting_components}
+The component have been defined in the above sections and their connections and desired interactions have been described and depicted in the following section.
+\par
+The model and function components have a few dependencies between them. These dependencies have been converted to connections in a way that gives the most cohesion in the system and the lowest coupling. On top of these criteria, an intuitive design and connection between the components has been striven towards.
+\par
+The connection between the \textit{Asset}, \textit{Tag}, and \textit{Department} classes and the \textit{MaintainModelData} strategy class is an aggregation. This is because the concrete strategies handles objects of their designated type as a collection, which is known to the concrete strategy.
+\par
+The \textit{Admin} class is connected with a call relation to the \textit{AssetController} class, as the \textit{Admin} just calls the function within the \textit{AssetController}.
+\par
+The \textit{Employee} class has a connection to the \textit{Session} class in the function component to ensure that the an employee can access the function belonging to the session. The connection exists as a call, as the relation between the two classes' only purpose is giving the \textit{Employee} access to the functions.\\
+
+The above descriptions has described the connections between the model and function components. The decisions reasoned above have ended in the following component diagram.

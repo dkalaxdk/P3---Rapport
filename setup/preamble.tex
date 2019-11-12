@@ -113,7 +113,7 @@
 \fancyhead[RE]{\small\nouppercase\leftmark} %even page - chapter title
 \fancyhead[LO]{\small\nouppercase\rightmark} %uneven page - section title
 \fancyhead[LE,RO]{\thepage} %page number on all pages, header
-%\fancyfoot[LE,RO]{Page \thepage\space of \pageref{LastPage}} %page number on all pages, footer
+% \fancyfoot[LE,RO]{Page \thepage\space of \pageref{LastPage}} %page number on all pages, footer
 % Do not stretch the content of a page. Instead,
 % insert white space at the bottom of the page
 \raggedbottom
@@ -183,6 +183,15 @@
 \usepackage{amssymb}
 
 \usepackage{longtable}
+
+\usepackage{makecell}
+
+\newlength\mytemplength
+
+\newcommand\parboxc[3]{%
+    \settowidth{\mytemplength}{#3}%
+    \parbox[#1][#2]{\mytemplength}{\centering #3}%
+}
 
 % Viser mere info om fejl
 %\setcounter{errorcontextlines}{999}

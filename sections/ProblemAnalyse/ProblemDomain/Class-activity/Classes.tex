@@ -3,24 +3,33 @@
 % Asset, Admin, Employee, Department, Location
 
 The problem domain of the project contains three different relevant classes. These classes will be introduced in this section and elaborated upon in the following sections. 
-\newline
+\par
 
 \textbf{Asset}\\
 The \textit{Asset} class represents physical assets throughout the zoo. The \textit{Asset} contains attributes storing information related to the asset, such as its location, the current borrower of it, and its specifications.
 %information regarding its location in the zoo, as well as information on the current borrower of the \textit{Asset}. An \textit{Asset} can also be configured to have a date of expiration, thereby giving a notification when the asset needs to be replaced.
-\newline
-
-% \textbf{Department}\\
-% The \textit{Department} class reflects a department within the zoo. These \textbf{Departments} works as a way of grouping assets and users within the zoo.
-% \newline
-
-% \textbf{Location}\\
-% The \textit{Location} class represents a physical location in the zoo, in which assets can be stored. 
-% \newline
+\par
 
 \textbf{Employee}\\
 The \textit{Employee} class represents an employee at the zoo. The \textit{Employee} contains attributes storing the name and department of the given employee. Assets can be loaned out to an \textit{Employee} by an \textit{Admin}.
-\newline
+\par
 
 \textbf{Admin}\\
-The \textit{Admin} class represents an administrator. The \textit{Admin} contains the same attributes as the employee. The \textit{Admin} manages the assets, as well as which employees have loaned which assets.
+The \textit{Admin} class represents an administrator. The \textit{Admin} contains the same attributes as the \textit{Employee}. The \textit{Admin} manages the assets, as well as which \textit{Employees} have loaned which assets.
+\par
+These three classes interact with each other through events, which will be addressed in the following section.
+\newline
+
+Two more classes could be said to exist in the problem domain. These are: 
+\par
+\textbf{Department}\\
+The \textit{Department} class reflects a department within the zoo. These \textit{Departments} work as a way of grouping assets within the zoo.
+\par
+
+\textbf{Location}\\
+The \textit{Location} class represents a physical location in the zoo, in which assets can be stored. 
+\par
+
+The \textit{Department} class was not included, as there is only one department in the problem domain (The IT department). Had there been more, this class would have been included. 
+\par
+The \textit{Location} class was not included because it would mean that the user is restricted to only a specific set of locations, and wouldn't be as flexible.

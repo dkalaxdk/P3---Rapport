@@ -1,39 +1,4 @@
 \section{Usage}\label{sc:usage}
-Within this section, the usage of the system, which include a list of actors and relevant use cases, has been analysed. This part of the application domain is important to understand, to satisfactorily create the user experience and offer all the relevant functionality in the finished system. Firstly, the actors and use cases has been identified and connected in an actor table.
+Within this section, the usage of the system, which include a list of actors and relevant use cases, has been analysed. This part of the application domain is important to understand, in order to create a  satisfactory user experience and offer all the relevant functionality in the finished system. Firstly, the actors and use cases have been identified and connected in an actor table.
 \par
-The actors in the application domain only include the employees and admins. The differentiation of the two is made, because the admin has access to specific functionality and pages within the system, which are invisible for the employee. The admin class is a specialization of the employee class, which means it has the same abilities as the employee, but is granted further interactions with the system.
-\par
-Based on the system definition and requirements-list, the use cases have been constructed (see \autoref{tab:actor_table}). These are the relevant use cases to handle the assets.
-
-\begin{table}[H]
-    \centering
-    % \hrule
-    \vspace{0.2cm}
-    \hspace{6cm} \vspace{0.6cm} \textbf{Actors}
-    \begin{tabular}{p{0.5\textwidth} || p{0.2\textwidth} p{0.2\textwidth}}
-        \textbf{Use cases} & Admin & Employee \vspace{0.2cm}\\
-        \hline \hline
-        Add an asset & \hspace{0.34cm} $\pmb{\times}$ & \\
-        \hline
-        Loan out an asset & \hspace{0.34cm} $\pmb{\times}$ & \hspace{0.6cm} $\pmb{\times}$ \\
-        \hline
-        Return an asset & \hspace{0.34cm} $\pmb{\times}$ & \hspace{0.6cm} $\pmb{\times}$ \\
-        \hline
-        Change the information about an asset & \hspace{0.34cm} $\pmb{\times}$ & \\
-        \hline
-        Remove an asset & \hspace{0.34cm} $\pmb{\times}$ & \\
-        \hline
-        Search for an asset & \hspace{0.34cm} $\pmb{\times}$ & \hspace{0.6cm} $\pmb{\times}$ \\
-        \hline
-        Print a report of assets & \hspace{0.34cm} $\pmb{\times}$ & \\
-        \hline
-        Comment an asset & \hspace{0.34cm} $\pmb{\times}$ & \\
-    \end{tabular}
-    \vspace{0.2cm}
-    % \hrule
-    \vspace{0.2cm}
-    \caption{Actor table of the relations between actors and use cases.}
-    \label{tab:actor_table}
-\end{table}
-
-In the actor table above (see \autoref{tab:actor_table}), it has become clear that the admin takes part in every use case. This can be explained by the way the system will be used. The system should function almost like an interface to a database, so it makes sense that the admin will be involved in all the changes made to the system and, as an effect of this, the database. The actors has been further described in the following section.
+The actors in the application domain only include the employees and admins. The differentiation of the two is made, because the admin has access to specific functionality and pages within the system, which are not available to the employee. The admin class is a specialization of the employee class, which means it has the same abilities as the employee, but is granted access to further interactions with the system.

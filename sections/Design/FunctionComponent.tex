@@ -1,0 +1,96 @@
+\section{Function Component} \label{sc:function_component}
+Having added new attributes, classes, and structures to the class diagram through the model component, the functions from the function list can be implemented as well. Some of the functions should be implemented in the classes directly, others should be places in the function component. The following section contains additions to the original function list, the arguments for these additions, decisions about implementations of these, and the final function component design.
+\par
+\subsection{Additions to the function list}
+The function list has been constructed based on the original class diagram, but does not accommodate the new additions from the model component. To support the new classes, the following functions have been added:
+
+\begin{table}[H]
+\centering
+    \begin{tabular}{r l l l}
+        1) & Add tag & Complex & Update\\
+        \\
+        2) & Remove tag & Simple & Update\\
+        \\
+        3) & Update tag information & Complex & Update\\
+        \\
+        4) & Add department & Complex & Update\\
+        \\
+        5) & Remove department & Simple & Update\\
+        \\
+        6) & Update department name & Complex & Update\\
+        \\
+        7) & Tag asset & Medium & Update\\
+        \\
+        8) & Search for tag & Medium & Compute/Read\\
+        \\
+        9) & Comment asset & Medium & Update
+    \end{tabular}
+\end{table}
+
+The functions 1-6 are all fundamentally the same as the \textit{add asset}, \textit{remove asset}, \textit{update asset information} functions. They have been added to the system to maintain the model parts. As add, remove, and update are as relevant for tags and departments as for assets.\\
+Function 7 handles the tagging of an asset by creating the tag relation between the asset and the tag to be attached.\\
+Function 8 makes it possible to search for a tag, as it was previous possible to search for a tag.
+\par
+The updated function list has then been implemented in the component deign.
+
+\subsection{Design}
+The following includes examinations of the functions and design decisions about how they should be incorporated in the component design.
+
+\subsubsection{Maintaining model}
+All the add, remove, and update functions are used by the admin. They should be handled similarly and will therefore be grouped into a strategy. The name of the strategy is \textit{MaintainModelData} and is abstract. It contains the concrete strategies: \textit{MaintainModelAssets}, \textit{MaintainModelTags}, and \textit{MaintainModelDepartments}, which handle the maintenance of the data for the different classes in the model. These concrete strategies will handle the database communication for each class to be stored and maintained.
+\par
+These concrete strategies then have operations for each of the three function add, remove, and update, which all take an object of the class define in the concrete strategy. This structure has been placed in the function component, as it does not belong to a specific class in the model component.
+\todo[inline]{Insert structure diagram (based on the diagram in the top of page 265 in OOA\&D)}
+
+\subsubsection{Comment asset}
+Commenting an asset adds a comment to the asset. The function is called by the employee and only affects the asset but will create a high coupling between the two classes, if it is placed as an operation on the asset class. Therefore is has been moved to a class named \textit{AssetController} in the function component.
+\todo[inline]{Insert AssetController class with a CommentAsset operation}
+
+\subsubsection{Search for asset and tag}
+The 'search for asset' function lets the employee search through the assets in the system and returns the assets that comply with the search query. Multiple assets are handled and therefore it would not be intuitive to add it as an operation on the asset class. It is called by the employee, but the employee does not stand with the responsibility of searching through the assets, so the function has been placed as an operation in the function component.\\
+The function 'search for tag' goes through the same process and both functions have the same structure. The search is carried out on the elements in the database and therefore they fit well into the concrete strategies of the \textit{MaintainModelData} strategy.
+\todo[inline]{Insert structure diagram with the new operations for tag and asset}
+
+\subsubsection{View asset}
+Viewing an asset means being send to a page with the asset illustrated with relevant information. The function retrieves the given asset from the database. As the function is simply reading form the database, it fits well into the \textit{MaintainModelAssets} class in the function component.
+\todo[inline]{Insert structure diagram with the new operations for asset}
+
+\subsubsection{Authenticate user \& Check access level}
+The authentication and access level check are both functions involving the \textit{Employee} class. As the employee should not do these things itself, they have been moved to the function component and implemented as operations in a class called \textit{Session}. This class also contains an attribute \textit{User ID}.
+\todo[inline]{Insert the 'Session' class with the operations and attribute}
+
+\subsubsection{Export report}
+The only class needing access to this function are users with admin access. The function is not relevant for any other class but the responsibility for executing the operation does not lie with the \textit{Admin} class. Therefore, the operation has been moved into a class in the function component named \textit{ExportHandler}.
+\todo[inline]{Insert the 'Export handler' class with the new additional 'ExportReport' operation}
+
+\subsubsection{Tag asset}
+The operation of tagging an asset is called by the admin and involves the \textit{Tag} and \textit{Asset} classes. The function creates an instance of the \textit{TagRelation} class containing the involved asset and tag. The operation should be added to a class in the function component, as the admin does not carry out the operation. The operation will be placed in the \textit{AssetController} class.
+\todo[inline]{Insert the 'Asset controller' class with the new additional 'TagAsset' operation}
+
+\subsection{Specification of complex functions}
+The complex functions has been depicted with further descriptions, to ease the understanding process of them. Some of the complex function are trivial and therefore have not been described in further detail. The functions include the adding and removing of assets, departments, and tags, updating these as it is simply changing the value of attributes, and searching through the sets.
+\par
+This leaves the Export report function to be described in further detail.
+\begin{table}[H]
+    \centering
+    \hrule
+    \begin{tabular}{l l}
+    \\
+         \textbf{Name} & Export report \\\\
+         \textbf{Category} & Passive read\\\\
+         \textbf{Purpose} & Creates a CSV-file and saves it on the users computer.\\\\
+         \textbf{Input} data & Collection of elements to be exported in the CSV-file.\\\\
+         \parboxc{t}{0}{\textbf{Conditions}} & \makecell{The user has selected one or more elements to be exported. \\ A location on the users  computer to store the file.}\\\\
+         \textbf{Effect} & A CSV-file containing the collection of elements.\\\\
+         \textbf{Algorithm} & \\\\
+         \textbf{Data structures} & Enumerable list\\\\
+         \textbf{Placement} & \\\\
+         \textbf{Involved objects} & \\\\
+         \textbf{Triggering events} & \\\\
+    \end{tabular}
+    \hrule
+    \caption{Specification of the \textit{Export report} operation}
+    \label{tab:complex_func_description_export_report}
+\end{table}
+\par
+The overall behaviour of the system is pretty simple, as it only has one state, \textit{active}. Therefore, a diagram of this behaviour is trivial and has been decided not to be included here.
