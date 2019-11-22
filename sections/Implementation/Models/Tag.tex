@@ -1,0 +1,6 @@
+\subsection{Tag}
+The tags is one of the core components of the program, as it allows the user to describe assets and their states and relations. In the system these are implemented from the interface \textit{ITagable}, this interface is implemented by the \textit{User} class (\autoref{ssc:Users}) as well as the \textit{Tag} class, as both of these can be tagged unto assets. \par
+The \textit{Tag} class contains a label, \textit{Fields} and potentially a relation to a parent-tag. Parent tags are used to group tags, to make them easier to navigate and use. The relation between a parent and a child tag is a many to one relation stored in the database.
+
+
+\subsubsection{Users} \label{ssc:Users}

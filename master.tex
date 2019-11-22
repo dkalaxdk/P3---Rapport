@@ -18,6 +18,8 @@
 \input{setup/hyphenations.tex}% 
 \input{setup/macros.tex}% my new macros
 
+
+
 \begin{document}
 %frontmatter
 \pagestyle{empty} %disable headers and footers
@@ -138,11 +140,19 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{sections/Implementation/Introduction.tex}
 
+\input{sections/Implementation/Models/Introduction.tex}
+\input{sections/Implementation/Models/Fields.tex}
+\input{sections/Implementation/Models/Tag.tex}
+\input{sections/Implementation/Models/Comment.tex}
+\input{sections/Implementation/Models/Log.tex}
+
 \input{sections/Implementation/Repositories.tex}
-\input{sections/Implementation/Fields.tex}
-\input{sections/Implementation/Tag.tex}
-\input{sections/Implementation/Comment.tex}
-\input{sections/Implementation/Log.tex}
+
+\input{sections/Implementation/Controllers/Introduction.tex}
+
+\input{sections/Implementation/Viewmodels/Introduction.tex}
+
+\input{sections/Implementation/Views/Introduction.tex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Conclusion
@@ -152,7 +162,10 @@
 
 
 %%% End of document
-\printbibliography[heading=bibintoc]
+
+%\bibliographystyle{plainnat}
+\setcitestyle{round,authoryear,aysep={},yysep={;}}
+\bibliography{bib/mybib}
 \label{bib:mybiblio}
 \appendix
 %\input{sections/appAname.tex}

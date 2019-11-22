@@ -2,8 +2,9 @@
 % En beskrivelse af de klasser der er i problem domænet
 % Asset, Admin, Employee, Department, Location
 
-The problem domain of the project contains three different relevant classes. These classes will be introduced in this section and elaborated upon in the following sections. 
+The problem domain of the project has been analysed based on interviews with Aalborg Zoo. Through this analysis, the classes \textit{Admin}, \textit{Asset}, \textit{Department}, \textit{Employee}, and \textit{Location}. These are the classes existing in the problem domain.
 \par
+Doing the interviews, Aalborg Zoo mentioned a potential organisation structure to ease the use of the system. This structure is based on tags, which can be attached to assets and used to filter and add details to assets. The structure adds a \textit{Tag} class to the system, which can describe the location of the assets, thereby making the \textit{Location} class obsolete.
 
 \textbf{Asset}\\
 The \textit{Asset} class represents physical assets throughout the zoo. The \textit{Asset} contains attributes storing information related to the asset, such as its location, the current borrower of it, and its specifications.
@@ -18,18 +19,15 @@ The \textit{Employee} class represents an employee at the zoo. The \textit{Emplo
 The \textit{Admin} class represents an administrator. The \textit{Admin} contains the same attributes as the \textit{Employee}. The \textit{Admin} manages the assets, as well as which \textit{Employees} have loaned which assets.
 \par
 These three classes interact with each other through events, which will be addressed in the following section.
-\newline
-
-Two more classes could be said to exist in the problem domain. These are: 
+\par
+Two more classes could be said to exist in the problem domain. They have been included based on the discussions and interviews with the respondents from Aalborg Zoo and to support some of their wishes for additional functionality. The classes are: 
 \par
 \textbf{Department}\\
-The \textit{Department} class reflects a department within the zoo. These \textit{Departments} work as a way of grouping assets within the zoo.
+The \textit{Department} class reflects a department within the zoo. These departments work as a way of grouping assets within the zoo. A department in the system contains a number of assets and tags.
 \par
 
-\textbf{Location}\\
-The \textit{Location} class represents a physical location in the zoo, in which assets can be stored. 
-\par
+\textbf{Tag}\\
+This class represents a tag in the system. There is no problem domain equivalent to this class, but has been requested as an addition to the system. The \textit{Tag} class will be attached to the \textit{Asset} tag. Furthermore, a tag will either belong to a department or be available to all departments.
+\newline
 
-The \textit{Department} class was not included, as there is only one department in the problem domain (The IT department). Had there been more, this class would have been included. 
-\par
-The \textit{Location} class was not included because it would mean that the user is restricted to only a specific set of locations, and wouldn't be as flexible.
+The \textit{Admin} and \textit{Employee} classes will in practice control the employees added to the system, and the users, as some functionalities should only be available to the admin users. The classes have later been replaced by other classes, as both these responsibilities can be handle better by other classes. They have been added here and used throughout the first part of the report to help with the understanding and structure of the system and the problem domain.

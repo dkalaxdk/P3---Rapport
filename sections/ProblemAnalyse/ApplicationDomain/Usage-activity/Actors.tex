@@ -1,26 +1,28 @@
 \subsection{Actors} \label{scc:actors}
-Here the two different actors have been described. The description includes the user's level of experience with similar systems, as well as their goals for using the system and other relevant features of the actors. This is intended to helped create a user experience, which accommodates the actors different needs and levels of experience. The actors have been further described in the following section.
+The actors in the application domain only include the employees and admins. The differentiation of the two is made, because the admin has access to specific functionality and pages within the system, which are not available to the employee. The admin class is a role that the employee class can take, which means the admin has the same abilities as the employee, but is granted access to further functionality within the system.
+\par
+Here the two different actors have been described. The description includes the user's level of experience with similar systems, as well as their goals for using the system and other relevant features of the actors. The actors have been further described in the following section.
 
 \fancyLayout{actor}{Admin}
     {Specification of the \textit{admin} actor.}
     {actor:admin}
     {
-        \textbf{Goal:} The \textit{admin} manages the system. The \textit{admin's} basic need is to keep track of the company assets.
+        \textbf{Goal:} The \textit{admin} manages the system. The \textit{admin's} basic goal is to keep track of the company assets.
         \vskip 0.2cm
         
-        \textbf{Characteristics:} The \textit{admin} is the primary user of the system, and is the only actor who can change anything regarding the assets in the system. They are experienced with using enterprise systems and handling the assets of their department.
+        \textbf{Characteristics:} The \textit{admin} is the primary user of the system and is the only actor who can change anything regarding the assets in the system. They are experienced with using enterprise systems and handling the assets of their department.
         \vskip 0.2cm
         
         \textbf{Examples:} \textit{Admin A} is used to organising large quantities of assets, and sees the asset management system as a supplement to their organisational tools.
     }
 
-The admin is, as mentioned, the primary user of the system, and accommodating his/her needs has been of highest importance, when it comes to accommodating actor needs.
+The admin is, as mentioned, the primary user of the system and accommodating his/her needs has been of highest importance, when it comes to accommodating actor needs.
 
 \fancyLayout{actor}{Employee}
     {Specification of the \textit{employee} actor.}
     {actor:employee}
     {
-        \textbf{Goal:} The \textit{Employee} can borrow the company assets. Their need is to borrow the assets that are relevant for their work.
+        \textbf{Goal:} The \textit{Employee} can borrow the company assets. They have a need for borrowing assets that are relevant to their work.
         \vskip 0.2cm
         
         \textbf{Characteristics:} The \textit{Employee} is the secondary user of the system. They can only borrow and view assets within the system. They have varying degrees of technical competence.
@@ -30,6 +32,6 @@ The admin is, as mentioned, the primary user of the system, and accommodating hi
         \vskip 0.1cm
         \textit{Employee B} is less experienced with computer systems and is more comfortable talking directly to the admin instead of using the system themselves. 
     }
-As a secondary user of the system, the needs of the employee, will have less priority than the needs of the admin.
+As a secondary user of the system, the needs of the employee will have less priority than the needs of the admin.
 \par
 The actor table and descriptions of the actors have then been taken into account for the construction of the use cases below.

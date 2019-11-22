@@ -4,25 +4,24 @@ Based on the analysis in the former sections, the structure of the classes in th
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/PDDiagramV6.png}
+    \includegraphics[width=0.8\textwidth]{figures/ClassDiagrams/Class_activity_class_diagram.png}
     \caption{Class diagram of the classes in the problem domain.}
     \label{fig:FirstPDClassDiagram}
 \end{figure}
 
-As described in \autoref{sc:classes}, there are four different relevant classes in the problem domain. These classes are: \textbf{Employee}, \textbf{Admin}, \textbf{Asset}, and \textbf{Loan}. The relations between these have been explained below.
-\newline
-
-The \textit{Employee} class is a super class, as it does not aggregate from or specialize any other classes.
-\newline
-
-The \textit{Asset} class is also a super class as it does not aggregate from or specialize another class. The \textit{Asset} associates with the \textit{Admin} class as the \textit{Asset} stores which \textit{Admin} modified or created it.
-\newline
-
-The \textit{Admin} class is a specialization of the \textit{Employee} class, as the \textit{Admin} class contains the same information as the \textit{Employee} class, but the \textit{isAdmin} attribute is true, which give this class access to more functionality in the system. The \textit{Admin} class also contains associations to assets and loans, because an admin in the system can create and modify assets and loans.
-\newline
-
-The \textit{Loan} class is created to handle the relation between the \textit{Asset} and \textit{Employee} classes. The \textit{Loan} class aggregates from the \textit{Employee} class, because an employee can be in possession of multiple assets, and therefore have multiple active loans. It aggregates from the \textit{Asset} class, as the asset contains a history of previous loans. The involved asset, employees, and creating admin are stored on the \textit{Loan} class upon creation.
-\newline
+As described in \autoref{sc:classes}, there are six different relevant classes in the problem domain. These classes are: \textit{Employee}, \textit{Admin}, \textit{Department}, \textbf{Asset}, \textbf{Tag}, and \textit{Asset-tag relation}. The relations between these have been explained below.
 \par
 
-With the classes of the problem domain and their relations to each other described, their behaviour can be examined.
+The \textit{Employee} class is an aggregation of the \textit{Admin} class. The structure created by this connection is a role pattern with only one role. The pattern makes it possible for an employee to possess the role of \textit{Admin} dynamically.
+\par
+
+The \textit{Asset} aggregates a number of \textit{Asset-tag relation}s. On top of this, every asset belongs to one department.
+\par
+
+The \textit{Employee} class has a association to the \textit{Asset}, \textit{Department}, and \textit{Tag} classes, as they can see the information on an asset and search for through them based on tags and/or departments. The \textit{Admin} class is a role of the \textit{Employee} class. This means that the functionality kept in the \textit{Admin} class will be available to the employees who have the role of admin.
+\par
+
+The \textit{Asset-tag relation} class is created to handle the relation between the \textit{Asset} and \textit{Tag} classes. The \textit{Asset} class aggregates it, as an asset the tags exists only as an addition to the assets. It has been added, as multiple assets can be tagged with the same tag and an asset can have multiple tags. The association to the \textit{Tag} class originates from the relation pattern. An instance of the \textit{Asset-tag relation} class always connects one asset and one tag, but both the \textit{Tag} and \textit{Asset} classes can be part of mulitple asset-tag relations.
+\par
+
+With the classes of the problem domain and their interconnecting relations described, the behaviour of the classes can be examined.

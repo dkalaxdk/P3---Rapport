@@ -125,10 +125,23 @@
 % Bibliography
 % http://en.wikibooks.org/wiki/LaTeX/Bibliography_Management
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage[backend=bibtex,
-  bibencoding=utf8
-  ]{biblatex}
-\addbibresource{bib/mybib}
+%\usepackage[backend=biber,
+%  bibencoding=utf8,
+%  style=numeric,
+%  sorting = none,
+%  %citestyle=apa,
+%  language=danish,
+%  ]{biblatex}
+%\usepackage{url}
+
+
+\usepackage[square]{natbib}
+
+\bibliographystyle{unsrtnat} % viser referencers url
+
+\usepackage[hyphens]{url} % url formatering
+\usepackage{hyperref}
+
 %\usepackage{babel/polyglossia}
 \usepackage{csquotes}
 
