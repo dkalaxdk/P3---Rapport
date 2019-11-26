@@ -206,5 +206,16 @@
     \parbox[#1][#2]{\mytemplength}{\centering #3}%
 }
 
+
+\usepackage{listings}
+
+%Coding:
+\usepackage[newfloat]{minted}
+\usepackage{caption}
+\newenvironment{code}{\captionsetup{type=listing}}{}
+\SetupFloatingEnvironment{listing}{name=Code example}
+
+\usepackage{csquotes}
+
 % Viser mere info om fejl
 %\setcounter{errorcontextlines}{999}

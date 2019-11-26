@@ -1,7 +1,7 @@
 \section{Models}
-The models in the system defines the data structures of the different model components\todo{Evt bedre ord} of the system are defined from the \textit{Model} class. The \textit{Model} class contains information that all data models in the system share between each others, such as database ID, Created\_At and Updated\_At. \\
-The system contains models for the following elements: Asset, Tags, Fields, Comments,Notifications and User. Out of these the most essential and relevant has been described. \\
-
+The model classes in the system define the data structures of the different model components (see \autoref{sc:model_component}). These all inherits from a general \textit{Model} class which contains information that all data models in the system share, such as ID in the database, Created\_At and Updated\_At. 
+\par
+The system contains models for the following elements: \textit{Asset}, \textit{Tags}, \textit{Fields}, \textit{Comments}, \textit{Notifications} and \textit{User}. Out of these the most essential and relevant has been described below. 
+\\\\
 \textit{Asset} and \textit{Tag} are both key components of the functionality of the system, however in the implementation these models are largely identical. The \textit{Tag} class contains more properties and more functionality than the \textit{Asset} class, and is therefor being described in the report instead.
 
-Throughout the system there are some key models, which contains the data structure for some of the key components of the program, these models will be discussed in the following sections. As the \textit{Tag} class\\

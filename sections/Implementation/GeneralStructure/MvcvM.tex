@@ -1,0 +1,36 @@
+\subsection{Model-View-ViewModel pattern} \label{sc:MVCVM}
+The Model-View-ViewModel pattern(MVVM) is used to give a clear distinction between the different components of the program. \\
+An overview of MVVM can be seen on \autoref{fig:MVVM}.
+The View part of MVVM handles the UI component of the system, the view component contains the logic directly related to connecting certain elements of the UI with a the ViewModel component. In some cases the view file contains code related to directly manipulating or fetching data from the UI when reaching the limitation of WPF binding.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.2\textwidth]{figures/Implementation/MVVM.PNG}
+    \caption{Model-View-ViewModel overview}
+    \label{fig:MVVM}
+\end{figure}
+
+The next element in the structure seen on \autoref{fig:MVVM} is the view model component handles the conversion of data from the model layer to the view. The view model only contains the required logic to take the data presented in the model or layer component, and make it available to the view, as well as controlling the visibility of elements on the UI. The interaction between the UI and the view model is done by setting the data context of the view, to point to the view model \autoref{code:AssetEditorView}. By setting the data context the WPF framework can bind to the public data within the view model, as long as these have a get and set property.
+
+\begin{code}
+\begin{minted}
+[frame=lines, framesep=1mm, baselinestretch=1.1, fontsize=\footnotesize, linenos]{csharp}
+
+    public AssetEditor(IAssetController assetController, ITagListController tagListController)
+    {
+        InitializeComponent();
+        DataContext = new AssetEditorViewModel(assetController, tagListController);
+    }
+    
+\end{minted}
+\captionof{listing}{AssetEditor.xaml.cs Example.}
+\label{code:AssetEditorView}
+\end{code}\vspace{\baselineskip}
+
+Some views contain complicated functionality that would clutter the view model with an arrange of functionality that does not directly change information on the view, in these cases a controller class have been introduced in between the model and view model classes. The controllers contains functions related to updating, saving or deleting specific instances of models. 
+\par
+Examples and further explanation of the different elements of MVVM will be described later in the report. 
+
+
+% https://scottlilly.com/c-design-patterns-mvvm-model-view-viewmodel/
+% https://intellitect.com/getting-started-model-view-viewmodel-mvvm-pattern-using-windows-presentation-framework-wpf/
