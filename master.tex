@@ -13,17 +13,15 @@
 %  GNU General Public License for more details.
 %
 %  You can find the GNU General Public License at <http://www.gnu.org/licenses/>.
-%
-\input{setup/preamble.tex}% package inclusion and set up of the document
-\input{setup/hyphenations.tex}% 
-\input{setup/macros.tex}% my new macros
 
-
+\input{setup/preamble.tex} % package inclusion and set up of the document
+\input{setup/hyphenations.tex} % 
+\input{setup/macros.tex} % my new macros
 
 \begin{document}
 %frontmatter
-\pagestyle{empty} %disable headers and footers
-\pagenumbering{roman} %use roman page numbering in the frontmatter
+\pagestyle{empty} % disable headers and footers
+\pagenumbering{roman} % use roman page numbering in the frontmatter
 \input{sections/frontmatter/frontpage.tex}
 \newgeometry{top=20mm, bottom=20mm}
     \input{sections/frontmatter/colophon.tex}
@@ -31,78 +29,76 @@
 \restoregeometry
 \cleardoublepage
 \pdfbookmark[0]{Contents}{label:contents}
-\pagestyle{fancy} %enable headers and footers again
+\pagestyle{fancy} % enable headers and footers again
 \tableofcontents
 \listoftodos \todo[inline] {Fjern den her!} 
 \input{sections/frontmatter/preface.tex}
 \cleardoublepage
 %mainmatter
-\pagenumbering{arabic} %use arabic page numbering in the mainmatter
+\pagenumbering{arabic} % use arabic page numbering in the mainmatter
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Introduction to the report
-\input{sections/Introduction.tex}
-
+%\input{sections/Introduction.tex}
 
 % Background
-\input{sections/Background/Introduction.tex}
-\input{sections/Background/AalborgZoo.tex}
-\input{sections/Background/ProblemDefinition.tex}
-\input{sections/Background/Requirements.tex}
-\input{sections/Background/SystemDefinition.tex}
-\input{sections/Background/Factor.tex}
-\input{sections/Background/Method.tex}
-
+%\input{sections/Background/Introduction.tex}
+%\input{sections/Background/AalborgZoo.tex}
+%\input{sections/Background/ProblemDefinition.tex}
+%\input{sections/Background/Requirements.tex}
+%\input{sections/Background/SystemDefinition.tex}
+%\input{sections/Background/Factor.tex}
+%\input{sections/Background/Method.tex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Problem domain analysis
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Introduction
-\input{sections/ProblemAnalyse/ProblemDomain/Introduction.tex}
+%\input{sections/ProblemAnalyse/ProblemDomain/Introduction.tex}
 
 % Class activity
-\input{sections/ProblemAnalyse/ProblemDomain/Class-activity/Introduction.tex}
-\input{sections/ProblemAnalyse/ProblemDomain/Class-activity/Classes.tex}
-\input{sections/ProblemAnalyse/ProblemDomain/Class-activity/Events.tex}
-\input{sections/ProblemAnalyse/ProblemDomain/Class-activity/Event-table.tex}
+%\input{sections/ProblemAnalyse/ProblemDomain/Class-activity/Introduction.tex}
+%\input{sections/ProblemAnalyse/ProblemDomain/Class-activity/Classes.tex}
+%\input{sections/ProblemAnalyse/ProblemDomain/Class-activity/Events.tex}
+%\input{sections/ProblemAnalyse/ProblemDomain/Class-activity/Event-table.tex}
 
 % Structure activity
-\input{sections/ProblemAnalyse/ProblemDomain/Structure-activity/Introduction.tex}
+%\input{sections/ProblemAnalyse/ProblemDomain/Structure-activity/Introduction.tex}
 
 % Behavior activity
-\input{sections/ProblemAnalyse/ProblemDomain/Behavior-activity/State-charts.tex}
+%\input{sections/ProblemAnalyse/ProblemDomain/Behavior-activity/State-charts.tex}
 
 % Summary
-\input{sections/ProblemAnalyse/ProblemDomain/Summary.tex}
+%\input{sections/ProblemAnalyse/ProblemDomain/Summary.tex}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Application Domain Analysis
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\input{sections/ProblemAnalyse/ApplicationDomain/Introduction.tex}
+%\input{sections/ProblemAnalyse/ApplicationDomain/Introduction.tex}
 
 % Usage activity
-\input{sections/ProblemAnalyse/ApplicationDomain/Usage-activity/Introduction.tex}
-\input{sections/ProblemAnalyse/ApplicationDomain/Usage-activity/Actors.tex}
-\input{sections/ProblemAnalyse/ApplicationDomain/Usage-activity/Use-cases.tex}
+%\input{sections/ProblemAnalyse/ApplicationDomain/Usage-activity/Introduction.tex}
+%\input{sections/ProblemAnalyse/ApplicationDomain/Usage-activity/Actors.tex}
+%\input{sections/ProblemAnalyse/ApplicationDomain/Usage-activity/Use-cases.tex}
 
 % Function activity
-\input{sections/ProblemAnalyse/ApplicationDomain/Function-activity/Introduction.tex}
-\input{sections/ProblemAnalyse/ApplicationDomain/Function-activity/Functions.tex}
+%\input{sections/ProblemAnalyse/ApplicationDomain/Function-activity/Introduction.tex}
+%\input{sections/ProblemAnalyse/ApplicationDomain/Function-activity/Functions.tex}
 
 % User interface
-\input{sections/ProblemAnalyse/ApplicationDomain/User-interface/Introduction.tex}
-\input{sections/ProblemAnalyse/ApplicationDomain/User-interface/PACT.tex}
-\input{sections/ProblemAnalyse/ApplicationDomain/User-interface/UserInterface.tex}
+%\input{sections/ProblemAnalyse/ApplicationDomain/User-interface/Introduction.tex}
+%\input{sections/ProblemAnalyse/ApplicationDomain/User-interface/PACT.tex}
+%\input{sections/ProblemAnalyse/ApplicationDomain/User-interface/UserInterface.tex}
 
 % Summary
-\input{sections/ProblemAnalyse/ApplicationDomain/Summary.tex}
+%\input{sections/ProblemAnalyse/ApplicationDomain/Summary.tex}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Architectural Design
+% Design
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{sections/Design/Introduction.tex}
 
@@ -141,21 +137,32 @@
 \input{sections/Implementation/Introduction.tex}
 
 \input{sections/Implementation/GeneralStructure/GeneralStructure.tex}
-\input{sections/Implementation/GeneralStructure/DependencyInjection.tex}
-\input{sections/Implementation/GeneralStructure/MvcvM.tex}
+\input{sections/Implementation/DependencyInjection.tex}
 
-\input{sections/Implementation/Models/Introduction.tex}
-\input{sections/Implementation/Models/Tag.tex}
-\input{sections/Implementation/Models/Fields.tex}
-
+\input{sections/Implementation/MVCVM/MvcvM.tex}
+\input{sections/Implementation/MVCVM/Models/Introduction.tex}
+\input{sections/Implementation/MVCVM/Models/Tag.tex}
+\input{sections/Implementation/MVCVM/Models/Fields.tex}
+\input{sections/Implementation/MVCVM/Controllers.tex}
+\input{sections/Implementation/MVCVM/Viewmodels.tex}
+\input{sections/Implementation/MVCVM/Views.tex}
 
 \input{sections/Implementation/Repositories.tex}
 
-\input{sections/Implementation/Controllers/Introduction.tex}
+\input{sections/Implementation/Tagging.tex}
 
-\input{sections/Implementation/Viewmodels/Introduction.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Test
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{sections/Test/Introduction.tex}
+\input{sections/Test/UnitTest.tex}
+\input{sections/Test/UsabilityTest.tex}
 
-\input{sections/Implementation/Views/Introduction.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Discussion
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{sections/discussion.tex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Conclusion
@@ -167,7 +174,6 @@
 %%% End of document
 
 %\bibliographystyle{plainnat}
-\setcitestyle{round,authoryear,aysep={},yysep={;}}
 \bibliography{bib/mybib}
 \label{bib:mybiblio}
 \appendix

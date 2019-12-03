@@ -18,7 +18,7 @@ Based on the events and desired functionality of the system, the following class
 % To more easily divide the assets and avoid cluttering the user with assets, a new class \textit{Department} has been added to the class-diagram. A department will have a name and contain a number of assets. An employee have a standard department, which they will be located in, when they open the application. The department can be change in the system by the employee, to see assets in another department, so the standard department will only be used as a starting point. A department also has timestamps for its creation and last update.
 
 \subsubsection{Field}
-To simplify the process of adding an asset to the system, the page for adding and editing an asset should only contain the relevant information. This helps with decluttering of the page and support the wish only to filled in relevant information intuitively. To make this easier, the \textit{Field} class is introduced. The \textit{Field} class can be contained by both tags and assets. If a field is contained by a tag and that tag is attached to an asset, the field is added to the asset as well. Fields only exists on an asset or a tag and never alone.
+To simplify the process of adding an asset to the system, the page for adding and editing an asset should only contain the relevant information. This helps with decluttering of the page and supports the wish to only fill in relevant information intuitively. To make this easier, the \textit{Field} class is introduced. The \textit{Field} class can be contained by both tags and assets. If a field is contained by a tag and that tag is attached to an asset, the field is added to the asset as well. Fields only exists on an asset or a tag and never alone.
 \par
 A field contains the following attributes:
 \begin{itemize}
@@ -26,7 +26,7 @@ A field contains the following attributes:
     \item Name
     \item Type of the input, which can be: a textbox, a textarea, a number, a date, or a checkbox. \todo{Add potential additional field types}
     \item Content, which will hold the value set by the user (will never be set on a tag)
-    \item Required, which defines rather the field must be filled in before saving the asset.
+    \item Required, which defines whether or not the field must be filled in before saving the asset.
     \item \textit{Default value of the field, if it is connected to a tag, when it is added to an asset.}\newline This is only available on the fields added to a tag.
 \end{itemize}
 \begin{figure}[H]
@@ -40,7 +40,7 @@ A field contains the following attributes:
 % Fields added directly to an asset does not give the opportunity to set a default value.
 
 \subsubsection{Comment}
-To better organize and structure the employee comments on asset, a \textit{Comment} class has been introduced. A comment can be attached to an asset and contains the id of the asset, the id of the employee whom the comment was added by, a comment text, and timestamps for its creation and last update.
+To better organize and structure the employee comments on an asset, a \textit{Comment} class has been introduced. A comment can be attached to an asset and contains the id of the asset, the id of the employee whom the comment was added by, a comment text, and timestamps for its creation and last update.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{figures/Classes/CommentAttributes.png}
@@ -52,7 +52,7 @@ To better organize and structure the employee comments on asset, a \textit{Comme
 To ensure that every event and functionality is supported, the following attributes have been added to the classes from the class diagram in the problem domain.
 
 \subsubsection{Asset attributes}
-An asset has an id, a name, a description, a list of fields, and timestamps for its creation, last update, and deletion. The deletion time is used for soft deletion, which works as an extra step to avoid unwanted deletes. Soft deletion works by marking a asset with a deletion date in the database, instead of removing the element from the database, hereby allowing the asset to be recovered, if it is accidentally deleted.
+An asset has an id, a name, a description, a list of fields, and timestamps for its creation, last update, and deletion. The deletion time is used for soft deletion, which works as an extra step to avoid unwanted deletes. Soft deletion works by marking an asset with a deletion date in the database, instead of removing the element from the database, hereby allowing the asset to be recovered, if it is accidentally deleted.
 
 \begin{figure}[H]
     \centering
@@ -91,7 +91,7 @@ The \textit{Tag} class will contain an id, a name, timestamps for the tag's crea
 These attributes and classes are accompanied by additional structures. These structures have been explained below.
 
 \subsection{Structures}
-The events and functions not completely supported by the previous mentioned classes and attributes will be achieved with the following structures of classes.
+The events and functions not completely supported by the previously mentioned classes and attributes will be achieved with the following structures of classes.
 
 \subsubsection{An asset and a tag contains fields}
 Both the \textit{Asset} and the \textit{Tag} classes aggregates the \textit{Field} class. An asset or a tag can contain multiple fields, but a field belongs to only one asset or one tag.
@@ -104,7 +104,7 @@ Both the \textit{Asset} and the \textit{Tag} classes aggregates the \textit{Fiel
 \end{figure}
 
 \subsubsection{An asset contains comments}
-An asset can be commented, which attaches the comment to the asset. An asset can have multiple comments, but a comment can only be attached to an asset.
+An asset can be commented on, which attaches the comment to the asset. An asset can have multiple comments, but a comment can only be attached to an asset.
 
 \begin{figure}[H]
     \centering
@@ -134,7 +134,7 @@ An asset can be commented, which attaches the comment to the asset. An asset can
 % \end{figure}
 
 \subsubsection{Parent tags}
-To increase visibility in the system, parent tags are introduced. This is done by adding a connection the \textit{Tag} class to itself. By doing this, one tag can contain a list of tags, which are seen as its children. A tag can only belong to one other tag or contain a number of tags. This means that there is no single tag that acts as both parent and child. The structure becomes, as a product of this, a two level hierarchy.
+To increase visibility in the system, parent tags are introduced. This is done by adding a connection from the \textit{Tag} class to itself. By doing this, one tag can contain a list of tags, which are seen as its children. A tag can only belong to one other tag or contain a number of tags. This means that there is no single tag that can act as both parent and child. As a product of this, the structure becomes a two level hierarchy.
 
 \begin{figure}[H]
     \centering

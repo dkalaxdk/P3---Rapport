@@ -1,0 +1,48 @@
+\section{Unit Test} \label{sc:UnitTest}
+Throughout the program unit testing have been used for test driven development, and to verify whether components gets implemented correctly. The unit tests in the program have been made on the interfaces on the controller, hereby making sure the interfaces works as intended. This in turns makes it easier to modify the classes implementing the interfaces, and making sure the functionalities works as intended. \par
+
+The unit tests where, when possible, made before the interface was implemented, this ensures that the interface has been implemented as intended. The unit-tests have been focused so they only tested specific elements of the code, and when needed MOQ \citep{MoqReference} will be used to fake certain elements of the code, so the test does not interact with the database. \par
+
+An example of how MOQ is used can be seen in \autoref{code:MoqSetup}, line 5-9 defines which functions the MOQ should fake, and what it should return when a function calls the MOQ.
+
+\begin{listing}[H]
+\begin{minted}[frame=lines, framesep=3mm, baselinestretch=1, linenos, bgcolor=LightGray, escapeinside='', breaklines]{csharp}
+public void InitiateAsset()
+    {
+    ulong id;
+    // Mock setup
+    _assetRepMock = new Mock<IAssetRepository>();
+    _assetRepMock.Setup(p => p.Delete(It.IsAny<Asset>())).Returns(true);
+    _assetRepMock.Setup(p => p.Insert(It.IsAny<Asset>(), out id)).Returns(It.IsAny<Asset>());
+    _assetRepMock.Setup(p => p.Update(It.IsAny<Asset>())).Returns(true);
+    _assetRepMock.Setup(p => p.AttachTags(It.IsAny<Asset>(), It.IsAny<List<ITagable>>())).Returns(true);
+    
+    // [More code following, not relevant for this example]
+}
+\end{minted}
+\captionof{listing}{MOQ setup example.}
+\label{code:MoqSetup}
+\end{listing}
+\par
+Upon verifying whether a MOQ was called as intended the method seen in \autoref{code:MOQUsed}.
+
+\begin{listing}[H]
+\begin{minted}[frame=lines, framesep=3mm, baselinestretch=1, linenos, bgcolor=LightGray, escapeinside='', breaklines]{csharp}
+public void SaveAsset_Returns_RepositoryFunctionUsed()
+{
+        //Arrange
+        ulong id = 0;
+        //Act
+        _assetController.Save();
+
+        //Assert
+        _assetRepMock.Verify(p => p.Insert(It.IsAny<Asset>(), out id), Times.Once());
+}
+\end{minted}
+\captionof{listing}{MOQ usage example}
+\label{code:MOQUsed}
+\end{listing}
+
+By using MOQ to fake elements of the code, the unit tests have become more concise, than they would be if they where to test every sub functionality of the functions as well. This have given better, and easier to understand the result of each test, as they only test one result each. \par
+
+Throughout coding only the core functionality have been tested fully, as this was the functionality which most other classes relied on. 

@@ -1,0 +1,65 @@
+\subsection{Views} \label{ssc:Views}
+As mentioned in \autoref{sc:MVCVM} the view handles the user interaction. The UI is made using a declarative markup language called \textit{XAML}. Files written in \textit{XAML} have the extension \textit{.xaml}. In a WPF application \textit{XAML} files usually have a file containing code-behind, code-behind is any code directly parsing or manipulating data from specific \textit{XAML} elements. When written in C\# these files have the extension \textit{.xaml.cs}. \citep{XamlOverview}\par
+
+It is in the \textit{.xaml.cs} files that the views are assigned a \textit{DataContext}. Which in this application is in the form of a view model.
+When using the \textit{MVVM} pattern, the code behind should contain only the most necessary functionality. The rest should be contained in the view model \citep{WPFandMVVM}.
+\par
+
+In this application the code behind contains functionality to assign the \textit{DataContext} as mentioned previously, as well as sorting lists by clicking column headers, and selecting multiple items.
+
+% Kunne give et eksempel med AssetList.xaml.cs
+
+\par
+
+% Skriv om bindings i WPF/xaml
+The view displays data from the view model. The data is accessed through the public properties of the \textit{DataContext}, which, as previously mentioned, in this case is a view model. This data access is accomplished with data binding expressions \citep{Bindings}.
+\\
+An example of such a data binding is shown in \autoref{code:DatabindingExample}. Here the text to be displayed in a \textit{TextBox} element is bound to the property \textit{Description} in the \textit{DataContext}.
+
+\begin{listing}[H]
+\begin{minted}[frame=lines, framesep=3mm, baselinestretch=1, linenos, bgcolor=LightGray, escapeinside='', breaklines]{xml}
+
+<TextBox Style="{StaticResource ParagraphTextBoxWithSpace}"
+    Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"
+    TextWrapping="Wrap"
+    AcceptsReturn="True"
+    AcceptsTab="True"
+    MinHeight="80" />
+
+\end{minted}
+\captionof{listing}{Example of a data binding in WPF. The code is taken from the file \textit{AssetEditor.xaml}.}
+\label{code:DatabindingExample}
+\end{listing}
+\par
+
+WPF binding works by connecting the "bound" value (\autoref{code:DatabindingExample}) to a public property with a get and set accessor. This allows for the bound data to update the property and for the property to update the bound value. \\
+By using WPF binding and implementing the MVVM pattern, it should theoretically be possible to eliminate any code behind, other than setting the data context within the \textit{xaml.cs} file. \\
+However when implementing MVVM and using WPF, some circumstances arise where binding cannot get all the information needed. In these cases the code behind gets expanded to include some more direct logic, an example of this can be seen in \autoref{code:CodeBehindExample}. As a result of this the MVVM pattern cannot be implemented fully, as some of the logic is handled within the view itself.
+
+\begin{listing}[H]
+\begin{minted}[frame=lines, framesep=3mm, baselinestretch=1, linenos, bgcolor=LightGray, escapeinside='', breaklines]{Csharp}
+
+/// <summary>
+/// Interaction logic for TagsList.xaml
+/// </summary>
+public partial class TagList : Page
+{
+    public TagList(ITagListController controller)
+    {
+        InitializeComponent();
+        DataContext = new TagListViewModel(controller);
+    }
+    
+    private void TagAbleList_OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+    {
+        TagListViewModel vm = this.DataContext as TagListViewModel;
+        Tag tag = e.NewValue as Tag;
+        vm.SelectedItem = tag;
+    }
+}
+\end{minted}
+\captionof{listing}{Example of a code behind in WPF. The code is taken from the file \textit{TagList.xaml}.}
+\label{code:CodeBehindExample}
+\end{listing}
+
+When code behind is added to the view, it makes it harder to choose a new UI framework at a later date, as the view and the functionality are tightly connected, instead of the logic being handled by the view model alone.

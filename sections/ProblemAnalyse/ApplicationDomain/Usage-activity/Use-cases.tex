@@ -1,7 +1,7 @@
 \subsection{Use cases}\label{ssc:usecases}
-Below, the following use cases have been derived from the understanding of the problem domain and actors described in the previous sections. The following description of the use cases include how the interactions with the system will take place, which actors are involved, and which functions are called, within the system to complete the actions.
+The following use cases have been derived from the understanding of the problem domain and actors described in the previous sections. The following description of the use cases include how the interactions with the system will take place, which actors are involved, and which functions are called within the system to complete the actions.
 \par
-in addition to the already described interactions, the system definition has stated, based on the interviews with Aalborg Zoo, that the admin should be able to print out a report of assets from the system. The report will consist of a number of assets and take shape as a file, saved on the admins computer.
+In addition to the already described interactions, the system definition has stated, based on the interviews with Aalborg Zoo, that the admin should be able to print out a report of assets from the system. The report can consist of all or some of the assets in the system and will be saved as a separate file on the admins computer.
 \par
 Each use case has been described and is followed by a diagram of the interaction.
 \newline
@@ -34,7 +34,7 @@ Each use case has been described and is followed by a diagram of the interaction
     {Use case for loaning out an asset}
     {use_case:loan_out_an_asset}
     {
-        \textbf{Use Case:} Loaning out an asset is being carried out by an admin, whom an employee contacts, when they want to borrow the given asset. The admin goes to the page of the given asset and attaches the employees tag to it. The admin then hands over the asset to the employee.
+        \textbf{Use Case:} Loaning out an asset is done by an admin, whom an employee contacts, when they want to borrow the given asset. The admin goes to the page of the given asset and attaches the employee's tag to it. The admin then hands over the asset to the employee.
     
         \vskip 0.2cm
         
@@ -57,7 +57,7 @@ Each use case has been described and is followed by a diagram of the interaction
     {Use case for returning an asset}
     {use_case:return_an_asset}
     {
-        \textbf{Use Case:} When an asset is being returned by an employee, it is handed over to an admin. The admin then goes to the page of the given asset and detaches the tag of the given employee from the asset.
+        \textbf{Use Case:} When an asset is being returned by an employee, it is handed over to an admin. The admin then goes to the page of the given asset and detaches the tag of the employee from the asset.
     
         \vskip 0.2cm
         
@@ -150,7 +150,7 @@ Each use case has been described and is followed by a diagram of the interaction
     {Use case for printing a report of assets}
     {use_case:print_a_report_of_assets}
     {
-        \textbf{Use Case:} As the number of assets increases in the system, an admin might want to retrieve a number of assets to see outside of the system. The admin goes to the search page and enters a search query, which the assets they want to retrieve from the system must comply with. The admin then selects a number of assets and presses the print button. The system then generates a file containing information about the selected assets and saves it on the admins computer.
+        \textbf{Use Case:} As the number of assets in the system increases, an admin might want to retrieve a number of assets to see outside of the system. The admin goes to the search page and enters a search query, which the assets they want to retrieve from the system must comply with. The admin then selects a number of assets and presses the print button. The system then generates a file containing information about the selected assets and saves it on the admins computer.
     
         \vskip 0.2cm
         
@@ -190,7 +190,7 @@ Each use case has been described and is followed by a diagram of the interaction
     \label{fig:add_comment_statechart}
 \end{figure}
 
-These are the relevant use cases to handle the assets, and they have been placed in an actor table with the twp previously mentioned actors, to illustrate the connections between these.
+These are the relevant use cases to manage the assets. The use cases have been placed in an actor table with the two previously mentioned actors, in order to illustrate the connections between these.
 
 \begin{table}[H]
     \centering
@@ -223,9 +223,9 @@ These are the relevant use cases to handle the assets, and they have been placed
     \label{tab:actor_table}
 \end{table}
 
-In the actor table above has shown that the admin takes part in almost every use case. This can be explained by the way the system will be used. The system should function almost like an interface to a database, so it makes sense that the admin will be involved in all the changes made to the system and, as an effect of this, the database.
+As the actor table above shows, the admin takes part in almost every use case. This can be explained by the way the system will be used. The system should function almost like an interface to a database, so it makes sense that the admin will be involved in all the changes made to the system and the database.
 \par
 
-The defined use cases have then been used to extract relevant functions and, later in the report, construct the user interface. For most of these use cases, the system should limited the access of employee without the admin atatus, which has resulted in two more functions, \textit{Authenticate user} and \textit{Check access level}. These functions are used to garantee that parts of the system is only accessible to employees with admin status and are executed on login and most of the described use cases above.\\
+The defined use cases have then been used to extract relevant functions and, later in the report, construct the user interface. For most of these use cases, the system should limit the access of the employees without admin status, which has resulted in two more functions, \textit{Authenticate user} and \textit{Check access level}. These functions are used to guarantee that parts of the system is only accessible to employees with admin status and are executed on login and most of the described use cases above.\\
 
 The functions discovered in this section have been analysed and described in the following section.
