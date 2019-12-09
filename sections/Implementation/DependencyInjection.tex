@@ -1,7 +1,7 @@
 \section{Dependency injection} \label{sc:DependencyInjection}
-Dependency injection is utilized to ensure a loose coupling between the classes, this is done by making classes take interfaces in their constructor parameters, instead of concrete classes, or creating new instances of other classes. On top of this any classes used in more than one location are instantiated in the program root, and a reference to the instance is transferred throughout the program. If the implementation of an interface needs to be changed, it only needs to be changed in the program root. \\
+Dependency injection is utilized to ensure a loose coupling between the classes. This is done by making classes take interfaces in their constructor parameters, instead of concrete classes, or creating new instances of other classes. On top of this any classes used in more than one location are instantiated in the program root, and a reference to the instance is transferred throughout the program. If the implementation of an interface needs to be changed, it only needs to be changed in the program root. \par
 To help explain Dependency Injection, an example from the program will be used.\\
-Firstly the Class TagEditorViewModel:
+Firstly the class TagEditorViewModel:
 
 \begin{listing}[H]
 \begin{minted}[frame=lines, framesep=3mm, baselinestretch=1, linenos, bgcolor=LightGray, escapeinside='', breaklines]{csharp}
@@ -21,18 +21,19 @@ public TagEditorViewModel(ITagController tagController)
 \label{code:TagEditorViewModel}
 \end{listing}
 
-As seen in \autoref{code:TagEditorViewModel}, the class \textit{TagEditorViewModel} requires the interface \textit{ITagController}, in this case \textit{ITagController} is implemented by the class \textit{TagController} which  could be instantiated within \textit{TagEditorViewModel}, instead it is instantiated outside  \textit{TagEditorViewModel} and given as a parameter. As a result of doing this, the specific implementation of \textit{ITagController} is irrelevant, as long as it implements the interface. Depending on abstractions instead of concretions is the Dependency Inversion Principle. One of the five SOLID principles of Object Oriented Design \citep{AgilePPP} \\
-If the instantiation of a concrete class implementing the interface happened within \textit{TagEditorViewModel}, then \textit{TagEditorViewModel} would need to know the parameters of the class implementing \textit{ITagController}. \\
-The result of this is a loose coupling between \textit{TagEditerViewModel} and \textit{ITagController}, as none of the classes rely on the specific implementation of the other class. \par
-
-Loose coupling makes it easier to test the code via Unit Testing, as the interfaces enables the use of mocks, stubs and fakes. \\
-These are all ways of faking data that is not relevant for the current test. This makes the tests smaller and easier to verify, as they do not necessarily require interactions with the underlying data structures or database structures. Instead it allows for just faking the implementation of an interface, and define what the members should return. Making the tests independent of any underlying infrastructure. It is also possible to simply check whether certain functions have been called as expected.\\
-A description of how this is used in the project, is explained in \todo[inline]{Reference to TEST afsnittet}. \par
-\todo{Write the stuff from the comments in the file}
-Another benefit of Dependency Injection is that it becomes very simple to change the the implementation of a dependency. \\
-If a new instance of a dependency is made every time, it will be necessary to make the same change for every instance. If a class depends on an abstraction, and receives an implementation. It will not require any changes in the dependent classes, as it will simply be given a different implementation. \\
-This will be possible if the code is designed in accordance with the Liskov Substitution Principle, which states that \textit{Subtypes must be substitutable for their base types} \citep{AgilePPP}. 
+As seen in \autoref{code:TagEditorViewModel}, the class \textit{TagEditorViewModel} requires the interface \textit{ITagController}. In this case \textit{ITagController} is implemented by the class \textit{TagController} which could be instantiated within \textit{TagEditorViewModel}, but is instead instantiated outside  \textit{TagEditorViewModel} and given as a parameter. As a result of doing this, the specific implementation of \textit{ITagController} is irrelevant, as long as it implements the interface. Depending on abstractions instead of concretions is the Dependency Inversion Principle, one of the five SOLID principles of Object Oriented Design \citep{AgilePPP}.
+The result of this is a loose coupling between \textit{TagEditerViewModel} and \textit{ITagController}, as none of the classes rely on the specific implementation of the other class.
 \par
+If the instantiation of a concrete class implementing the interface happened within \textit{TagEditorViewModel}, then \textit{TagEditorViewModel} would need to know the parameters of the class implementing \textit{ITagController}, which would result in much higher coupling.
+\par
+
+Loose coupling makes it easier to test the code via Unit Testing, as the interfaces enables the use of mocks, stubs, and fakes. These are all ways of faking data that is not relevant for the current test. This makes the tests smaller and easier to verify, as they do not necessarily require interactions with the underlying data structures or database structures. Instead it allows for faking the implementation of an interface, and define what the members should return, making the tests independent of any underlying infrastructure. It is also possible to simply check whether certain functions have been called as expected. A description of how this is used in the project, is explained in \autoref{sc:UnitTest}.\todo{Write the stuff from the comments in the file}
+\par
+
+Another benefit of Dependency Injection is that it becomes very simple to change the the implementation of a dependency. If a new instance of a dependency is made every time, it will be necessary to make the same change for every instance. If a class depends on an abstraction, and receives an implementation, it will not require any changes in the dependent classes, as it will simply be given a different implementation. 
+\par
+This will be possible if the code is designed in accordance with the Liskov Substitution Principle, which states that \textit{Subtypes must be substitutable for their base types} \citep{AgilePPP}. 
+
 \begin{listing}[H]
 \begin{minted}[frame=lines, framesep=3mm, baselinestretch=1, linenos, bgcolor=LightGray, escapeinside='', breaklines]{csharp}
 
@@ -47,14 +48,13 @@ protected FieldListController(FieldContainer element)
 \end{listing}
 
 \autoref{code:FieldControllerLiskov} is an example of the use of the Liskov Substitution Principle. Both of the classes \textit{Asset} and \textit{Tag} inherit from the class \textit{FieldContainer}. Either one of these classes can be given as a parameter to \textit{FieldsListController}. 
-\\
-This principle can also be extended to interfaces. Meaning that it must be possible to change one implementation of an interface to another, without causing the code to break \citep{seemann2019dependency}. 
-\\
-When object composition happens in the program root, and all classes depend on abstractions. It is only necessary to change the implementation of an interface or base class in one place.
+\par
+This principle can also be extended to interfaces, meaning that it must be possible to change one implementation of an interface to another, without causing the code to break \citep{seemann2019dependency}. 
+\par
+When object composition happens in the program root, and all classes depend on abstractions, it is only necessary to change the implementation of an interface or base class in one place.
 
 %https://www.tutorialsteacher.com/ioc/dependency-injection
 
-\par
 %Makes it possible to have loose coupling\\
 %Loose coupling in turn makes the code easier to test via the use of mocks/stubs/fakes\\
 %Makes it easy to make code that follows the principles of SOLID\\

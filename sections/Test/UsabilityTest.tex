@@ -1,23 +1,89 @@
 \section{Usability Testing}\label{sc:UsabilityTesting}
-Usability tests were used to ensure an intuitive and simple user interface for the system. In these tests a test participant would solve a number of tasks designed to illuminate any problem areas in the UI design. 
-
-\subsection{Usability test design}
-%hvad er fokus for testen (formål)
-\subsubsection{Tasks}
-
-\subsection{Performing the tests}
-%hvordan
-%miljø det er gjort i
-%ikke lede dem, tænke højt
-\subsubsection{Setup}
-\subsubsection{During the test}
-
-\subsection{Test results}
-%prioriteret/sorteret liste af fejl/problemer
-
-
-During the participants' interactions with the system, they were told to talk through their thought process, which gave a better understanding of their expectations and reactions to the design as a whole, as well as each specific element of the design. The participants' experience of using the system, was then discussed with the participants after the usability test. 
+Usability tests were used to help ensure an intuitive and simple user interface for the system. In these tests a test participant would solve a number of tasks designed to illuminate any problem areas in the UI design. The purpose of the test was to identify any problems with the UI that might make it difficult or impossible to perform the tasks the system is supposed to support.
 \par
-Through this evaluation, a better understanding of the problems, frustrations, and needs of the participants was achieved.
+The system was tested both from the perspective of an admin and an employee. This was done to cover the entire system, though the admin parts of the system were the main focus. 
 \par
-\todo{Should the tasks be placed here?}
+The difference between the two parts is that the employee part needs to be very intuitive, while this is less important for the admin part. The administrators of the system are expected to be well versed in using a computer program and purpose of the system does not require it to be very intuitive to use for the administrators of the system. They are expected to have to learn how to use the system, especially how to use the tagging functionality. 
+\par
+The two parts were tested with different test participants, with the representatives from Aalborg Zoo testing the application as admins, since this is how they will work with it. The remaining test participants were students.
+\par
+\todo[inline]{tjek at tallene (herunder) passer}
+Eght usability tests were made, with three of these being with admin access. The number of admin tests were judged to be sufficient as they were conducted with the people who are going to use the system as test participants, as well as an initial test mainly for practice purposes. 
+\par
+The number of employee tests were larger since they were quick to conduct, lasting less than 20 minutes. It was thus easy to do several of them in a relatively short period of time. 
+\par
+The tests were conducted at different stages of development. During the exploratory phase of development, there were no tests. Instead the developing designs were evaluated through less structured talks with the client. Later, both assessment tests and validation tests were conducted on the admin part of the application, in order to refine the UI design. 
+\par
+Only validation tests were conducted on the employee part of the application, since this interface is relatively simple and there was not as much focus on this part. 
+\par
+The results of the tests influenced the final UI design as described in \autoref{ch:ui_design}.
+
+\subsection{Preparations}
+In order to uncover any usability problems with the UI of the system the test participants performed a set of tasks. These were designed to make the participants interact with the different parts of the system. It was, however, important that the tasks were not too leading, so the participants had the freedom to solve the tasks intuitively. 
+\par
+The two parts of the system (admin and employee) were tested separately, using different tasks. The employee tests were short, with only two tasks (see \autoref{app:usabilityTest}), while the admin test consisted of 10 tasks. The difference in number of tasks is due to the difference of complexity between the two parts. 
+\par
+An example task for the admin part of the application is the following:
+
+\begin{quote}
+\textit{You have received a new switch by the name of "TL-10". The switch is produced by "TP-Link". It has the IP address "149.220.101.90” and a unique bar code: "11S362-SKl19". Add the switch to the system, using this information.}
+\end{quote}
+
+The purpose of this task was to have the test participant add an asset to the system, in order to see if the procedure for doing this was intuitive and simple. 
+\par 
+In the formulation of the tasks it was attempted to avoid words used in the application, so the participant was not led too much in their tasks. This has led to some mildly strange formulations of tasks, but it was decided that the presence of the test moderator could alleviate any confusion .
+\par
+Other admin tasks included asking the test participant to create a tag and add it to an asset. Some changes have been made to the list of tasks over time, but an overview of the latest configuration of tasks can be seen in \autoref{app:usabilityTest}. 
+\par
+
+% test system from admin and employee point of view
+% Morten test in stages
+% employee test of fellow students
+% admin test of fellow student and Morten and Kasper
+
+\subsection{Setup}
+The usability tests were conducted either in a meeting room at Aalborg Zoo, a group room, or a quiet table in the hallway. It was not considered necessary for the project to conduct the tests in a lab, as the chosen environments were quiet enough as to not distract the test participant during the test. 
+\par
+Present at the tests were a test moderator and a logger. The test moderator conducted and controlled the test while the logger took notes. 
+\par
+The tests were not recorded. Instead the people present at the test, aside form the test participant, took notes during the test and were debriefed after, to note down anything else they noticed during the test. This method is much faster than the traditional video analysis method, as there is no video material to be transcribed and analysed. The IDA method may be less precise though, as it relies on human memory and note taking rather than recordings. In this project the time advantage of the IDA method outweighed its less detailed results compared to the video analysis method. 
+
+\subsection{During the test}
+The usability test started with a short introduction to the system, to make sure that the test participant knew what the test was about. The participant was also instructed in how the test would go. Here they were asked to express their thoughts about the system during the test. This could be any expectations they had for doing certain actions or when they were surprised or confused by something the system did. By doing so it became clear when a problem arose and sometimes how the problem might be solved. After the introduction the participant was given the prepared list of tasks. 
+\par
+While the participant performed the tasks the test moderator sat beside them and would remind them to think aloud. It was important, however, that the test moderator did not interfere with the test unless the test participant got stuck on a task. In that case the moderator could step in and help.
+\par
+During the test a logger was in the room taking notes on anything the test participant said and did, that was relevant to the evaluation of the UI design. 
+\par
+After all the tasks were completed, the test participant was asked about their experience with the application. The moderator or logger might ask about instances where the test participant had trouble completing a task, or more generally what the test participant thought of their interactions with the system. This provided the opportunity to get a better understanding of what the test participant was thinking during the test without distracting them from the tasks. It also gave the test participant the opportunity to come with remarks on the system as a whole, including any suggestions they may have for improvements. 
+
+\subsection{After the test}
+After the test the moderator and logger, and any others that might have been present at during the test, talked about the results, noting down anything they noticed during the test. This increased the chances that all issues with the UI design were caught and noted down despite not having any recordings of the test. 
+\par
+This discussion ended out in a ranked list of usability problems that should be solved in the design of the application. These problems were ranked based on their severity, as described in \autoref{tab:ProblemSeverity}.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c||c|c|c|}
+        \hline
+        & Delay & Irritation & Expectation vs. actual
+        \\
+        \hline
+        \hline
+        Cosmetic & < 1 minute & Low & Small diff.
+        \\
+        \hline
+        Serious & Several minutes & Medium & Significant diff.
+        \\
+        \hline
+        Critical & Total (user stops) & High & Critical diff.
+        \\
+        \hline
+    \end{tabular}
+    \caption{Guiding table of the different severity ranks of a usability problem}
+    \label{tab:ProblemSeverity}
+\end{table}
+
+As seen in \autoref{tab:ProblemSeverity} a problem can be either cosmetic, serious or critical. The table is a guide to categorize a problem as either of these severity ranks. As an example, a problem that caused a delay of several minutes when performing a task might be categorized as serious. The irritation a problem causes the user is also relevant when ranking the problem, as is the difference between what the user expects to happen and what actually happens when doing an action. 
+\par
+Using these guidelines the problems uncovered during the usability tests were ranked. As an example ...

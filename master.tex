@@ -31,7 +31,7 @@
 \pdfbookmark[0]{Contents}{label:contents}
 \pagestyle{fancy} % enable headers and footers again
 \tableofcontents
-\listoftodos \todo[inline] {Fjern den her!} 
+\listoftodos \todo[inline]{Fjern den her!} 
 \input{sections/frontmatter/preface.tex}
 \cleardoublepage
 %mainmatter
@@ -40,62 +40,61 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Introduction to the report
-%\input{sections/Introduction.tex}
+\input{sections/Introduction.tex}
 
 % Background
-%\input{sections/Background/Introduction.tex}
-%\input{sections/Background/AalborgZoo.tex}
-%\input{sections/Background/ProblemDefinition.tex}
-%\input{sections/Background/Requirements.tex}
-%\input{sections/Background/SystemDefinition.tex}
-%\input{sections/Background/Factor.tex}
-%\input{sections/Background/Method.tex}
+\input{sections/Background/Introduction.tex}
+\input{sections/Background/AalborgZoo.tex}
+\input{sections/Background/ProblemDefinition.tex}
+\input{sections/Background/Requirements.tex}
+\input{sections/Background/SystemDefinition.tex}
+\input{sections/Background/Factor.tex}
+\input{sections/Background/Method.tex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Problem domain analysis
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Introduction
-%\input{sections/ProblemAnalyse/ProblemDomain/Introduction.tex}
+\input{sections/ProblemAnalyse/ProblemDomain/Introduction.tex}
 
 % Class activity
-%\input{sections/ProblemAnalyse/ProblemDomain/Class-activity/Introduction.tex}
-%\input{sections/ProblemAnalyse/ProblemDomain/Class-activity/Classes.tex}
-%\input{sections/ProblemAnalyse/ProblemDomain/Class-activity/Events.tex}
-%\input{sections/ProblemAnalyse/ProblemDomain/Class-activity/Event-table.tex}
+\input{sections/ProblemAnalyse/ProblemDomain/Class-activity/Introduction.tex}
+\input{sections/ProblemAnalyse/ProblemDomain/Class-activity/Classes.tex}
+\input{sections/ProblemAnalyse/ProblemDomain/Class-activity/Events.tex}
+\input{sections/ProblemAnalyse/ProblemDomain/Class-activity/Event-table.tex}
 
 % Structure activity
-%\input{sections/ProblemAnalyse/ProblemDomain/Structure-activity/Introduction.tex}
+\input{sections/ProblemAnalyse/ProblemDomain/Structure-activity/Introduction.tex}
 
 % Behavior activity
-%\input{sections/ProblemAnalyse/ProblemDomain/Behavior-activity/State-charts.tex}
+\input{sections/ProblemAnalyse/ProblemDomain/Behavior-activity/State-charts.tex}
 
 % Summary
-%\input{sections/ProblemAnalyse/ProblemDomain/Summary.tex}
+\input{sections/ProblemAnalyse/ProblemDomain/Summary.tex}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Application Domain Analysis
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\input{sections/ProblemAnalyse/ApplicationDomain/Introduction.tex}
+\input{sections/ProblemAnalyse/ApplicationDomain/Introduction.tex}
 
 % Usage activity
-%\input{sections/ProblemAnalyse/ApplicationDomain/Usage-activity/Introduction.tex}
-%\input{sections/ProblemAnalyse/ApplicationDomain/Usage-activity/Actors.tex}
-%\input{sections/ProblemAnalyse/ApplicationDomain/Usage-activity/Use-cases.tex}
+\input{sections/ProblemAnalyse/ApplicationDomain/Usage-activity/Introduction.tex}
+\input{sections/ProblemAnalyse/ApplicationDomain/Usage-activity/Actors.tex}
+\input{sections/ProblemAnalyse/ApplicationDomain/Usage-activity/Use-cases.tex}
 
 % Function activity
-%\input{sections/ProblemAnalyse/ApplicationDomain/Function-activity/Introduction.tex}
-%\input{sections/ProblemAnalyse/ApplicationDomain/Function-activity/Functions.tex}
+\input{sections/ProblemAnalyse/ApplicationDomain/Function-activity/Introduction.tex}
+\input{sections/ProblemAnalyse/ApplicationDomain/Function-activity/Functions.tex}
 
 % User interface
-%\input{sections/ProblemAnalyse/ApplicationDomain/User-interface/Introduction.tex}
-%\input{sections/ProblemAnalyse/ApplicationDomain/User-interface/PACT.tex}
-%\input{sections/ProblemAnalyse/ApplicationDomain/User-interface/UserInterface.tex}
+\input{sections/ProblemAnalyse/ApplicationDomain/User-interface/Introduction.tex}
+\input{sections/ProblemAnalyse/ApplicationDomain/User-interface/PACT.tex}
+\input{sections/ProblemAnalyse/ApplicationDomain/User-interface/UserInterface.tex}
 
 % Summary
-%\input{sections/ProblemAnalyse/ApplicationDomain/Summary.tex}
-
+\input{sections/ProblemAnalyse/ApplicationDomain/Summary.tex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Design
@@ -128,9 +127,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{sections/UIDesign/Introduction.tex}
 
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Implementation
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -146,6 +142,8 @@
 \input{sections/Implementation/MVCVM/Controllers.tex}
 \input{sections/Implementation/MVCVM/Viewmodels.tex}
 \input{sections/Implementation/MVCVM/Views.tex}
+
+\input{sections/Implementation/SystemInfrastructure.tex}
 
 \input{sections/Implementation/Repositories.tex}
 
@@ -177,5 +175,6 @@
 \bibliography{bib/mybib}
 \label{bib:mybiblio}
 \appendix
-%\input{sections/appAname.tex}
+\input{sections/Appendixes/UsabilityTestTasks.tex}
+\input{sections/Appendixes/UsabilityProblems.tex}
 \end{document}

@@ -1,9 +1,9 @@
 \section{Model Component} \label{sc:model_component}
-Based on the analysis of the problem domain, through the class diagram, event table, and state charts, the model component of the system has been constructed.
+Based on the analysis of the problem domain (see \autoref{ch:problemdomain}), through the class diagram, event table, and state charts, the model component of the system has been constructed.
 \par
-The model component, mentioned in \autoref{sc:component_architecture}, has been constructed by first looking at the original class diagram from the problem domain (see \autoref{fig:FirstPDClassDiagram}). Then additional classes, attributes, and structures have been added to support the mentioned events and the desired functionality of the system. The result is an updated class diagram, that contains attributes, operations, and additional classes and structures.
+The model component, mentioned in \autoref{sc:component_architecture}, has been constructed by first looking at the original class diagram from the problem domain (see \autoref{fig:FirstPDClassDiagram}). Then additional classes, attributes, and structures have been added to support the mentioned events and the desired functionality of the system. The result is an updated class diagram that contains attributes, operations, and additional classes and structures.
 \par
-First the \textit{Employee} and \textit{Admin} classes need a revision. The \textit{Employee} class has been used to keep track of the employees in the system. This has been done to keep track of who are in possession of what assets, which the \textit{Tag} class can already do. The other function of the \textit{Employee} class is to know which employees are admins are which are not. This function has been handled in a class in the function component, which will be explained in a later section (see \autoref{sc:function_component}), and therefore the \textit{Employee} and \textit{Admin} classes have become obsolete.
+First the \textit{Employee} and \textit{Admin} classes need a revision. The \textit{Employee} class has been used to keep track of the employees in the system. This has been done to keep track of who are in possession of what assets, which the \textit{Tag} class can already do. The other function of the \textit{Employee} class is to know which employees are admins and which are not. This function has been handled in a class in the function component, which will be explained in a later section (see \autoref{sc:function_component}), and therefore the \textit{Employee} and \textit{Admin} classes have become obsolete.
 
 \subsection{Additional classes}
 Based on the events and desired functionality of the system, the following classes have been added to the class diagram. 
@@ -24,14 +24,14 @@ A field contains the following attributes:
 \begin{itemize}
     \item ID
     \item Name
-    \item Type of the input, which can be: a textbox, a textarea, a number, a date, or a checkbox. \todo{Add potential additional field types}
+    \item Type of the input, which can be: a textbox, a textarea, a number, a date, or a checkbox. \todo[inline]{Add potential additional field types}
     \item Content, which will hold the value set by the user (will never be set on a tag)
     \item Required, which defines whether or not the field must be filled in before saving the asset.
-    \item \textit{Default value of the field, if it is connected to a tag, when it is added to an asset.}\newline This is only available on the fields added to a tag.
+    \item \textit{Default value of the field, if it is connected to a tag, when it is added to an asset.}\newline This is only available on the fields added to a tag (see \autoref{fig:FieldWithAttributes}).
 \end{itemize}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/Classes/FieldAttributes.png}
+    \includegraphics[width=0.28\textwidth]{figures/Classes/FieldAttributes.png}
     \caption{Overview of the \textit{Field} class with attributes}
     \label{fig:FieldWithAttributes}
 \end{figure}
@@ -40,41 +40,50 @@ A field contains the following attributes:
 % Fields added directly to an asset does not give the opportunity to set a default value.
 
 \subsubsection{Comment}
-To better organize and structure the employee comments on an asset, a \textit{Comment} class has been introduced. A comment can be attached to an asset and contains the id of the asset, the id of the employee whom the comment was added by, a comment text, and timestamps for its creation and last update.
+To better organize and structure the employee's comments on an asset, a \textit{Comment} class has been introduced. A comment can be attached to an asset and contains the id of the asset, the id of the employee whom the comment was added by, a comment text, and timestamps for its creation and last update (see \autoref{fig:CommentWithAttributes}).
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/Classes/CommentAttributes.png}
+    \includegraphics[width=0.28\textwidth]{figures/Classes/CommentAttributes.png}
     \caption{Overview of the \textit{Comment} class with attributes}
     \label{fig:CommentWithAttributes}
 \end{figure}
 
+\subsubsection{FieldContainer}
+To ensure that both the asset and tag classes have a list of fields and implement the correct properties, an abstract class has been implemented called \textit{FieldContainer}. Both the asset and tag classes are specializations of this abstract class (see \autoref{fig:FieldContainer}).
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.28\textwidth]{figures/Classes/FieldContainer.png}
+    \caption{Overview of the \textit{FieldContainer} class with attributes}
+    \label{fig:FieldContainer}
+\end{figure}
+
 \subsection{Attributes}
-To ensure that every event and functionality is supported, the following attributes have been added to the classes from the class diagram in the problem domain.
+To ensure that every event and functionality is supported, the following attributes have been added to the classes from the class diagram in the problem domain (see \autoref{fig:FirstPDClassDiagram}).
 
 \subsubsection{Asset attributes}
-An asset has an id, a name, a description, a list of fields, and timestamps for its creation, last update, and deletion. The deletion time is used for soft deletion, which works as an extra step to avoid unwanted deletes. Soft deletion works by marking an asset with a deletion date in the database, instead of removing the element from the database, hereby allowing the asset to be recovered, if it is accidentally deleted.
+An asset has an id, a name, a description, a list of fields, and timestamps for its creation, last update, and deletion. The deletion time is used for soft deletion, which works as an extra step to avoid unwanted deletes. Soft deletion works by marking an asset with a deletion date in the database, instead of removing the element from the database. This allows the asset to be recovered, if it is accidentally deleted (see \autoref{fig:AssetWithAttributes}).
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/Classes/AssetAttributes.png}
+    \includegraphics[width=0.28\textwidth]{figures/Classes/AssetAttributes.png}
     \caption{Overview of the \textit{Asset} class with attributes}
     \label{fig:AssetWithAttributes}
 \end{figure}
 
 \subsubsection{Department attributes}
-A department will have an id, a name, and a number of assets and tags. It also contains timestamps for its creation and last update.
+A department has an id, a name, and a number of assets and tags. It also contains timestamps for its creation and last update (see \autoref{fig:DepartmentWithAttributes}).
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/Classes/DepartmentAttributes.png}
+    \includegraphics[width=0.28\textwidth]{figures/Classes/DepartmentAttributes.png}
     \caption{Overview of the \textit{Department} class with attributes}
     \label{fig:DepartmentWithAttributes}
 \end{figure}
 
 \subsubsection{Tag attributes}
-The \textit{Tag} class will contain an id, a name, timestamps for the tag's creation and last update, and a number of fields.
+The \textit{Tag} class will contain an id, a name, timestamps for the tag's creation and last update, and a number of fields (see \autoref{fig:TagWithAttributes}).
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/Classes/TagAttributes.png}
+    \includegraphics[width=0.28\textwidth]{figures/Classes/TagAttributes.png}
     \caption{Overview of the \textit{Tag} class with attributes}
     \label{fig:TagWithAttributes}
 \end{figure}
@@ -88,27 +97,27 @@ The \textit{Tag} class will contain an id, a name, timestamps for the tag's crea
 %     \label{fig:Asset-tagRelationWithAttributes}
 % \end{figure}
 
-These attributes and classes are accompanied by additional structures. These structures have been explained below.
+These attributes and classes are accompanied by additional structures connecting the classes. These structures have been explained below.
 
 \subsection{Structures}
 The events and functions not completely supported by the previously mentioned classes and attributes will be achieved with the following structures of classes.
 
-\subsubsection{An asset and a tag contains fields}
-Both the \textit{Asset} and the \textit{Tag} classes aggregates the \textit{Field} class. An asset or a tag can contain multiple fields, but a field belongs to only one asset or one tag.
+\subsubsection{Assets and tags can contain fields}
+Both the \textit{Asset} and the \textit{Tag} classes aggregates the \textit{Field} class. An asset or a tag can contain multiple fields, but a field belongs to only one asset or one tag. To ensure that both classes have a list of fields and implement the correct properties, they both specialize the abstract class \textit{FieldContainer} (see \autoref{fig:AssetTagFieldStructure}).
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/Structures/AssetTagFieldStructure.png}
-    \caption{Overview of the structure between the \textit{Asset}, \textit{Tag}, and \textit{Field} classes}
+    \caption{Overview of the structure between the \textit{Asset}, \textit{Tag}, \textit{FieldContainer}, and \textit{Field} classes}
     \label{fig:AssetTagFieldStructure}
 \end{figure}
 
 \subsubsection{An asset contains comments}
-An asset can be commented on, which attaches the comment to the asset. An asset can have multiple comments, but a comment can only be attached to an asset.
+An asset can be commented on, which attaches the comment to the asset. An asset can have multiple comments, but a comment can only be attached to one asset (see \autoref{fig:AssetCommentStructure}).
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{figures/Structures/AssetCommentStructure.png}
+    \includegraphics[width=0.25\textwidth]{figures/Structures/AssetCommentStructure.png}
     \caption{Overview of the structure connecting the \textit{Asset} and \textit{Comment} classes}
     \label{fig:AssetCommentStructure}
 \end{figure}
@@ -134,22 +143,23 @@ An asset can be commented on, which attaches the comment to the asset. An asset 
 % \end{figure}
 
 \subsubsection{Parent tags}
-To increase visibility in the system, parent tags are introduced. This is done by adding a connection from the \textit{Tag} class to itself. By doing this, one tag can contain a list of tags, which are seen as its children. A tag can only belong to one other tag or contain a number of tags. This means that there is no single tag that can act as both parent and child. As a product of this, the structure becomes a two level hierarchy.
+To increase visibility in the system, parent tags are introduced. This is done by adding a connection from the \textit{Tag} class to itself. By doing this, one tag can contain a list of tags, which are seen as its children. A tag can only belong to one other tag or contain a number of tags. This means that there is no single tag that can act as both parent and child. As a product of this, the structure becomes a two level hierarchy (see \autoref{fig:TagHierarchy}).
+\todo[inline]{Forklar, at denne funktionalitet er implementeret som attributer på tag, og billeder bare er illustrativt}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{figures/Structures/TagHierarchy.png}
+    \includegraphics[width=0.35\textwidth]{figures/Structures/TagHierarchy.png}
     \caption{Overview of the structure of the \textit{ParentTag} and \textit{ChildTag} classes}
     \label{fig:TagHierarchy}
 \end{figure}
 
 \subsection{Updated class-diagram}
-The additions mentioned above have added up to the following class-diagram, which will be the model component. The \textit{ParentTag} and \textit{ChildTag} classes are simply tags without or with a parent respectively. Therefore the tag has been made abstract and the two tag types are specializations of this abstract class.
+The additions mentioned above have added up to the following class-diagram, which represents the model component. The \textit{ParentTag} and \textit{ChildTag} classes are simply tags without or with a parent respectively. Therefore the tag has been made abstract and the two tag types are specializations of this abstract class.
 
 % Tags og andre ting skal introduceres inden dette afsnit
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/ClassDiagrams/ModelComponentClassDiagram.png}
+    \includegraphics[width=0.9\textwidth]{figures/ClassDiagrams/ModelComponentClassDiagram.png}
     \caption{Class diagram for the model component}
     \label{fig:ModelComponentClassDiagram}
 \end{figure}

@@ -1,28 +1,26 @@
 \section{System Definition}
 As explained in the previous section, the system has been developed to help the IT department at Aalborg Zoo track their corporate assets.
 \par
-The primary functionality of the system is to give the user the ability to add, edit, remove, and search through all assets. The search will be based on the assets' unique IDs, names, and other identifiers specified by the user, and is limited to the selected department. When adding a new asset to the system, the user will be able to add predefined tags to the asset. These tags can contain fields that should be filled out for the specific assets.
+The primary functionality of the system is to give the user the ability to add, edit, remove, and search through all assets. The search will be based on the assets' unique IDs, names, identifiers, and other identifiers specified by the user, such as tags and fields, and is limited to the selected department. When adding a new asset to the system, the user will be able to add predefined tags to the asset. These tags can contain fields that should be filled out for the specific assets.
 \par
-Secondly, the system will have the functionality to tag assets with attributes such as their location, the person borrowing the asset and other attributes. These tags will be usable as identifiers for search queries. The user will be able to add new tags dynamically to the system and assign these to parent tags, such as 'Locations' or 'Users'. The parent tags will act as tag groups, and can also be dynamically added to the system. 
+Secondly, the system will have the functionality to tag assets with attributes such as their location, the person borrowing the asset, and other attributes. These tags will be usable as identifiers for search queries. The user will be able to add new tags dynamically to the system and assign these to parent tags, such as 'Locations' or 'Users'. The parent tags will act as tag groups and can also be dynamically added to the system. 
 \par
-Another secondary functionality of the system is logging of interactions. The system will be able to provide a history of events for each asset. Events include adding an asset, editing an asset, adding and removing tags on an asset. The user will also be able to attach comments to assets, describing events, such as updating the OS of a computer or installing new software to an asset. Every comment will have the username of the person who made the change attached.
+Another secondary functionality of the system is logging changes. The system will be able to provide a history of events for each asset. Events include adding an asset, editing an asset, and adding and removing tags on an asset. The user will also be able to attach comments to assets, describing events such as updating the OS of a computer or installing new software to an asset. Every event and comment will have the username of the person who made the change attached.
 \par
 The system is developed to be used by the IT department, and have a group of users who can manage the system, logging in automatically using their Active Directory (AD) identity. All employees will be able to view and comment on the assets, but only the assigned administrators will have the ability to manage them. 
 \par
-The interface will be simple and easy to use, changing the search results based on the selected department. The user will be able to generate a list of assets and export it as a file. The user will also have the ability to dynamically create and edit assets, by adding and removing tags with fields, in order to track specific elements of different assets.
+The interface will be simple and easy to use, changing the search results based on the selected department. The user will be able to generate a list of assets and export it to a file. The user will also have the ability to dynamically create and edit assets, by adding and removing tags with fields, in order to track specific elements of different assets.
 \par
-The system will be programmed using the C\# language and will be developed for for a Windows PC. The system will be communicating with an MySQL server. The graphical user interface will be created with the Windows Presentation Foundation (WPF) framework.
+The system will be programmed using the C\# language and will be developed for a Windows PC. The system will be communicating with a MySQL server. The graphical user interface will be created with the Windows Presentation Foundation (WPF) framework.
 \par
 The objects in the problem domain are: 
 \begin{itemize}
-    \item \textbf{Asset}: Corporate assets in Aalborg Zoo, such as a computer, a switch, a phone, etc.
-
-    % \item \textbf{Department}: The different departments within Aalborg Zoo, such as finance, IT, etc.
+    \item \textbf{Asset}: Corporate assets in Aalborg Zoo, such as computers, switches, phones, etc.
     
     \item \textbf{Employee}: Every employee can access the system and see every asset. Some employees can be granted further access to functionality, at which point they become an admin.
     
-    \item \textbf{Admin}: Users with access to manage and lend assets to other employees.
+    \item \textbf{Admin}: Users with authority to manage and lend assets to other employees.
 \end{itemize}
 % \todo{Include all class diagram classes}
 
-Below, the most essential parts of the system definition has been presented as a FACTOR criterion \cite{OOAD}(see \autoref{tab:factor}). This criterion consists of six elements describing the \textit{Functionality} of the system, the \textit{Application domain}, the \textit{Conditions} under which the system is used and developed, the \textit{Technology} on which the system will run and be developed, the \textit{Objects} present in the problem domain, and the \textit{Responsibility} that the system will have. These elements are important to take into account when designing a system. 
+In the following section, the most essential parts of the system definition have been presented as a FACTOR criterion \citep{OOAD} (see \autoref{tab:factor}). This criterion consists of six elements describing the \textit{Functionality} of the system, the \textit{Application domain}, the \textit{Conditions} under which the system is used and developed, the \textit{Technology} on which the system will run and be developed, the \textit{Objects} present in the problem domain, and the \textit{Responsibility} that the system will have. These elements are important to take into consideration when designing a system. 

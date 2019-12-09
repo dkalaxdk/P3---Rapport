@@ -1,9 +1,9 @@
 \section{Unit Test} \label{sc:UnitTest}
-Throughout the program unit testing have been used for test driven development, and to verify whether components gets implemented correctly. The unit tests in the program have been made on the interfaces on the controller, hereby making sure the interfaces works as intended. This in turns makes it easier to modify the classes implementing the interfaces, and making sure the functionalities works as intended. \par
-
-The unit tests where, when possible, made before the interface was implemented, this ensures that the interface has been implemented as intended. The unit-tests have been focused so they only tested specific elements of the code, and when needed MOQ \citep{MoqReference} will be used to fake certain elements of the code, so the test does not interact with the database. \par
-
-An example of how MOQ is used can be seen in \autoref{code:MoqSetup}, line 5-9 defines which functions the MOQ should fake, and what it should return when a function calls the MOQ.
+Throughout the program, unit testing have been used for test driven development, and to verify whether components gets implemented correctly. The unit tests in the program have been made on the interfaces for the controllers, hereby making sure the interfaces works as intended. This in turn makes it easier to modify the classes implementing the interfaces, and making sure the functionalities works as intended. 
+\par
+The unit tests were, when possible, made before the interface was implemented. This ensures that the interface has been implemented as intended. The unit-tests have been implemented so they only test specific elements of the code, and when needed MOQ \citep{MoqReference} was used to fake the functionality of the code that was not relevant to the test, minimizing the span of the tests. 
+\par
+An example of how MOQ is used can be seen in \autoref{code:MoqSetup}. Lines 5-9 define which functions the MOQ should fake, and what it should return when a function calls the MOQ, with parameters that match the criteria. In the case of the \textit{Insert} method of the \textit{IAssetRepository} seen in line 6, it will return an asset, if given any asset. It is also possible to make the criteria for the parameters more strict. 
 
 \begin{listing}[H]
 \begin{minted}[frame=lines, framesep=3mm, baselinestretch=1, linenos, bgcolor=LightGray, escapeinside='', breaklines]{csharp}
@@ -12,37 +12,47 @@ public void InitiateAsset()
     ulong id;
     // Mock setup
     _assetRepMock = new Mock<IAssetRepository>();
-    _assetRepMock.Setup(p => p.Delete(It.IsAny<Asset>())).Returns(true);
-    _assetRepMock.Setup(p => p.Insert(It.IsAny<Asset>(), out id)).Returns(It.IsAny<Asset>());
-    _assetRepMock.Setup(p => p.Update(It.IsAny<Asset>())).Returns(true);
-    _assetRepMock.Setup(p => p.AttachTags(It.IsAny<Asset>(), It.IsAny<List<ITagable>>())).Returns(true);
     
-    // [More code following, not relevant for this example]
+    _assetRepMock
+    .Setup(p => p.Insert(It.IsAny<Asset>(), out id))
+    .Returns(It.IsAny<Asset>());
+    
+    ...
+    
+    //Field setup
+    _fieldOne = new Field("Label of first field", "content of first field",
+    Field.FieldType.TextBox);
+    _fieldTwo = new Field("Label of second field", "content of second field",
+    Field.FieldType.Checkbox, false, true);
+    
 }
 \end{minted}
 \captionof{listing}{MOQ setup example.}
 \label{code:MoqSetup}
 \end{listing}
 \par
-Upon verifying whether a MOQ was called as intended the method seen in \autoref{code:MOQUsed}.
+An example of verifying whether a method from a mock was called as intended is shown in \autoref{code:MOQUsed}.
 
 \begin{listing}[H]
 \begin{minted}[frame=lines, framesep=3mm, baselinestretch=1, linenos, bgcolor=LightGray, escapeinside='', breaklines]{csharp}
 public void SaveAsset_Returns_RepositoryFunctionUsed()
 {
-        //Arrange
-        ulong id = 0;
-        //Act
-        _assetController.Save();
+    //Arrange
+    ulong id = 0;
+    
+    //Act
+    _assetController.Save();
 
-        //Assert
-        _assetRepMock.Verify(p => p.Insert(It.IsAny<Asset>(), out id), Times.Once());
+    //Assert
+    _assetRepMock.Verify(p => p.Insert(It.IsAny<Asset>(), out id), Times.Once());
 }
 \end{minted}
 \captionof{listing}{MOQ usage example}
 \label{code:MOQUsed}
 \end{listing}
 
-By using MOQ to fake elements of the code, the unit tests have become more concise, than they would be if they where to test every sub functionality of the functions as well. This have given better, and easier to understand the result of each test, as they only test one result each. \par
-
-Throughout coding only the core functionality have been tested fully, as this was the functionality which most other classes relied on. 
+By using MOQ to fake elements of the code, the unit tests have become more concise, than they would be if they where to test every sub functionality of the functions as well. This has given better tests, and made it easier to understand the result of each test, as they only test specific elements of the code.
+\par
+Throughout the development of the system, only the core functionality of the system have been tested fully, as this was the functionality which most other classes relied on. This made it faster to see what components failed within the system upon implementing or changing classes and dependencies. 
+\par
+When developing the tests standard implementations of certain elements were used throughout the entire test, such as the fields seen on \autoref{code:MoqSetup} lines 13 - 15. This has made the tests easier to understand, as any generic element that would be used in more than one test, would be defined only once. 

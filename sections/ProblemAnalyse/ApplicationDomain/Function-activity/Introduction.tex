@@ -1,9 +1,9 @@
 \section{Function activity}\label{sc:function}
-Based on the use cases, it is possible to determine the functions necessary for the system to adequately fulfill the requirements. These functions have been classified by their type and complexity in the following function list. The complex functions have then been further split into smaller functions to explain their processes. This is done, following the functions analysis and the complexity definitions from \cite[chap 7]{OOAD}. The complexity definitions are:
+Based on the use cases, it is possible to determine the functions necessary for the system to adequately fulfill the requirements. These functions have been classified by their type and complexity in the following function list. The complex functions have then been further split into smaller functions to explain their processes. This is done following the functions analysis and the complexity definitions from \cite[chap 7]{OOAD}. The complexity definitions are:
 \begin{itemize}
-    \item Simple: Sets or reads the value of an attribute in an existing object
-    \item Medium: Creates a new object and connects it by object structure(s) to other objects
-    \item Complex: Reads from or creates several objects (from different classes)
+    \item Simple: Sets or reads the value of an attribute in an existing object.
+    \item Medium: Creates a new object and connects it by object structure(s) to other objects.
+    \item Complex: Reads from or creates several objects (from different classes).
 \end{itemize}
 With these definitions, the following function table has been constructed.
 
@@ -44,7 +44,7 @@ With these definitions, the following function table has been constructed.
 \caption{Function table showing all the different top-level functions as well as their complexity and type.}\label{tab:functions}
 \end{table}
 
-The function table (see \autoref{tab:functions}) contains multiple complex functions. As mentioned earlier, these functions have been further split into smaller functions to better understand the operations. 
+The function table (see \autoref{tab:functions}) contains multiple complex functions. As mentioned earlier, these functions have been further split into smaller functions to better understand the operations.
 
 
 \fancyLayout
@@ -68,7 +68,7 @@ The function table (see \autoref{tab:functions}) contains multiple complex funct
         \end{tabular}
 }
 
-The \textit{add asset} function consists of three smaller functions, as seen in \autoref{function:add_asset}. The functions appear in the listed order. When adding an asset, first the employee enters the relevant information, which is then saved with the asset to the model. Lastly, the \textit{Asset-tag relation}s connected to the asset are updated. This last step possibly creates and deletes \textit{Asset-tag relation}s.
+The \textit{Add asset} function consists of three smaller functions, as seen in \autoref{function:add_asset}. When adding an asset, first the admin enters the relevant information, which is then saved with the asset to the model. Lastly, the \textit{Asset-tag relation}s connected to the asset are updated. This last step possibly creates and deletes \textit{Asset-tag relation}s between the asset and the relevant tags.
 
 \fancyLayout
     {function}
@@ -84,6 +84,8 @@ The \textit{add asset} function consists of three smaller functions, as seen in 
             \hline
             Load asset from model & Simple & Read \\
             \hline
+            Update relevant information about the asset & Simple & Update \\
+            \hline
             Save asset to model & Medium & Update \\
             \hline
             Update connections to tags & Medium & Update\\
@@ -91,7 +93,7 @@ The \textit{add asset} function consists of three smaller functions, as seen in 
         \end{tabular}
 }
 
-The \textit{update asset information} function is made up of the smaller functions, as shown in \autoref{function:update_asset_information}, which will be executed in the shown order. First, the asset is loaded from the model and formatted as an asset in the system. Then the asset is saved to the model with the changes and its connections to tags are updated. Just as the Add asset function, the last step possibly creates and deletes \textit{Asset-tag relation}s.
+The \textit{update asset information} function is made up of the smaller functions, as shown in \autoref{function:update_asset_information}, which will be executed in the shown order. First, the asset is loaded from the model and formatted as an asset in the system. Then the changes to the information is applied to the asset. The asset is then saved to the model with the changes and its connections to tags are updated. Just as the \textit{Add asset} function, the last step possibly creates and deletes \textit{Asset-tag relation}s between the asset and the relevant tags.
 
 \fancyLayout
     {function}
@@ -116,6 +118,6 @@ The \textit{update asset information} function is made up of the smaller functio
         \end{tabular}
 }
 
-The \textit{export report} function involves the four smaller function listed in \autoref{function:export_report}, happening in order. First the selected assets are loaded, then report entries are created based on the assets, which are then added to the report and finally, the report is exported to the admin's computer in a file containing Comma Separated Values (CSV).
+The \textit{export report} function involves the four smaller functions listed in \autoref{function:export_report}, happening in order. The first step is that the selected assets are loaded. Then report entries are created based on the assets, which are then added to the report. Finally the report is exported to the admin's computer formatted as a Comma Separated Values (CSV) file.
 \par
 This concludes the analysis of functions. The understanding of the users and functions has been used in the following section as a basis for the interface.

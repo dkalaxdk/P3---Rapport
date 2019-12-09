@@ -1,0 +1,86 @@
+\chapter{Usability test results}\label{app:UsabilityProblems}
+Here the results of the usability tests are presented as two tables of problems uncovered during the tests. One table is for the tests of the admin part of the system, while the other table contains the problems discovered during the employee tests.
+\par
+The problems in the tables each have an unique index. This index consists of a letter signifying which test participant was doing the test, and a number counting up for every problem in that test. Each problem is also marked with which task it occurred during and a severity rating. The tasks referred to can be seen in \autoref{app:usabilityTest}. The severity of a problem is categorized as either \textit{critical}, \textit{serious} or \textit{cosmetic}, as described in \autoref{sc:UsabilityTesting}. 
+\par
+The first usability test was conducted with a student as test participant. This test had the main purpose of practicing how do conduct a usability test. As a result the problems found has not been recorded in the following list. The admin test problems are thus only from tests with the zoo representatives. 
+
+\section*{Admin}
+
+\begin{longtable}{| c | c | p{8cm} | c |}
+        \hline
+        \textbf{Index} & \textbf{Task} & \textbf{Description} & \textbf{Severity}
+        \\
+        \hline
+        B-1 & 2 & The test participant got confused about the tags and fields in on the asset and wrote all information in the description. &  Cosmetic
+        \\
+        \hline
+        B-2 & - & The test participant expected to be able to select a tag from the suggested list when searching. This functionality was not working. & Cosmetic
+        \\
+        \hline
+        B-3 & 2 & The test participant got a little confused when the suggestions did not appear as the search field was selected. & Cosmetic
+        \\
+        \hline
+        B-4 & 2 & The test participant wondered what the pencil button for editing a field meant. After an explanation this made sense after all. & Cosmetic
+        \\
+        \hline
+        B-5 & 2 & In asset editor when trying to add a tag, the test participant could not exit the parent tag. & Cosmetic
+        \\
+        \hline
+    \caption{Table of problems found during usability tests of the system when user had admin access}
+    \label{tab:AdminProblems}
+   
+\end{longtable}
+
+\todo{lav evt verticalt centrerede celler i tabellerne}
+
+\section*{Employee}
+\begin{longtable}{| c | c | p{8cm} | c |}
+        \hline
+        \textbf{Index} & \textbf{Task} & \textbf{Description} & \textbf{Severity}
+        \\
+        \hline
+        A-1 & 1 & It was difficult to find the asset page. The test participant did not know what an asset was and did not associate a computer with an asset. They tried looking in Setting and Help. Test moderator then explained what an asset was, after which the test participant went to the asset page. & Critical
+        \\
+        \hline
+        A-2 & 2 & Test participant expects the return button to sent the comment. They quickly press Send button after this. & Cosmetic
+        \\
+        \hline
+        B-1 & 1 & The test participant was confused about what an asset was. They try looking in Settings and Help. They get stuck on the Home page and think the comments are assets. They open these before realizing they are not asset and then going to the asset page. & Serious
+        \\
+        \hline
+        B-2 & 1 & The test participant was surprised then a lot of assets appeared after changing department. It was not obvious that changing departments had and effect in the application & Cosmetic
+        \\
+        \hline
+        C-1 & 1 & The test participant quickly figures out how to change department, but when nothing happened on the Home page, they changed the department back again because they thought they made a mistake. They then looking in Settings and Help & Serious
+        \\
+        \hline
+        C-2 & 1 & The test participant thinks comments on the Home page are assets. They open each of then in turn & Serious
+        \\
+        \hline
+        C-3 & 1 & The test participant does not use the search field, but instead looks through the list for the asset &  Cosmetic
+        \\
+        \hline
+        C-4 & 2 & There were problems with the task description. The test participant thought they had to find a "direct connection" to the admin and starts looking for this elsewhere in the application & Serious
+        \\
+        \hline
+        D-1 & 1 & The test participant does not recognize that they are in the wrong department. They use the search field on the asset page to try and find the computer in the wrong department. They get stuck and try looking in Settings and Help. Moderator explains about departments but they are still stuck and try finding the department through tags in the search field. Moderator explains about the search field and test participant then quickly find and changes departments. It was not obvious enough that the department menu button was a button. & Critical
+        \\
+        \hline
+        D-2 & 1 & The test participant tries to find the right department through tags on the asset page. They get stuck and can not exit tag mode again. &  Critical
+        \\
+        \hline
+        D-3 & 1 & Test participant does not use the search field but looks for the asset in the list instead. & Cosmetic
+        \\
+        \hline
+        D-4 & 2 & The test participant tries to press the return button to send the comment. They then press the Send button. & Cosmetic
+        \\
+        \hline
+        E-1 & 1 & The test participant tries looking in Settings and Help first. They find and change the department, sees changes in the comments on the Home page but changes department back. Then they went to the asset page but in the wrong department. They try to search for the computer in the wrong department, before realizing they changed the department back and then changes it to the right one and quickly finds the asset. & Serious
+        \\
+        \hline
+        
+    \caption{Table of problems found during usability tests of the system when user did not have admin access}
+    \label{tab:EmployeeProblems}
+   
+\end{longtable}

@@ -1,48 +1,47 @@
 \subsection{Events}\label{ssc:events}
-The interactions between the classes, defined in \autoref{sc:classes}, can be described as events. These events have been defined and described in order to achieve a better understanding of the relation between the classes in the system.
-\par
-
+The interactions between the classes, defined in \autoref{ssc:classes}, can be described as events. These events have been defined and described in order to achieve a better understanding of the relation between the classes in the system.
+\\\\
 \textbf{Asset acquired:}\\
-\textit{Asset acquired} is the event occurring, when the zoo or a department acquire a new asset. The event involves the acquired asset and the admin, whom the asset was added by.\\
+Is the event occurring, when the zoo or a department acquires a new asset. The event involves the acquired asset and the admin, whom the asset was added by.\\
 
 \textbf{Asset disposed of:}\\
-\textit{Asset disposed of} happens when an asset is either disposed of by an admin or lost by an employee. This event affects the disposed asset and the admin, whom the disposal of the asset was handled by.\\
+Happens when an asset is either disposed of by an admin or lost by an employee. This event affects the disposed asset and the admin, whom the disposal of the asset was handled by.\\
 
 \textbf{Asset information updated:}\\
-This event occurs when the information of an asset has been updated. This is done by the admin.\\
+Occurs when the information of an asset has been updated. This is done by the admin.\\
 
 \textbf{Asset loaned out:}\\
-\textit{Asset loaned out} is an event occurring, whenever an admin loans out an asset to an employee. It involves the asset, the employee to whom the asset is loaned, and the admin creating the loan.\\
+Is an event occurring, whenever an admin loans out an asset to an employee. It involves the asset, the employee to whom the asset is loaned, and the admin creating the loan.\\
 
 \textbf{Asset returned:}\\
-\textit{Asset returned} is an event occurring, whenever an admin registers the return of an asset loaned out to an employee. This event involves the same classes as \textit{asset loaned out}, the asset, the employee and the admin.\\
+Happens whenever an admin registers the return of an asset loaned out to an employee. This event involves the same classes as \textit{asset loaned out}, the asset, the employee and the admin.\\
 
 \textbf{Employee hired:}\\
-\textit{Employee hired} happens whenever an employee is hired The only participant is the employee being hired.\\
+Occurs whenever an employee is hired. The only participant is the employee being hired.\\
 
 \textbf{Employee fired:}\\
-\textit{Employee fired} is the event where an employee gets fired or quits. Involves the employee fired.\\
+Is the event where an employee gets fired or quits. Involves the employee fired.\\
 
 \textbf{Admin access gained:}\\
-\textit{Admin access gained} occurs when an employee's access is raised to admin level. This means further functionality is available to the employee within the system. The participants are the employee, and results in an admin.\\
+Occurs when an employee's access is raised to admin level. This means further functionality is available to the employee within the system. The participants are the employee, the admin giving the access, and results in an admin.\\
 
 \textbf{Admin access revoked:}\\
-\textit{Admin access revoked} occurs when an admins access is lowered to standard employee capabilities. It is possible to raise the access level to admin again afterwards. This involves the admin and the employee.\\
+Happens when an admin's access level is lowered to standard employee capabilities. It is possible to raise the access level to admin again afterwards. This involves the admin and the employee.\\
 
 \textbf{Department activated:}\\
-\textit{Department activated} occurs when a department is created/activated and is available for assets. Assets cannot exist without an active department. \\
+Occurs when a department is created/activated and is available for assets. Involves the admin activating the department and the created department. Assets cannot exist without an active department. \\
 
 \textbf{Department deactivated:}\\
-\textit{Department deactivated} occurs when a department is suspended/deactivated/closed or in other ways not available to assets. Before this event can occur all assets created within the department have to be removed. \\
+Happens when a department is deactivated and thereby becomes unavailable. Before this event can occur all assets stored within the department have to be removed. The event involves the admin deactivating the department and the deactivated department.\\
 
 \textbf{Tag created:}\\
-This event is the creation of a new tag. When an admin decides to create a new tag for grouping assets or depicting some detail, this event will occur.\\
+This event happens when a tag is created. When an admin decides to create a new tag for grouping assets or depicting some detail, this event will occur. It involves the admin and tag classes.\\
 
 \textbf{Tag deleted:}\\
-When an admin wants to delete a tag from the system, this event occurs.\\
+When an admin deletes a tag from the system, this event occurs. This also involves the admin and tag classes.\\
 
 \textbf{Tag attached to asset:}\\
-\textit{Tag attached to asset} occurs when an admin attaches a tag to an asset.\\
+\textit{Tag attached to asset} occurs when an admin attaches a tag to an asset. It involves the asset, admin and tag classes.\\
 
-\textbf{Tag detached to asset:}\\
-\textit{Tag attached to asset} occurs when an admin attaches a tag to an asset.
+\textbf{Tag detached from asset:}\\
+\textit{Tag detached from asset} occurs when an admin detaches a tag from an asset this also involves the asset, admin and tag classes.

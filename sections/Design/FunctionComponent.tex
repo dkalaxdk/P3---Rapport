@@ -1,8 +1,8 @@
 \section{Function Component} \label{sc:function_component}
-Having added new attributes, classes, and structures to the class diagram through the model component, the functions from the function list can be implemented as well. Some of the functions should be implemented in the classes directly, others should be places in the function component. The following section contains additions to the original function list, the arguments for these additions, decisions about implementations of these, and the final function component design.
+Having added new attributes, classes, and structures to the class diagram through the model component, the functions from the function list can be implemented as well. Some of the functions should be implemented in the classes directly, others should be placed in the function component. The following section contains additions to the original function list, the arguments for these additions, decisions about implementations of these, and the final function component design.
 
 \subsection{Additions to the function list}
-The function list has been constructed based on the original class diagram, but does not accommodate the new additions from the model component. To support the new classes, the following functions have been added:
+The function list (see \autoref{tab:functions} on page \pageref{tab:functions}) has been constructed based on the original class diagram (see \autoref{fig:FirstPDClassDiagram}), but does not accommodate the new additions from the model component. To support the new classes, the following functions have been added:
 
 \begin{table}[H]
 \centering
@@ -19,21 +19,28 @@ The function list has been constructed based on the original class diagram, but 
         \hline
         5 & Add field to asset/tag & Medium & Update\\
         \hline
+        6 & Update tag information & Complex & Update\\
+        \hline
+        7 & Update department information & Complex & Update\\
+        \hline
     \end{tabular}
 \end{table}
 
-Function 1-3 are added to return the objects from the model to the application domain. The \textit{get asset by id} function replaces the \textit{view asset} function, as they serve the same purpose.\\
-Function 10 handles the tagging of an asset by creating the tag relation between the asset and the tag to be attached.\\
-Function 4 makes it possible to search for a tag, as it was previous possible to search for an asset.\\
+Functions 1-3 are added to return the objects from the model to the application domain. The \textit{get asset by id} function replaces the \textit{view asset} function, as they serve the same purpose.
+\par
+Function 4 makes it possible to search for a tag, as it was previously possible to search for an asset.
+\par
 Function 5 makes it possible to add a field to an asset or a tag.
 \par
-The updated function list has then been implemented in the component deign. Classes, attributes, and structures have been added simultaneously in this section, as they often can not exist alone.
+Functions 6 and 7 handle the updating of the tags and departments in the system. This lets the user maintain the tags and departments, as they change name or, for the tags, need more functionality.
+\par
+The updated function list has then been implemented in the component design. Classes, attributes, and structures have been added simultaneously in this section, as they often can not exist alone.
 
 \subsection{Design}
-The following includes examinations of the functions and design decisions about how they should be incorporated in the component design.
+The following includes examinations of the functions and design decisions about how they should be incorporated in the component design. To better separate the responsibility of the different classes, the asset, comment, department, field, and tag classes have been implemented as simple data classes. This means that they will simply store data and not perform any major operations.
 
 \subsubsection{Maintaining the model}
-All the \textit{add}, \textit{remove}, \textit{update}, and \textit{get by id} functions are used by the employee with admin status. These functions should be handled similarly for assets, departments, and tags, and therefore they will all be grouped into a strategy. A thorough look at these functions and the structure will show that this pattern is actually a repository pattern. Hence an intuitive name of the overall strategy is \textit{Repository}, and the strategy is abstract, as every concrete strategy will inherit the functions. The concrete strategies handle the assets, departments, and tags respectively and has been named: \textit{AssetRepository}, \textit{DepartmentRepository}, and \textit{TagRepository}. These control the maintenance of the data for their designated classes in the model.
+All the \textit{add}, \textit{remove}, \textit{update}, and \textit{get by id} functions are used by the employee with admin status. These functions should be handled similarly for assets, departments, and tags, and therefore they will all be grouped into a strategy. A thorough look at these functions and the structure will show that this pattern is actually a repository pattern. Hence an intuitive name of the overall strategy is \textit{Repository}, and the strategy is abstract, as every concrete strategy will inherit the functions. The concrete strategies handle the assets, departments, and tags respectively and have been named: \textit{AssetRepository}, \textit{DepartmentRepository}, and \textit{TagRepository}. These control the maintenance of the data for their designated classes in the model.
 \par
 As mentioned, these concrete strategies have operations for adding, removing, and updating, which all take an object of the designated class, and an operation for getting an object by id, which takes the id of the wanted object. The structure has been placed in the function component, as it does not belong to a specific class in the model component but will be used by admin employees.
 \begin{figure}[H]
@@ -44,8 +51,7 @@ As mentioned, these concrete strategies have operations for adding, removing, an
 \end{figure}
 
 \subsubsection{Attach/detach tag}
-The operations of attaching or detaching an asset is called by an admin employee and involves the \textit{Tag} and \textit{Asset} classes. The functions create or delete an instance of the \textit{Asset-tag relation} class containing the involved asset and tag. The operations should be added to a class in the function component, as the admin employee does not carry out the operations. They have been placed in the \textit{AssetRepository} class, as it handles the assets. Placing them directly on the \textit{Asset} class however, would give the class responsibility of an operation in which it participate solely as an object. For clarity, the operations have been named \textit{AttachTag} and \textit{DetachTag}.\\
-Both operations take two parameters, an asset, and a list of tags to be attached to the asset.
+The operations of attaching or detaching an asset is called by an admin employee and involves the \textit{Tag} and \textit{Asset} classes. The functions create or delete an instance of the \textit{Asset-tag relation} class containing the involved asset and tag. The operations should be added to a class in the function component, as the admin employee does not carry out the operations. They have been placed in the \textit{AssetRepository} class, as it handles the assets. Placing them directly on the \textit{Asset} class however, would give the class responsibility of an operation in which it participate solely as an object. For clarity, the operations have been named \textit{AttachTag} and \textit{DetachTag}. Both operations take two parameters, an asset, and a list of tags to be attached to the asset.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.3\textwidth]{figures/FunctionComponent/AttachTag.png}
@@ -54,8 +60,9 @@ Both operations take two parameters, an asset, and a list of tags to be attached
 \end{figure}
 
 \subsubsection{Search for asset or tag}
-\todo[]{Kommer vi til at kunne søge i comments og users skal dette også beskrives hvis det bliver en realitet.}
-The 'search for asset' function lets the employee search through the assets in the system and returns the assets that comply with the search query. Multiple assets are handled and therefore it would not be intuitive to add it as an operation on the asset class. It is called by the employee, but the employee is not responsible for searching through the assets, so the function has been placed as an operation in the function component.\\
+\todo[inline]{Kommer vi til at kunne søge i comments og users skal dette også beskrives}
+The 'search for asset' function lets the employee search through the assets in the system and returns the assets that comply with the search query. Multiple assets are handled and therefore it would not be intuitive to add it as an operation on the asset class. It is called by the employee, but the employee is not responsible for searching through the assets, so the function has been placed as an operation in the function component.
+\par
 The function 'search for tag' goes through the same process and both functions have the same structure. The search is carried out on the elements in the database and therefore they fit well into the concrete strategies of the \textit{Repository} strategy.
 \begin{figure}[H]
     \centering
@@ -65,8 +72,7 @@ The function 'search for tag' goes through the same process and both functions h
 \end{figure}
 
 \subsubsection{Comment asset}
-Commenting an asset adds a comment to the asset. It is desired that the comments can be retrieved and shown without knowledge about the asset to which it belongs. The reason for this is that the newest comments are to be shown on the home page of all admins, to give an overview of the latest changes and problems. Therefore the comments will not be placed directly on the asset, but will be stored separately and contain a connection to the asset.\\
-Because of this, the comment will need the functions \textit{add}, \textit{remove}, \textit{update}, and \textit{get by id} and can therefore be seen as another concrete strategy of the \textit{Repository}.
+Commenting an asset adds a comment to the asset. It is desired that the comments can be retrieved and shown without knowledge about the asset to which it belongs. The reason for this is that the newest comments are to be shown on the home page of all admins, to give an overview of the latest changes and problems. Therefore the comments will not be placed directly on the asset, but will be stored separately and contain a connection to the asset. Because of this, the comment will need the functions \textit{add}, \textit{remove}, \textit{update}, and \textit{get by id} and can therefore be seen as another concrete strategy of the \textit{Repository}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{figures/FunctionComponent/CommentRepository.png}
@@ -79,7 +85,7 @@ Because of this, the comment will need the functions \textit{add}, \textit{remov
 % \todo[inline]{Insert structure diagram with the new operations for asset}
 
 \subsubsection{Authenticate user \& Check access level}
-The authentication and access level check are both functions that has been handled by the \textit{Employee} class. As the employee should not do these things itself, the functions have been moved to the function component and implemented as operations in a class called \textit{Session}. They have been renamed to \textit{Authenticated} and \textit{IsAdmin} and return whether the employee currently logged into the system is authenticated and has admin authority respectively. This makes both the \textit{Employee} and \textit{Admin} classes obsolete. This class also contains the attributes \textit{Username} and \textit{Domain}, to make sure that this information about the employee currently logged in is available to the system.
+The authentication and access level check are both functions that have been handled by the \textit{Employee} class. As the employee should not do these things itself, the functions have been moved to the function component and implemented as operations in a class called \textit{Session}. They have been renamed to \textit{Authenticated} and \textit{IsAdmin} and return whether the employee currently logged into the system is authenticated and has admin authority respectively. This makes both the \textit{Employee} and \textit{Admin} classes obsolete. This class also contains the attributes \textit{Username} and \textit{Domain}, to make sure that this information about the employee currently logged in is available to the system.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.3\textwidth]{figures/FunctionComponent/Session.png}
@@ -87,18 +93,8 @@ The authentication and access level check are both functions that has been handl
     \label{fig:session_class}
 \end{figure}
 
-\subsubsection{Add field to asset/tag}
-Adding a field to either an asset or a tag will create a field directly on the asset or tag. The fields do not have their separate place in the system, as they are not relevant without either the asset or the tag, to which they belong. Therefore the function has been implemented in the function component as an operation in a class called \textit{FieldController}.\\
-The operation takes in two parameters. The first is the object to which the field should be attached, written as the type \textit{FieldContainable}, as it can be either an asset or a tag. The second is the \textit{Field} that should be attached to it.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.6\textwidth]{figures/FunctionComponent/FieldController.png}
-    \caption{The \textit{FieldController} class}
-    \label{fig:FieldController}
-\end{figure}
-
 \subsubsection{Export report}
-The only class needing access to this function is the \textit{Employee} class. The function is not relevant for any other class, but the responsibility for executing the operation does not lie with the \textit{Employee} class itself. Therefore, the operation has been moved into a class in the function component named \textit{ExportHandler}.
+The only class needing access to this function is the \textit{Admin} class. The function is not relevant to any other class, but the responsibility for executing the operation does not lie with the \textit{Admin} class itself. Therefore, the operation has been moved into a class in the function component named \textit{ExportHandler}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.4\textwidth]{figures/FunctionComponent/ExportHandler.png}
@@ -106,8 +102,47 @@ The only class needing access to this function is the \textit{Employee} class. T
     \label{fig:ExportHandler}
 \end{figure}
 
+\subsubsection{Updating data classes}
+To ensure that the data in the data classes is handled correctly, controllers have been introduced between the data classes and the related classes in the function component. This ensures that the data is correctly handled and valid, before saving it to the data classes.
+\par
+The controllers handle communication with classes that need information from the data classes, need to change some of the information, and also handles communication with the repositories. This makes it possible to call methods in a controller, which then formats the data class and calls the repository to maintain the database based on the changes made to the data class.
+\par
+The controllers differ in functionality and therefore does not build on a generalized controller. Two controllers have been depicted in the picture below (see \autoref{fig:AssetControllerAndAssetListControllerClasses}).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/FunctionComponent/AssetControllerAndAssetListController.png}
+    \caption{The \textit{AssetController} and \textit{AssetListController} classes}
+    \label{fig:AssetControllerAndAssetListControllerClasses}
+\end{figure}
+
+The \textit{AssetController} handles only one asset and gives the surrounding classes access to the operation they need, in context of reading and updating the asset. One of these is the \textit{Save} operation, which simply calls the \textit{AssetRepository} with the controlled asset. This way, the surrounding classes do not need any knowledge of the repository to call to save the asset.
+\par
+The \textit{AssetListController} contains a list of assets and makes it possible for the surrounding classes to interact with the list of assets. Things such as searching through the list and removing an asset from the list. As mentioned above, the controller makes it possible for the surrounding classes to ignore the existence of certain classes, such as the repositories.
+
+\subsubsection{Add field to asset/tag}
+Adding a field to either an asset or a tag will create a field directly on the asset or tag. The fields do not have their separate place in the system, as they are not relevant without either the asset or the tag, to which they belong. Therefore the function has been implemented in the function component as an operation in an abstract class called \textit{FieldController}.
+\par
+The interface defines operations for adding a field to a data class, removing a field from a data class, removing a relation from a tag to every related field in the implementing controllers field list, and serializing the implementing controllers list of fields (see \autoref{fig:FieldListController}).
+\par
+The \textit{AddField} operation takes in two parameters. The first is the \textit{Field} that should be attached to it. The second is the object to which the field should be attached, written as the type \textit{FieldContainer}, as it can be either an asset or a tag. 
+\par
+The \textit{RemoveField} operation takes in the field that should be removed from the \textit{FieldContainer} class that the implementing controller is currently handling. The operation simply removes the field from the handled \textit{FieldContainer} class' list of fields.
+\par
+The \textit{RemoveTagRelationsOnFields} operation takes in the ID of a tag and removes all relations to fields in the implementing controllers currently handled \textit{FieldContainer} class field list.\\
+The last method is used to serialize the field in the implementing controllers currently handled \textit{FieldContainer} class field list.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{figures/FunctionComponent/FieldListController.png}
+    \caption{The \textit{FieldListController} class}
+    \label{fig:FieldListController}
+\end{figure}
+
+\subsubsection{ViewModels}
+
 \subsection{Specification of complex functions}
-The complex functions have been depicted with further descriptions, to ease the understanding process of them. Some of the complex function are trivial and therefore have not been described in further detail. This includes the search assets and tags operations.
+The complex functions have been depicted with further descriptions, to ease the understanding of the process of them. Some of the complex function are trivial and therefore have not been described in further detail. This includes the search assets and tags operations.
 % This includes the adding and removing of assets, departments, and tags, updating these as it is simply changing the value of attributes, and searching through the sets.
 \par
 This leaves the Export report function to be described in further detail.

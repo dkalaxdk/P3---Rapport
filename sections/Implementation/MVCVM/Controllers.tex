@@ -1,7 +1,7 @@
 \subsection{Controllers} \label{sc:Controllers}
-As mentioned in \autoref{sc:MVCVM} controllers contains the functionality related to modifying, updating or removing data. The controllers add functionality to the models, as a model does not contain any functionality in itself. \par
-An example of an interface to a controller can be seen in \autoref{code:IAssetController}. The \textit{IAssetController} contains a public \textit{Asset} property, which is the asset that the controller manipulates. \par
-The \textit{IAssetController} interface also contains definitions of the functions related to saving, updating, removing, tagging and untagging tags from the asset, as well as information related to displaying the asset to the view model.
+As mentioned in \autoref{sc:MVCVM} controllers contain the functionality related to modifying, updating, and removing data. The controllers add functionality to the models, as a model does not contain any functionality in itself. 
+\par
+An example of an interface implemented by a controller can be seen in \autoref{code:IAssetController}. The \textit{IAssetController} contains a public \textit{Asset} property, which is the asset that the controller manipulates. It also contains definitions of the functions related to saving, updating, removing, tagging and untagging tags from the asset, as well as information related to displaying the asset to the view model.
 
 \begin{listing}[H]
 \begin{minted}[frame=lines, framesep=3mm, baselinestretch=1, linenos, bgcolor=LightGray, escapeinside='', breaklines]{csharp}
@@ -26,12 +26,13 @@ public interface IAssetController : IFieldListController
 }
 
 \end{minted}
-\captionof{listing}{IAssetController example. The IAssetController interface implements the IFieldsListController, as an \textit{Asset} has fields. Therefore an implementation of IAssetController also need to be able to control fields.}
+\captionof{listing}{IAssetController example. The IAssetController interface implements the IFieldsListController, as an \textit{Asset} has fields. Therefore an implementation of IAssetController also needs to be able to control fields.}
 \label{code:IAssetController}
 \end{listing}
+
+The members of the \textit{IAssetController} interface are implemented by the \textit{AssetController} class partially shown in \autoref{code:AssetController}. This class contains the information related to utilizing the members of the interface and includes the connection to the database, as well as any other controllers that may be needed to execute the functionality. 
 \par
-The members of the \textit{IAssetController} interface are implemented by the \textit{AssetController} class partially shown in \autoref{code:AssetController}, this class contains the information related to utilizing the members of the interface, this include the connection to the database, as well as any other controllers that may be needed to execute the functionality. \par
-The goal of the controller is to take the data input from the view model, connect it to the model and send it to the appropriate repository (\autoref{sc:RepositoryPatern}). \par
+The goal of the controller is to take the data input from the view model, connect it to the model and send it to the appropriate repository (see \autoref{sc:RepositoryPatern}).
 
 \begin{listing}[H]
 \begin{minted}[frame=lines, framesep=3mm, baselinestretch=1, linenos, bgcolor=LightGray, escapeinside='', breaklines]{csharp}
@@ -60,12 +61,13 @@ public AssetController(Asset asset, IAssetRepository assetRepository) : base(ass
 }
 
 \end{minted}
-\captionof{listing}{AssetController example.}
+\captionof{listing}{AssetController code example.}
 \label{code:AssetController}
 \end{listing}
 
-To understand the specific implementation of a controller, the constructor of the \textit{AssetController} class(\autoref{code:AssetController}) is examined. The controller gets the \textit{Asset} it needs to manipulate and connects its values to public properties of the controller class, in order to make them available to a view model. \par
-As seen on \autoref{code:AssetController} the controller inherits from a base, the interface to the base, can be seen in \autoref{code:IFieldListController}, the \textit{FieldListController} contains the functionality related to controlling fields, the \textit{AssetController} inherits this functionality.
+To understand the specific implementation of a controller, the constructor of the \textit{AssetController} class (see \autoref{code:AssetController}) is examined. The controller gets the \textit{Asset} it needs to manipulate and connects its values to public properties of the controller class, in order to make them available to a view model. 
+\par
+As seen in \autoref{code:AssetController} the controller inherits from a base, the interface to the base, can be seen in \autoref{code:IFieldListController}, the \textit{FieldListController} contains the functionality related to controlling fields, the \textit{AssetController} inherits this functionality.
 
 \begin{listing}[H]
 \begin{minted}[frame=lines, framesep=3mm, baselinestretch=1, linenos, bgcolor=LightGray, escapeinside='', breaklines]{csharp}
@@ -87,4 +89,4 @@ public interface IFieldListController
 \label{code:IFieldListController}
 \end{listing}
 
-The \textit{AssetController} makes the functionality of adding/removing/editing an \textit{Asset} available to the \textit{AssetEditorViewModel} this allows for the view model to only use the methods defined by \textit{IAssetController} interface, and therefore it does not need to know the specific implementation of the \textit{Asset} model. This in return allows for separation of concerns, and functionality. A example of the implementation of a view model can be seen in the following chapter.
+The \textit{AssetController} makes the functionality of adding, removing, and editing an \textit{Asset} available to the \textit{AssetEditorViewModel}. This allows for the view model to only use the methods defined by \textit{IAssetController} interface, and therefore it does not need to know the specific implementation of the \textit{Asset} model. This in return allows for separation of concerns, and functionality. An example of the implementation of a view model can be seen in the following chapter.

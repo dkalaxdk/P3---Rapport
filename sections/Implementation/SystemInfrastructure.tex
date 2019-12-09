@@ -1,0 +1,28 @@
+\section{System Infrastructure} \label{sc:system_infrastructure}
+% The starting point of the application can be found in \textit{App.xaml.cs}. Here the class \textit{Features} creates the main window, which in turn creates the main view model. \textit{MainViewModel} and \textit{Features} are responsible for everything going on behind the scenes, such as navigating and changing department. 
+% \par
+% Both of these classes have too much responsibility, but were designed this way in order to keep the program simple and understandable.
+
+\subsection{MainViewModel} \label{ssc:main_view_model}
+% System root / entry point of the program
+
+% View model for the window itself, showing menus and other stuff
+
+% Provides a Frame where all content is presented
+
+% Exposes commands used to navigate between the primary pages.
+
+
+
+\subsection{Features Class} \label{ssc:features}
+% Main responsibility is Repositories
+
+% Simplifies the program, by being the single source to MainViewModel and its public properties/methods
+
+% Navigating to and from pages using History 
+
+% Creating pages (and one window), providing the repositories and creating the controllers (And helpers)
+
+% Miscellaneous stuff: Notifications, prompts, current session and department. The things that Main is used most for.
+
+% Problems: Too much responsibility, should be split up. => Singleton (Tests, good practice, dependency injection)

@@ -1,7 +1,7 @@
 \section{Model-View-ViewModel pattern} \label{sc:MVCVM}
-The Model-View-ViewModel pattern(MVVM) is used to give a clear distinction between the different components of the program, as well as allowing a complete seperation of the Views(UI) and the functionality within the program. \\
-An overview of MVVM can be seen on \autoref{fig:MVVM}.
-The View part of MVVM handles the UI component of the system, the view component contains the logic directly related to connecting certain elements of the UI with the ViewModel component. In some cases the view file contains code related to directly manipulating or fetching data from the UI when reaching the limitation of WPF binding.
+The Model-View-ViewModel pattern (MVVM) is used to give a clear distinction between the different components of the program, as well as allowing a complete seperation of the Views (UI) and the functionality within the program. An overview of MVVM can be seen on \autoref{fig:MVVM}. 
+\par
+The View part of MVVM handles the UI component of the system. The view component contains the logic directly related to connecting certain elements of the UI to the ViewModel component. In some cases the view file contains code related to directly manipulating or fetching data from the UI when the limitations of WPF binding is reached.
 
 \begin{figure}[H]
     \centering
@@ -10,7 +10,7 @@ The View part of MVVM handles the UI component of the system, the view component
     \label{fig:MVVM}
 \end{figure}
 
-The next element in the structure seen on \autoref{fig:MVVM} is the view model component. This handles the conversion of data from the model layer to the view. The view model only contains the required logic to take the data presented in the model or layer component, and make it available to the view, as well as controlling the visibility of elements on the UI. The interaction between the UI and the view model is done by setting the \textit{DataContext} of the view, to point to the view model \autoref{code:AssetEditorView}. By setting the \textit{DataContext} the WPF framework can bind to the public data within the view model, as long as these have a get and set method.
+The next element in the structure seen on \autoref{fig:MVVM} is the view model component. This handles the conversion of data from the model layer to the view. The view model only contains the required logic to take the data presented in the model or layer component, and make it available to the view, as well as controlling the visibility of elements on the UI. The interaction between the UI and the view model is done by setting the \textit{DataContext} of the view, to point to the view model (see \autoref{code:AssetEditorView}). By setting the \textit{DataContext} the WPF framework can bind to the public data within the view model, as long as these have a get and set accessor.
 
 \begin{listing}[H]
 \begin{minted}[frame=lines, framesep=3mm, baselinestretch=1, linenos, bgcolor=LightGray, escapeinside='', breaklines]{csharp}
@@ -26,14 +26,11 @@ public AssetEditor(IAssetController assetController, ITagListController tagListC
 \label{code:AssetEditorView}
 \end{listing}
 
-Some views contain complicated functionality that would clutter the view model with functionality that does not directly change information on the view, in these cases a controller class have been introduced in between the model and view model classes. The controllers contains functions related to updating, saving or deleting specific instances of models. 
+Some views contain complicated functionality that would clutter the view model with functionality that does not directly change information on the view. In these cases a controller class have been introduced in between the model and view model classes. The controllers contains functions related to updating, saving or deleting specific instances of models. 
 \par
-In the MVVM pattern, the business logic, such as the business rules and the data access, should be in the model \citep{MvvmBasics}. 
-In order to have a separation of concerns, these functionalities, have been distributed to several different components, each with their own responsibility. Among these are the repositories \autoref{sc:RepositoryPatern} that are responsible for the data access, and the controllers \autoref{sc:Controllers} that are responsible for using the repositories and manipulating the data from these.
-\\
-The controllers are introduces in order to keep the models pure. Pure in the sense that they contain relevant data, and little to no functionality.
-\\
-The controllers are inspired by the controller component from the Model-View-Controller (MVC) pattern. \todo[inline]{Er det nødvendigt at have med == ja ( Beskriv MVC med kilder)}
+In the MVVM pattern, the business logic, such as the business rules and the data access, should be in the model \citep{MvvmBasics}. In order to have a separation of concerns, these functionalities have been distributed to several different components, each with their own responsibility. Among these are the repositories (see \autoref{sc:RepositoryPatern}) that are responsible for the data access, and the controllers (see \autoref{sc:Controllers}) that are responsible for using the repositories and manipulating the data from these.
+\par
+The controllers are introduced in order to keep the models pure, in the sense that they contain relevant data, and little to no functionality. The controllers are inspired by the controller component from the Model-View-Controller (MVC) pattern. \todo[inline]{Er det nødvendigt at have med == ja ( Beskriv MVC med kilder)}
 It is also similar to the Service-Layer pattern. \todo[inline]{Beskriv relevante dele af service layer pattern, med kilder.}
 \par
 Examples and further explanation of the different elements of MVVM will be described later in the report. 

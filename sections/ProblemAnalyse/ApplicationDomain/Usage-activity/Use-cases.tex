@@ -1,16 +1,16 @@
 \subsection{Use cases}\label{ssc:usecases}
 The following use cases have been derived from the understanding of the problem domain and actors described in the previous sections. The following description of the use cases include how the interactions with the system will take place, which actors are involved, and which functions are called within the system to complete the actions.
 \par
-In addition to the already described interactions, the system definition has stated, based on the interviews with Aalborg Zoo, that the admin should be able to print out a report of assets from the system. The report can consist of all or some of the assets in the system and will be saved as a separate file on the admins computer.
-\par
-Each use case has been described and is followed by a diagram of the interaction.
+In addition to the already described interactions stated in the system definition, the interviews with Aalborg Zoo have let to the use case of an admin printing out a report of assets from the system. The report can consist of all or some of the assets in the system and will be saved as a separate file on the admins computer.
+% \par
+% Each use case has been described and is followed by a diagram of the interaction.
 \newline
 
 \fancyLayout{use_case}{Add an asset}
     {Use case for adding an asset}
     {use_case:add_an_asset}
     {
-        \textbf{Use Case:} Adding an asset is done by the admin. An admin goes to the add asset page, attaches the relevant tags, and fills in the relevant information about the asset. The admin then saves the asset in the system and it becomes visible to all employees.
+        \textbf{Use Case:} Adding an asset is done by an admin. The admin goes to the add asset page, attaches the relevant tags, and fills in the relevant information about the asset. The admin then saves the asset in the system and it becomes visible to all employees.
     
         \vskip 0.2cm
         
@@ -74,13 +74,13 @@ Each use case has been described and is followed by a diagram of the interaction
     \caption{User interface state chart diagram for returning an asset}
     \label{fig:return_asset_statechart}
 \end{figure}
-\todo{Update diagram}
+\todo[inline]{Update diagram}
 
 \fancyLayout{use_case}{Change the information of an asset}
     {Use case for changing the information of an asset}
     {use_case:changing_the_information_about_an_asset}
     {
-        \textbf{Use Case:} If one of the states of an asset changes, these changes should be updated in the system by an admin. These state changes could be things such as the asset going from working to being broken, or being updated to a new operation system. To update the asset's information, the admin goes to the given asset's page, potentially through the search page. The admin can then press the edit button and change the outdated data to comply to the new state of the asset in the problem domain.
+        \textbf{Use Case:} If one of the states of an asset changes, the changed data should be updated in the system by an admin. These changes could be things such as the asset going from working to being broken or being updated to a new operation system. To update the asset's information, the admin goes to the given asset's page, can then press the edit button, and change the outdated data to comply with the new state of the asset in the problem domain.
     
         \vskip 0.2cm
         
@@ -128,7 +128,7 @@ Each use case has been described and is followed by a diagram of the interaction
     {Use case for searching for an asset}
     {use_case:search_for_an_asset}
     {
-        \textbf{Use Case:} If an employee needs to know something about an asset or an admin needs to see a specific asset, this can be achieved by going to the search page, choosing a department, and entering some information about the asset in the search field. The system then returns a list of assets complying with the search query. The employee can then chose an asset and go to its page.
+        \textbf{Use Case:} If a user wants information about a specific asset, this can be achieved by going to the search page and entering some information about the asset in the search field. The system then returns a list of assets complying with the search query. The user can then choose the desired asset.
     
         \vskip 0.2cm
         
@@ -150,7 +150,7 @@ Each use case has been described and is followed by a diagram of the interaction
     {Use case for printing a report of assets}
     {use_case:print_a_report_of_assets}
     {
-        \textbf{Use Case:} As the number of assets in the system increases, an admin might want to retrieve a number of assets to see outside of the system. The admin goes to the search page and enters a search query, which the assets they want to retrieve from the system must comply with. The admin then selects a number of assets and presses the print button. The system then generates a file containing information about the selected assets and saves it on the admins computer.
+        \textbf{Use Case:} As the number of assets in the system increases, an admin might want to retrieve a number of assets from the system. The admin goes to the asset list page, selects the assets they want to retrieve from the system and presses the print button. The system then generates a file containing information about the selected assets and saves it on the admin's computer.
     
         \vskip 0.2cm
         
@@ -158,7 +158,7 @@ Each use case has been described and is followed by a diagram of the interaction
         
         \vskip 0.2cm
         
-        \textbf{Functions:} Export report, Search of asset
+        \textbf{Functions:} Export report
     }
 
 \begin{figure}[H]
@@ -168,11 +168,11 @@ Each use case has been described and is followed by a diagram of the interaction
     \label{fig:print_report_statechart}
 \end{figure}
 
-\fancyLayout{use_case}{Comment an asset}
+\fancyLayout{use_case}{Comment on an asset}
     {Use case for commenting on an asset}
     {use_case:commenting_on_an_asset}
     {
-        \textbf{Use Case:} An employee might have a comment regarding an asset they have borrowed, such as an issue they had with it or suggestions for improvements. To make an admin aware of this, they can go to the page of the asset and add a comment to it. This comment will be visible to all admin.
+        \textbf{Use Case:} A user might have a comment regarding an asset, such as an issue they have had with it or suggestions for improvements. To share this information with other users, they can go to the page of the asset and add a comment to it. This comment will be visible to all users.
     
         \vskip 0.2cm
         
@@ -190,7 +190,7 @@ Each use case has been described and is followed by a diagram of the interaction
     \label{fig:add_comment_statechart}
 \end{figure}
 
-These are the relevant use cases to manage the assets. The use cases have been placed in an actor table with the two previously mentioned actors, in order to illustrate the connections between these.
+These are the relevant use cases for managing the assets. The use cases have been placed in an actor table with the two previously described actors in order to illustrate the connections between these.
 
 \begin{table}[H]
     \centering
@@ -214,7 +214,7 @@ These are the relevant use cases to manage the assets. The use cases have been p
         \hline
         Print a report of assets & \hspace{0.34cm} \checkmark & \\
         \hline
-        Comment an asset & & \hspace{0.6cm} \checkmark\\
+        Comment an asset & \hspace{0.34cm} \checkmark & \hspace{0.6cm} \checkmark\\
     \end{tabular}
     \vspace{0.2cm}
     % \hrule
@@ -223,9 +223,8 @@ These are the relevant use cases to manage the assets. The use cases have been p
     \label{tab:actor_table}
 \end{table}
 
-As the actor table above shows, the admin takes part in almost every use case. This can be explained by the way the system will be used. The system should function almost like an interface to a database, so it makes sense that the admin will be involved in all the changes made to the system and the database.
+As the actor table above shows, the admin takes part in every use case. This can be explained by the way the system will be used. The system should function almost like an interface to a database, so it makes sense that the admin will be involved in all the changes made to the system and the database.\\
+
+The defined use cases have then been used to extract relevant functions and, later in the report, construct the user interface (see \autoref{ch:ui_design}). For most of these use cases, the system should limit the access of the employees without admin status, which has resulted in two additional functions, \textit{Authenticate user} and \textit{Check access level}. These functions are used to guarantee that parts of the system is only accessible to employees with admin status and are executed on login and most of the described use cases above.
 \par
-
-The defined use cases have then been used to extract relevant functions and, later in the report, construct the user interface. For most of these use cases, the system should limit the access of the employees without admin status, which has resulted in two more functions, \textit{Authenticate user} and \textit{Check access level}. These functions are used to guarantee that parts of the system is only accessible to employees with admin status and are executed on login and most of the described use cases above.\\
-
 The functions discovered in this section have been analysed and described in the following section.
