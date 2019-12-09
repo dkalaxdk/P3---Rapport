@@ -153,6 +153,8 @@ To increase visibility in the system, parent tags are introduced. This is done b
     \label{fig:TagHierarchy}
 \end{figure}
 
+The diagram is purely illustrative, as the implementation of this relation is accomplished through a couple attributes on the tag class. One of the attributes is called \textit{parentId} and contains the ID of the parent of the current tag. If the tag has no parent, this ID is 0.
+
 \subsection{Updated class-diagram}
 The additions mentioned above have added up to the following class-diagram, which represents the model component. The \textit{ParentTag} and \textit{ChildTag} classes are simply tags without or with a parent respectively. Therefore the tag has been made abstract and the two tag types are specializations of this abstract class.
 
