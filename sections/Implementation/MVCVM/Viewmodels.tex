@@ -1,71 +1,12 @@
 \subsection{View models} \label{sc:ViewModels}
-As mentioned in \autoref{sc:MVCVM} the primary purpose of the view models is to present the data provided by the controllers and repositories. This data is then presented to user by the view.. The view model is also responsible for changing the view and moving from one page to another. Any commands issued by the user through the view is also handled in the view model. 
-\par 
-View models do not implement any interfaces. This is because there is one view model per view. This means that it is never necessary to replace the view model, as long as the same functionality is needed, which eliminates the need for a common interface.
-\par
-To illustrate how the functionalities of a view model are implemented, the \textit{AssetEditorViewModel} class will be used as an example. This view model is used when a user creates or edits an \textit{Asset}. It therefore has functionalities that updates both the view and calls the respective controller. 
-\par
-The view needs certain information to be available, through public properties in the view model. When these properties are changed, the view model can call the method \textit{OnPropertyChanged} to update the view according to the changes. 
-\par
-When the user executes an action in the view, the view model needs to execute the command associated with this action. A command is connected to an action that the user can take within the view, it then calls a method to implement the changes that the user wants to make through the controller. 
-\par
-Commands in WPF are classes that implement the \textit{ICommand} interface. 
-An example of a command is the \textit{RemoveDepartmentCommand} shown in \autoref{code:RemoveDepartmentCommandExample}.
-
-\begin{listing}[H]
-\begin{minted}[frame=lines, framesep=3mm, baselinestretch=1, linenos, bgcolor=LightGray, escapeinside='', breaklines]{csharp}
-
- class RemoveDepartmentCommand : ICommand
-    {
-        private MainViewModel _main;
-        private Department _department;
-        private readonly Func<bool> _func;
-
-        public event EventHandler CanExecuteChanged;
-
-        public RemoveDepartmentCommand(MainViewModel main, Func<bool> func)
-        {
-            _main = main;
-            _func = func;
-        }
-
-        public bool CanExecute(object parameter)
-        {
-            if (_func != null)
-                return _func();
-
-            return true;
-        }
-
-        public void Execute(object parameter)
-        {
-            ...
-        }
-        ...
-    }
-
-\end{minted}
-\captionof{listing}{The RemoveDepartmentCommand is an example of a WPF command as it imnplements the \textit{ICommand} interface.}
-\label{code:RemoveDepartmentCommandExample}
-\end{listing}
-
-However it is not necessary to define a new class for every possible action the user can take. By creating a \textit{RelayCommand}, it is possible to execute a method instead. This is done by creating the \textit{RelayCommand} with an action as a parameter.
-\\
-
-\begin{listing}[H]
-\begin{minted}[frame=lines, framesep=3mm, baselinestretch=1, linenos, bgcolor=LightGray, escapeinside='', breaklines]{csharp}
-
-SearchCommand = new RelayCommand(() => Search());
-
-\end{minted}
-\captionof{listing}{Example of RelayCommand.}
-\label{code:RelayCommandExample}
-\end{listing}
-
-\autoref{code:RelayCommandExample} shows assigning the \textit{ICommand} to the \textit{SearchCommand}, by creating a new \textit{RelayCommand} with the method \textit{Search} given as a parameter. The parameter is given in the form of a lambda expression, as the \textit{RelayCommand} constructor needs a parameter of the type \textit{Action}. 
+The primary purpose of the view models is to expose the data provided by the controllers to the views. This data is then presented to the user by the view. The view model is also responsible for changing the view and moving from one page to another. Any actions performed by the user through the view is also handled in the view model. 
 \par
 
-An example of a view model is shown in \autoref{code:AssetEditorViewModel}. Most of the code is not shown, as it is not relevant. It shows exposing properties like \textit{AppliedTags} and \textit{Name} that a view can use. The example also clarifies how the view model receives a controller through the constructor, and how it assigns a method to a command.
+View models do not implement any interfaces. This is because there is one view model per view, making them tightly coupled, which eliminates the need for a common interface.
+\par
+To illustrate how the functionalities of a view model are implemented, the \textit{AssetEditorViewModel} class will be used as an example (see \autoref{code:AssetEditorViewModel}). This view model is used when a user creates or edits an \textit{Asset}. It therefore has functionalities that update both the view and calls the respective controller.
+\par
+The view needs certain information to be available through public properties in the view model. When these properties are changed, the view model can call the method \textit{OnPropertyChanged} to update the view according to the changes. This method is inherited from the \textit{BaseViewModel} class, which all view models inherit from.
 
 \begin{listing}[H]
 \begin{minted}[frame=lines, framesep=3mm, baselinestretch=1, linenos, bgcolor=LightGray, escapeinside='', breaklines]{csharp}
@@ -78,27 +19,83 @@ public class AssetEditorViewModel : BaseViewModel
 
     public string Name
     {
-        get => _assetController.Name;
-        set => _assetController.Name = value;
+        get => _assetController.ControlledAsset.Name;
+        set => _assetController.ControlledAsset.Name = value;
     }
     ...
     private IAssetController _assetController { get; set; }
     ...
-    public ICommand AddTagCommand { get; set; }
+    public ICommand SaveCommand { get; set; }
     ...
 
     public AssetEditorViewModel(IAssetController assetController, TagHelper tagHelper)
     {
         ...
         // Commands
-        ...
-        AddTagCommand = new RelayCommand(() => TagSearch());
+        SaveCommand = new RelayCommand(() => SaveAndExit());
         ...
     }
     ...
 }
 
 \end{minted}
-\captionof{listing}{AssetController example.}
+\captionof{listing}{AssetEditorViewModel example.}
 \label{code:AssetEditorViewModel}
 \end{listing}
+
+When the user performs an action in the view, the view model needs to execute the command associated with this action. The command then calls a method to implement the changes that the user wants to make through the controller. 
+\par
+Commands in WPF are classes that implement the \textit{ICommand} interface. An example of a command is the \textit{RemoveDepartmentCommand} shown in \autoref{code:RemoveDepartmentCommandExample}.
+
+\begin{listing}[H]
+\begin{minted}[frame=lines, framesep=3mm, baselinestretch=1, linenos, bgcolor=LightGray, escapeinside='', breaklines]{csharp}
+
+class RemoveDepartmentCommand : ICommand
+{
+    private MainViewModel _main;
+    private Department _department;
+    private readonly Func<bool> _func;
+
+    public event EventHandler CanExecuteChanged;
+
+    public RemoveDepartmentCommand(MainViewModel main, Func<bool> func)
+    {
+        _main = main;
+        _func = func;
+    }
+
+    public bool CanExecute(object parameter)
+    {
+        if (_func != null)
+            return _func();
+
+        return true;
+    }
+
+    public void Execute(object parameter)
+    {
+        ...
+    }
+    ...
+}
+
+\end{minted}
+\captionof{listing}{The RemoveDepartmentCommand is an example of a WPF command as it implements the \textit{ICommand} interface.}
+\label{code:RemoveDepartmentCommandExample}
+\end{listing}
+
+However it is not necessary to define a new class for every possible action the user can take. A \textit{RelayCommand} is used throughout the code as it makes it possible to call an existing method in its own execute method. This is done by instantiating a \textit{RelayCommand} with an action as a parameter.
+
+\begin{listing}[H]
+\begin{minted}[frame=lines, framesep=3mm, baselinestretch=1, linenos, bgcolor=LightGray, escapeinside='', breaklines]{csharp}
+
+SearchCommand = new RelayCommand(() => Search());
+
+\end{minted}
+\captionof{listing}{Example of RelayCommand.}
+\label{code:RelayCommandExample}
+\end{listing}
+
+\autoref{code:RelayCommandExample} shows assigning the \textit{ICommand} to the \textit{SearchCommand}, by creating a new \textit{RelayCommand} with the method \textit{Search} given as a parameter. The parameter is given in the form of a lambda expression, as the \textit{RelayCommand} constructor needs a parameter of the type \textit{Action} \citep{Action}. 
+\par
+An example of a view model is shown in \autoref{code:AssetEditorViewModel}. Most of the code is not shown, as it is not relevant in the context of connecting the view and model. It shows how the view model exposes properties like \textit{AppliedTags} and \textit{Name} for a view to use. 

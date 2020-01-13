@@ -1,4 +1,10 @@
 \subsection{Windows Presentation Foundation} \label{ssc:tech_wpf}
-The user interface framework used for the system is Windows Presentation Foundation (WPF). Other frameworks were considered, such as Windows Forms (WinForms), which was excluded because WPF has a greater range of functionality. Universal Windows Platform (UWP) was also considered, but as it only runs on Windows 10 or newer, which Aalborg Zoo might not run on all their systems, this was not a viable option.
+The user interface framework used for the system is Windows Presentation Foundation (WPF). Other frameworks were considered, such as Windows Forms (WinForms), which was excluded because the project was focusing on a sophisticated UI where WinForms primarily focus on lightweight UI and giving the developers the ability to quickly get started building applications. 
+%https://docs.microsoft.com/en-us/windows/apps/desktop/choose-your-platform
+Universal Windows Platform (UWP) was also considered, but was dropped primarily since it only supports Windows 10. WPF also gives the ability to unit test the interface.
+
+%Universal Windows Platform (UWP) was also considered, but as it is used primarily for designing Windows apps and not as much for desktop systems, this was not a viable option \todo{Indsæt kilde på UWP er app orienteret}. \citep{microsoft-choose-your-platform}
+%only runs on Windows 10, which Aalborg Zoo might not run on all their systems, this was not a viable option.
 \par
-As a part of working with WPF, the Model-View-ViewModel pattern (MVVM) has been strived towards with the structure of the code. This pattern is designed to make it easier to swap out the UI while keeping the code behind constant. The pattern is also designed to take advantage of the binding functionality of WPF.
+
+Using WPF, the Model-View-ViewModel pattern (MVVM) was the optimal choice for structuring the code \citep{WPFandMVVM}. This pattern is designed to make it easier to swap out the UI while keeping the code behind constant. The pattern is also designed to take advantage of the binding functionality of WPF. \citep{MvvmBasics, Bindings}

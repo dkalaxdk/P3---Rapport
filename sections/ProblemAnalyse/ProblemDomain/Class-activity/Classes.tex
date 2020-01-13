@@ -1,35 +1,28 @@
-\subsection{Classes}\label{ssc:classes}
+\subsection{Classes} \label{ssc:classes}
 % En beskrivelse af de klasser der er i problem domænet
 % Asset, Admin, Employee, Department, Location
 
-As mentioned above, the analysis of the problem domain of the project has been based on interviews with Aalborg Zoo. Through the analysis, the classes \textit{Admin}, \textit{Asset}, \textit{Department}, \textit{Employee}, and \textit{Location} have been defined. These are the classes existing in the problem domain.
-\par
-During the interviews, Aalborg Zoo also mentioned a potential organisational structure to ease the use of the system. This structure is based on tags, which can be attached to assets and used to filter and add details to assets. The structure adds a \textit{Tag} class to the system, which can also describe the location of the assets, thereby making the \textit{Location} class obsolete.
-\par
+Based on the system definition, the classes \textit{Asset}, \textit{Employee}, \textit{Admin}, and \textit{Department} have been defined.
+% During the interviews, Aalborg Zoo also mentioned a potential organisational structure to ease the use of the system. This structure is based on tags, which can be attached to assets and used to filter and add details to assets. The structure adds a \textit{Tag} class to the system.
+% \par
 
 \textbf{Asset}\\
-The \textit{Asset} class represents assets in the problem domain. The \textit{Asset} contains all relevant information of the asset in the problem domain.
-%information regarding its location in the zoo, as well as information on the current borrower of the \textit{Asset}. An \textit{Asset} can also be configured to have a date of expiration, thereby giving a notification when the asset needs to be replaced.
+The \textit{Asset} class represents assets in the problem domain and contains all relevant information of the asset.
 \par
 
 \textbf{Employee}\\
-The \textit{Employee} class represents an employee at the zoo. The \textit{Employee} contains attributes storing the name and department of the given employee. Assets can be loaned out to an \textit{Employee} by an \textit{Admin}.
+The \textit{Employee} class represents an employee at the zoo. Assets can be loaned out to an \textit{Employee} by an \textit{Admin}.
 \par
 
 \textbf{Admin}\\
-The \textit{Admin} class represents an administrator. The \textit{Admin} contains the same attributes as the \textit{Employee}. The \textit{Admin} manages the assets, as well as which \textit{Employees} have loaned which assets.
-\\\\
-These three classes interact with each other through events, which will be addressed in \autoref{ssc:events}.
-\\\\
-Two more classes could be said to exist in the problem domain. They have been included based on the discussions and interviews with the respondents from Aalborg Zoo and to support some of their wishes for additional functionality. The classes are:
-\par
+The \textit{Admin} class represents an administrator, who is an employee with more responsibilities. The \textit{Admin} manages the assets, as well as which \textit{Employees} have loaned which assets.
+\newpage
 
 \textbf{Department}\\
-The \textit{Department} class reflects a department within the zoo. These departments work as a way of grouping assets within the zoo. A department in the system contains a number of assets and tags.
+The \textit{Department} class reflects a department within the zoo. These departments each have their own set of assets. 
+\\\\
+These four classes interact with each other through events, which will be addressed in \autoref{ssc:events}.
 \par
+The \textit{Admin} and \textit{Employee} classes are also represented in the application domain as actors in context of the system.
 
-\textbf{Tag}\\
-This class represents a tag in the system. There is no problem domain equivalent to this class, but it has been requested as an addition to the system. The \textit{Tag} class will have a connection to the \textit{Asset} tag. Furthermore, a tag will either belong to a department or be available to all departments.
-\newline
 
-The \textit{Admin} and \textit{Employee} classes will in practice control the employees added to the system, and the users, as some functionalities should only be available to the admin users. The classes have later been replaced by other classes, as both these responsibilities can be handled better by other classes. They have been added here and used throughout the first part of the report to help with the understanding and structure of the system and the problem domain.

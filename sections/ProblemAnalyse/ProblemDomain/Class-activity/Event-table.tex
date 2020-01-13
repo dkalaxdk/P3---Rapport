@@ -1,62 +1,47 @@
 \subsection{Event table}\label{ssc:eventtable}
-To give a visual overview of the events, classes and their relations, an event table has been constructed (see \autoref{tab:events}). The connection between an asset and an employee will be depicted by a tag with the employee's name. This way an asset can be connected to one or more employees. The \textit{Asset loaned out} and \textit{Asset returned} events have been replaced functionally by this, but the events will still be used in the analysis, as this specific use of the tag has unique effects.
+To give a visual overview of the events, classes and their relations, an event table has been constructed (see \autoref{tab:events}). The \textbf{Loan} class has been added based on the event table, but is include within it, to illustrate its connections to the other classes.
 \par
-The \textit{Tag attached to asset} event can occur for both the \textit{Asset} and the \textit{Tag} multiple times, and therefore needs an extra class. This class illustrates the connection between a tag and an asset, and has been named \textit{Asset-tag relation}. It is instantiated every time a tag is attached to an asset and ceases to exist when this attachment is removed.
+
+%The connection between an asset and an employee will be depicted as a tag with the employee's name. This way an asset can be connected to one or more employees. The \textit{Asset loaned out} and \textit{Asset returned} events have been replaced functionally by this, but the events will still be used in the analysis, as this specific use of the tag has unique effects.
+
+% The \textit{Tag attached to asset} event can occur for both the \textit{Asset} and the \textit{Tag} multiple times, and therefore needs an extra class. This class illustrates the connection between a tag and an asset, and has been named \textit{Asset-tag relation}. It is instantiated every time a tag is attached to an asset and ceases to exist when this attachment is removed.
 
 \begin{table}[H]
 \centering
 %\resizebox{\textwidth}{!}{%
-    \begin{tabular}{|l||c|c|c|c|c||p{1.8cm}|}
+    \begin{tabular}{|l||c|c|c|c||c|}
         \hline
-        \textbf{Event} & \textbf{Asset} & \textbf{Employee} & \textbf{Admin} & \textbf{Department} & \textbf{Tag} & \hfil \textbf{Asset-tag \newline \hfil relation}\\
+        \textbf{Event} & \textbf{Asset} & \textbf{Employee} & \textbf{Admin} & \textbf{Department} & \hfil\textbf{Loan \newline \hfil}\\
         \hline
         \hline
-        Asset acquired & + & & * & * & & \\
+        Asset acquired & + & & * & * & \\
         \hline
-        Asset disposed of & + & & * & * & & \\
+        Asset disposed of & + & & * & * & \\
         \hline
-        Asset information updated & * & & * & & & \\
+        Asset information updated & * & & * & & \\
         \hline
-        Asset loaned out & * & * & * & & + & \\
+        Asset loaned out & * & * & * & & + \\
         \hline
-        Asset returned & * & * & * & & + & \\
+        Asset returned & * & * & * & & + \\
         \hline
-        Employee hired & & + & & & & \\
+        Employee added & & + & & & \\
         \hline
-        Employee fired & & + & & & & \\
+        Employee removed & & + & & & \\
         \hline
-        Admin access gained & & * & + & & & \\
+        Admin access gained & & * & + & & \\
         \hline
-        Admin access revoked & & * & + & & & \\
+        Admin access revoked & & * & + & & \\
         \hline
-        Department activated & & & * & + & & \\
+        Department activated & & & * & + & \\
         \hline
-        Department deactivated & & & * & + & & \\
-        \hline
-        Tag created & & & * & & + & \\
-        \hline
-        Tag deleted & & & * & & + & \\
-        \hline
-        Tag attached to asset & * & & * & & * & \hfil +\\
-        \hline
-        Tag detached from asset & * & & * & & * & \hfil +\\
+        Department deactivated & & & * & + & \\
         \hline
     \end{tabular}
 %}
-\caption{Event table showing which classes are involved with the different events. An event can happen once (+) or several times (*) for each class.}\label{tab:events}
+\caption{Event table showing which classes are involved in the different events. An event can happen once (+) or several times (*) for each class.}\label{tab:events}
 \end{table}
-\par
 
-% \textbf{Loan}\\
-% The \textit{Loan} class has been added to the problem domain because the events \textit{Asset loaned out} and \textit{Asset returned} both have three participating classes. These events also occur for all three classes multiple times, which is not ideal. The \textit{Loan} class connects assets and employees, and stores the objects within itself. This gives a superior way of implementing the \textit{Asset loaned out} and \textit{Asset returned} events in the system. The \textit{Loan} also offers an easier way for the \textit{Admin} to administrate relations between employees and assets.
+As mentioned, an additional class has been added to the system, to better handle the event of an asset being loaned out to an employee.
 
-% Beskriv at Loan blev tilføjet, da der var en mange til mange relation
-
-% \textbf{Asset acquired:}\\
-% \textit{Asset acquired} involves both Asset and Admin, Asset are acquired once. Admins can register an unlimited amount of assets, but are registered in the process. \\
-
-% \textbf{Asset disposed of:}\\
-% \textit{Asset disposed of} happens once for every assets. Admins can choose to dispose and Asset at any given time, but are registered in the process. \\
-
-% \textbf{Asset loaned out:}\\
-% \textit{Asset loaned out} ... \\
+\textbf{Loan}\\
+The \textit{Loan} class has been added to the problem domain because the events \textit{Asset loaned out} and \textit{Asset returned} both have three participating classes. These events also occur for all three classes multiple times, which is not ideal. The \textit{Loan} class connects assets and employees, and stores the objects within itself. 

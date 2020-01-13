@@ -1,40 +1,42 @@
 \section{Unit Test} \label{sc:UnitTest}
-Throughout the program, unit testing have been used for test driven development, and to verify whether components gets implemented correctly. The unit tests in the program have been made on the interfaces for the controllers, hereby making sure the interfaces works as intended. This in turn makes it easier to modify the classes implementing the interfaces, and making sure the functionalities works as intended. 
+Throughout the program, unit testing has been used to verify whether components has been implemented correctly. The unit tests in the program have been made on the interfaces for the controllers and models, hereby making sure the interfaces works as intended. This in turn makes it easier to modify the classes implementing the interfaces while making sure the functionalities work as intended. 
 \par
-The unit tests were, when possible, made before the interface was implemented. This ensures that the interface has been implemented as intended. The unit-tests have been implemented so they only test specific elements of the code, and when needed MOQ \citep{MoqReference} was used to fake the functionality of the code that was not relevant to the test, minimizing the span of the tests. 
+The unit tests have been implemented so they only test specific elements of the code. When needed MOQ \citep{MoqReference} was used to mock the functionality of the code that was not relevant to the test, minimizing the span of the tests. 
 \par
-An example of how MOQ is used can be seen in \autoref{code:MoqSetup}. Lines 5-9 define which functions the MOQ should fake, and what it should return when a function calls the MOQ, with parameters that match the criteria. In the case of the \textit{Insert} method of the \textit{IAssetRepository} seen in line 6, it will return an asset, if given any asset. It is also possible to make the criteria for the parameters more strict. 
+An example of how MOQ is used can be seen in \autoref{code:MoqSetup}. Lines \ref{line:MoqSetupRepMockBegin} to \ref{line:MoqSetupRepMockEnd} create mocks for the needed classes, defining what should be returned when the methods of the mocked classes are called, with parameters that match the criteria. In the case of the \textit{Insert} method of the \textit{IAssetRepository} seen in line \ref{line:MoqSetupRepMockMiddle} to \ref{line:MoqSetupRepMockEnd}, if given an asset, the mock will return the asset. It is also possible to make the criteria for the parameters more strict.
 
 \begin{listing}[H]
 \begin{minted}[frame=lines, framesep=3mm, baselinestretch=1, linenos, bgcolor=LightGray, escapeinside='', breaklines]{csharp}
+[TestInitialize]
 public void InitiateAsset()
-    {
+{
     ulong id;
     // Mock setup
-    _assetRepMock = new Mock<IAssetRepository>();
-    
-    _assetRepMock
+    _assetRepMock = new Mock<IAssetRepository>(); '\label{line:MoqSetupRepMockBegin}'
+    ...
+    _assetRepMock '\label{line:MoqSetupRepMockMiddle}'
     .Setup(p => p.Insert(It.IsAny<Asset>(), out id))
-    .Returns(It.IsAny<Asset>());
+    .Returns(It.IsAny<Asset>());'\label{line:MoqSetupRepMockEnd}'
     
     ...
     
     //Field setup
     _fieldOne = new Field("Label of first field", "content of first field",
-    Field.FieldType.TextBox);
+    Field.FieldType.TextBox); '\label{line:MoqSetupFieldOne}'
     _fieldTwo = new Field("Label of second field", "content of second field",
-    Field.FieldType.Checkbox, false, true);
+    Field.FieldType.Checkbox, false, true); '\label{line:MoqSetupFieldTwo}'
     
 }
 \end{minted}
-\captionof{listing}{MOQ setup example.}
+\captionof{listing}{MOQ setup example taken from AssetControllerTests.}
 \label{code:MoqSetup}
 \end{listing}
-\par
-An example of verifying whether a method from a mock was called as intended is shown in \autoref{code:MOQUsed}.
+
+An example of verifying whether a method from a mock was called as intended is shown in \autoref{code:MOQUsed} line \ref{line:MOQUsedVerify}.
 
 \begin{listing}[H]
 \begin{minted}[frame=lines, framesep=3mm, baselinestretch=1, linenos, bgcolor=LightGray, escapeinside='', breaklines]{csharp}
+[TestMethod]
 public void SaveAsset_Returns_RepositoryFunctionUsed()
 {
     //Arrange
@@ -44,15 +46,93 @@ public void SaveAsset_Returns_RepositoryFunctionUsed()
     _assetController.Save();
 
     //Assert
-    _assetRepMock.Verify(p => p.Insert(It.IsAny<Asset>(), out id), Times.Once());
+    _assetRepMock.Verify(p => p.Insert(It.IsAny<Asset>(), out id), Times.Once()); '\label{line:MOQUsedVerify}'
 }
 \end{minted}
-\captionof{listing}{MOQ usage example}
+\captionof{listing}{MOQ usage example taken from AssetControllerTests}
 \label{code:MOQUsed}
 \end{listing}
 
-By using MOQ to fake elements of the code, the unit tests have become more concise, than they would be if they where to test every sub functionality of the functions as well. This has given better tests, and made it easier to understand the result of each test, as they only test specific elements of the code.
+By mocking elements of the code, the unit tests have become more concise, than they would be if they where to test every sub functionality of the functions as well. This has given better tests, and made it easier to understand the result of each test, as they only test specific elements of the code.
 \par
-Throughout the development of the system, only the core functionality of the system have been tested fully, as this was the functionality which most other classes relied on. This made it faster to see what components failed within the system upon implementing or changing classes and dependencies. 
+Throughout the development of the system, only the core functionality of the system has been tested fully, as this was the functionality which most other classes relied on. This made it easier to see what components failed within the system upon implementing or changing classes and dependencies. 
 \par
-When developing the tests standard implementations of certain elements were used throughout the entire test, such as the fields seen on \autoref{code:MoqSetup} lines 13 - 15. This has made the tests easier to understand, as any generic element that would be used in more than one test, would be defined only once. 
+When developing the tests, standard implementations of certain elements were used throughout the entire test, such as the fields seen on \autoref{code:MoqSetup} lines \ref{line:MoqSetupFieldOne} - \ref{line:MoqSetupFieldTwo}. This has made the tests easier to understand, as any generic element that would be used in more than one test, would be defined only once. 
+\par
+Another way elements used for testing were defined, was by creating a new class for for the purpose of testing. An example of this can be seen in \autoref{code:TestObject}. This example shows the definition of a class used only for testing. It is very simple as it only contains properties, and constructors used for assigning values to these properties. 
+
+\begin{listing}[H]
+\begin{minted}[frame=lines, framesep=3mm, baselinestretch=1, linenos, bgcolor=LightGray, escapeinside='', breaklines]{csharp}
+public class TestObject
+{
+    public string TestProp1 { get; set; }
+    public string TestProp2 { get; set; }
+            
+    public TestObject() : this(string.Empty, string.Empty) {}
+    public TestObject(string prop1, string prop2)
+    {
+        TestProp1 = prop1;
+        TestProp2 = prop2;
+    }
+}
+\end{minted}
+\captionof{listing}{Example of creating a class for testing, taken from ExporterTests}
+\label{code:TestObject}
+\end{listing}
+
+A method is tested by verifying that it returns an expected result, when given a certain input. This means that when the input of a method can vary, it is necessary to test whether it works on the different variations. 
+\par
+A real world example of this is shown in \autoref{code:DifferentTestCasesExample}, which shows two tests of the \textit{WriteToFile} method of an implementation of \textit{IExporter}. The example is taken from the \textit{ExporterTests} test class.
+\par
+The first test shown in lines \ref{line:TestCaseExample_FirstTestStart} to \ref{line:TestCaseExample_FirstTestEnd}, verifies whether the method writes three lines to a file, when given a list with two items. The first of the lines in the output file contains a header with the property names of the given items, and the following lines each contains one of the items.
+\par
+The second test is shown in lines \ref{line:TestCaseExample_SecondTestStart} to \ref{line:TestCaseExample_SecondTestEnd}. This tests that the \textit{WriteToFile} method writes the correct header when given an empty list of objects. The header should contain the names of the properties from the given class, separated by commas. In this case the given class is the \textit{TestObject} from \autoref{code:TestObject}, and the expected value can be seen in \ref{line:TestCaseExample_expectedValue}.
+\par
+
+\begin{listing}[H]
+\begin{minted}[frame=lines, framesep=3mm, baselinestretch=1, linenos, bgcolor=LightGray, escapeinside='', breaklines]{csharp}
+[TestMethod]
+public void WriteToFile_GivenListWithAssets_WritesCorrectNumberOfLinesToStream() '\label{line:TestCaseExample_FirstTestStart}'
+{
+    //Arrange
+    List<Asset> testList = new List<Asset>
+    {
+        new Asset{Name = "TestAsset1"}, 
+        new Asset{Name = "TestAsset2"}
+    };
+    
+    Type testType = new Asset().GetType();
+    
+    //There should be one line for each item and one for the header
+    int linesToWrite = testList.Count + 1;
+
+    //Act
+    _exporter.WriteToFile(testList, testType);
+            
+    //Assert
+    _streamMock.Verify(p => p.WriteLine(It.IsAny<string>()), Times.Exactly(linesToWrite));
+} '\label{line:TestCaseExample_FirstTestEnd}'
+
+[TestMethod]
+public void WriteToFile_GivenEmptyListOfObjects_WritesCorrectHeader() '\label{line:TestCaseExample_SecondTestStart}'
+{
+    //Arrange
+    List<TestObject> testList = new List<TestObject>();
+    Type testType = new TestObject().GetType();
+
+    string expectedHeader = "TestProp1,TestProp2"; '\label{line:TestCaseExample_expectedValue}'
+
+    //Act
+    _exporter.WriteToFile(testList, testType);
+        
+    //Assert
+    _streamMock.Verify(p => p.WriteLine(It.Is<string>(param => param.Equals(expectedHeader))), Times.Once);
+} '\label{line:TestCaseExample_SecondTestEnd}'
+\end{minted}
+\captionof{listing}{Example of testing the same method with different cases, taken from ExporterTests}
+\label{code:DifferentTestCasesExample}
+\end{listing}
+
+Aside from the tests shown in \autoref{code:DifferentTestCasesExample}, the method \textit{WriteToFile} from the class \textit{Exporter} has been tested in two other cases. The first case test verifies that it calls the method \textit{WriteLine} from the given stream only once when given an empty list. The second case verifies that it writes the correct line for an object when given a list with a single object. The line should contain the values of the properties separated by commas. 
+\par
+These cases are considered to sufficiently test that the method works correctly. There are no cases that test, whether the method breaks or throws exceptions when an exception is needed. 

@@ -1,0 +1,59 @@
+\section{Fulfillment of Design Criteria}\label{sc:discCriteria}
+The criteria (see \autoref{sc:criteria}) have been the basis for the design decisions throughout the project. The ones marked as \textit{Very important} or \textit{Important} have been discussed here in context of the final design.
+
+\subsection{Very Important} \label{ssc:discCriteriaVeryImportant}
+The criteria marked as \textit{Very important} are \textit{Usable}, \textit{Correct}, and \textit{Flexible}. These have had the highest priority.
+
+\subsubsection{Usable}
+The client wanted a custom system with usability and intuitive navigation as high priorities. Therefore, the system has been developed with usability in focus.
+\par
+One of the ways this has been implemented in the design is the way that functionality is accessible through multiple different interactions. An example of this is the deletion of an asset, where the user can press the trashcan icon, the "Delete" key, or the \textit{Remove} button on the asset list page, or the \textit{Remove} button on the asset view page. The latter was implemented based on the usability tests (see \autoref{sc:UsabilityTesting}) and the prior ones allow the user to delete assets faster.
+\par
+One of the ways usability has been ensured, is through the usability tests. Both students without prior knowledge of the system and the representatives from Aalborg Zoo have participated in testing the system. This has contributed to better supporting the ways users intuitively navigate the system.
+\par
+Through the usability tests it became apparent that the admin part of the system is less intuitive, but this was solved by giving the users an explanation of the core functionalities. This was deemed satisfactory, as the admin part is more advanced, and like most other enterprise systems, needs an introduction. 
+\par
+The aim for the employee part was that the users would not need an introduction, but during the usability tests it became apparent that this was required before the participants were able to navigate the system fluently. Primarily the departments were hard to understand for the participants. However, the employee part was tested on students, who are not familiar with how Aalborg Zoo is structured, and therefore do not have a strong affiliation with any particular department. Because of this it might be reasoned that actual employees at Aalborg Zoo would be able to navigate the system without as much introduction.
+\par
+In general, once the users had gotten used to how the system works, they were able to navigate it fluently. Based on this and the final usability test with the client, the system has been considered usable, as the client was pleased with using the system.
+
+\subsubsection{Correct}
+The correctness of the system is based on the fulfillment of the requirements (see \autoref{sc:discRequirement}). As all the \textit{Must have} and \textit{Should have}, and some of the \textit{Nice to have} requirements have been fulfilled, the system is considered correct.
+
+\subsubsection{Flexible}
+The flexibility of the system is judged based on how difficult it is to modify it after the initial development phase. As the client has expressed a desire to further develop the system at a later date, this has been a high priority. This has been implemented in the design through low coupling between the different classes and high cohesion within each class (see \autoref{sc:DependencyInjection}).
+\par
+The criterion has been reflected in the use of Dependency Injection (see \autoref{sc:DependencyInjection}) and the Single Responsibility principle. The latter has been implemented in the design in multiple ways, such as how the \textit{Asset} and \textit{Tag} classes are data classes, and most functionalities around these are handled in controllers.
+\par
+In the implementation, the separation of concerns is not as well structured as the design dictates. This is apparent in a couple of places, primarily in the \textit{Features} class. The \textit{Features} class handles multiple unrelated parts, such as navigating the system and supplying dependencies. This affects the cohesion of the class, which makes it harder to understand the code and modify it at a later date. Therefore the system is less flexible in implementation than design.
+\par
+The reason for the implementations not following the design perfectly is due to inadequate planning. Instead of setting up the structure of the system from the beginning, exploratory programming was done instead, and the whole system was later refactored to implement more design patterns. % This meant that some parts of the program 
+
+\subsection{Important} \label{ssc:discCriteriaImportant}
+The criteria marked as \textit{Important} are \textit{Reliable}, \textit{Maintainable}, \textit{Testable}, and \textit{Comprehensible}. These have had less priority than the \textit{Very important} criteria (see \autoref{ssc:discCriteriaVeryImportant}), but have had a higher priority than the rest of the criteria.
+
+\subsubsection{Reliable}
+This criterion is defined by the precision with which the functions within the system is executed. As the system will be used in a work environment, the reliability of it is more important compared to a private environment, because the company's workflow could rely on the system.
+\par
+The system has been unit tested, and the functions have executed with the expected results every time. Thus, it is considered that the criterion is fulfilled by the system.
+
+\subsubsection{Maintainable}
+The system has been developed with maintainability as a priority, as it will be easier to find any errors that occur.
+\par
+Through the design, classes have been given a single responsibility. This could improve the maintainability of the system, as an error in one area can easily be traced back to the responsible class.
+\par
+In implementation, the Single Responsibility principle has been followed less strictly. An example of this is seen in the \textit{Features} class that handles multiple unrelated parts (see \autoref{sc:features}). Because of this, it becomes more difficult to find the source of potential defects and fix them.
+\par
+The reason for this implementations strategy is again due to inadequate planning.
+
+\subsubsection{Testable}
+To better ensure that the requirements of the system are met (see \autoref{sc:requirements}), it has been designed with testability as a priority. This has been achieved through Dependency Injection and the Single Responsibility principle.
+\par
+As most core components, such as controllers and models, have been tested through unit tests, it has been confirmed to be testable.
+
+\subsubsection{Comprehensible}
+The comprehensibility of the system is defined by the effort needed to get a coherent understanding of it. This is important, in order to accommodate both maintainability and flexibility, and has been achieved the same way as those criteria.
+\par
+It can be difficult to test the comprehensibility of a system, but as the before mentioned use of Dependency Injection and the Single Responsibility principle have not been implemented perfectly, the comprehensibility of the system is less than optimal.
+\par
+The reasons for the less comprehensible implementations are due to limited knowledge of alternatives and a lack of experience with developing these parts.

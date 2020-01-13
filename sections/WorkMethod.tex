@@ -1,0 +1,96 @@
+\chapter{Work Method}\label{ch:workMethod}
+To evaluate the used work method, it has been analysed through comparison between the intention and what method was actually used.
+
+\section{Applied work methods}
+Developing a system as part of a group can be very difficult, as individuals have different work methods. To ease the cooperation within the group, multiple methods can be used as guidelines.
+
+\subsection{Organizational method}
+As the development of the system had to be done in collaboration with a client, the iterative method was chosen for the project. An iterative process has the advantage of having a product that is functional after each iteration. This is ideal, as the client can see an improved product after each iteration, which they can then give feedback on. Aside from this, the iterative method also has the advantage of being able to adapt to the clients potentially shifting requirements. \citep{SDLC}
+\par
+An alternative to the iterative process could be the waterfall method. However, this method is not ideal for projects involving clients and potentially changing requirements, as it is too rigid. \citep{SDLC, WaterfallVsAgile}
+\par
+While the iterative process was chosen, in practice this method was not followed as intended. One of the biggest issues obstructing this work method was limited knowledge of using iterations throughout development of the system. Another problem was the uncertainty surrounding the wanted product and what each iteration should result in.
+\par 
+The method used in the project ended up being an unstructured iterative method, where the iterations happened dynamically, as the product reached a usable state. The following iterations consisted of adding more of the wanted functionality to the system.
+
+\subsection{Implementation method}
+As mentioned previously, the work method used in this project resembles the iterative method, but is more fluid and unstructured. \autoref{tab:iterations} shows roughly which iterations the project went through.
+\par
+The most distinct change was going from the first to the second iteration. During this, the whole system was restructured, making way for better Dependency Injection and a better program structure. The rest of the iterations are less distinct, but have nonetheless been divided up as seen in \autoref{tab:iterations}. 
+
+\begin{longtable}{p{3.2cm} p{10cm}}
+    \renewcommand{\arraystretch}{2.0}
+        \\
+        \hline
+        \textbf{First iteration} & 
+        \vspace*{-7mm}
+        \begin{itemize} \itemsep0em
+        
+            \item Interviewing the client, making system definition and requirements.
+            
+            \item Making a minimum viable product, by implementing \textit{Must have} and some \textit{Should have} requirements.
+            
+            \item Initial analysis of problem and application domain.
+            
+        \end{itemize}
+        \\
+        \hline
+        
+        \textbf{Second iteration} & 
+        \vspace*{-7mm}
+        \begin{itemize} \itemsep0em 
+            
+            \item Restructuring the whole system, with focus on Dependency Injection and adding controllers between the view models and the model.
+            
+            \item Redoing analysis based on knowledge gained through courses.
+            
+            \item Initial usability test on admin part of the system with client.
+            
+        \end{itemize}
+        \\
+        \hline
+        
+        \textbf{Third iteration} &     
+        \vspace*{-7mm}
+        \begin{itemize} \itemsep0em 
+        
+            \item Implementing the rest of \textit{Should have} and some \textit{Nice to have} requirements.
+            
+            \item Usability tests on employee part with students and second usability test on admin part with client.
+            
+        \end{itemize}
+        \\
+        \hline
+        
+        \textbf{Fourth iteration} & 
+        \vspace*{-7mm}
+        \begin{itemize} \itemsep0em 
+        
+            \item Polishing the program, implementing more \textit{Nice to have} requirements.
+            
+            \item Finishing the analysis, checking for discrepancies.
+            
+        \end{itemize}
+        \\
+        \hline
+    \caption{Rough list of iterations this project has gone through.}
+    \label{tab:iterations}
+   
+\end{longtable}
+
+To ensure the reliability of the system, unit testing was used. Initially, Test Driven Development (TDD) was discussed as a process of implementing new functionality to the system. \citep{TDD}
+\par
+In practice the unit tests were added after the components had been added to the system, and only the most important components were tested.
+
+
+\subsection{Division of work}
+Developing a product often involves many smaller tasks, which could be completed by an individual instead of an entire group. The overall analysis, structure, and design should be done as a group, after which each individual should take different components and implement them as they were designed.
+\par
+In practice the design phase of the development was flawed and key components were not adequately described. One of the reasons for this was the timing of the courses used as a foundation for the design. This resulted in the implementation of multiple components not being connectable and thereby needing extra work to be implemented in the final system. 
+
+\section{Evaluation}
+Based on the methods initially attempted and the actual methods used, a few key lessons have been learned.
+\par
+One of the most important lessons learned, through the development of the system, is that using the iterative method takes a lot of planning before the development starts. If iterations are not planned, it can be difficult to keep an overview of how far the development should be at any point. Without this overview, it is hard to know if some functionality should be reevaluated and the product downgraded. This could result in a product that is far from finished only a few weeks before the deadline, and potentially having to make last minute changes to the prioritization of requirements. These changes could result in not delivering a satisfactory product to the client.
+\par
+Another key lesson is that division of work is a good way of taking advantage of every individual in a group, but the design and planning phases are critical for this to work. If the design of the components are not adequate, the individual components could be implemented by different individuals in a way that is not connectable with the other components. Therefore, the initial design of the system is very important.

@@ -1,18 +1,17 @@
-\chapter{UI Design} \label{ch:ui_design}\todo[inline]{Figurer skal opdateres}
-The UI has been designed based on the model and function components, and with the client's wishes to have a functional and simplistic design, in mind. This approach is more functionality oriented, than making the UI and then basing the model and function components on that. The design has drawn inspiration from GitHub's \citep{GithubDesktop} desktop application and Overleaf's online LaTeX editor \citep{Overleaf}, as their designs are very simple and their color pallets are made up of low saturation colors. 
+\chapter{UI Design} \label{ch:ui_design}
+The UI has been designed based on the model (see \autoref{sc:model_component}) and function (see \autoref{sc:function_component}) components and with the client's request to have a functional and simplistic design in mind.
 \par
-
-The user interface has been designed based on a modern minimalistic design \citep{MinimalistUX} as this was a requirement from the client (see \autoref{sc:requirements}). This means that the design is flat and without a lot of shadows. Many of the corners in the application have been rounded for a milder look and the colors are very similar.
-
-\section{Client feedback}
-As mentioned above, the ideal UI, as described by the client, is simple and effective. This criteria has led to a UI with a limited set of colors, a cohesive design across the interface, and functionalities based on standards within the clients work environment, in this case Microsoft Windows. This is, for example, reflected in the way selecting elements in a list is similar to how it is done in Windows.
+This approach is more functionality oriented, than making the UI and then basing the model and function components on that. The design has drawn inspiration from GitHub's desktop application \citep{GithubDesktop} as their design is minimalistic \citep{MinimalistUX} and the color pallet is limited.
 \par
-Some things have been changed a bit from how they are handled in Windows, such as the before mentioned selection of elements in a list. On top of the standard Windows multi-selection, checkboxes have been implemented to make multi-select possible without holding down the 'Ctrl' key. The client can still use the basic Windows method, but will be able to take advantage of the checkboxes as well.
+The user interface has been designed based on a modern minimalistic design \citep{MinimalistUX} as this was a requirement from the client (see \autoref{sc:requirements}). This means that the design is flat and without a lot of shadows. Many of the corners in the application have been rounded for a milder look and the color pallet is very limited.
+
+\section{Developing the design}
+The ideal UI, as described by the client, is simple and effective. This criterion has led to a UI with a limited set of colors, a cohesive design across the interface, and functionalities based on standards in Microsoft Windows. This has been done to make the interface as intuitive as possible for the client. This decision is reflected in ways such as how selecting elements in a list is similar to its implementation in Windows.
 
 \subsection{Wireframes}
-To ensure the compatibility between the clients workflow and the design, wireframes have been developed. Wireframes are an alternative to sketching designs on paper and then turning physical pages, as the user interacts with the system. The wireframes have been shown to the client in the early stages of the project to get feedback and improve the design, before starting to coding functional prototypes.
+To ensure the compatibility between the clients workflow and the design, wireframes have been developed. These have been shown to the client in the early stages of the project to get feedback and improve the design, before developing functional prototypes.
 \par
-The wireframes have given a common basis for the further development of the system as well as the UI. One of the things that were illustrated in the wireframes was the page with the list of all assets in the system. This is one of the main pages of the system, as it will be used to access a specific asset, as well as search through, delete, edit, and print out a list of the assets. The wireframe is very simple and only uses black, white, and gray (see \autoref{fig:AssetList_Wireframe}).
+The wireframes have given a common basis for the development of the system as well as the UI. One of the things that were illustrated in the wireframes was the page with the list of all assets in the system. This is one of the main pages of the system, as it will be used to access a specific asset, as well as search through, delete, edit, and export assets from the list. The wireframe is very simple and only uses black, white, and gray (see \autoref{fig:AssetList_Wireframe}).
 
 \begin{figure}[H]
     \centering
@@ -21,9 +20,10 @@ The wireframes have given a common basis for the further development of the syst
     \label{fig:AssetList_Wireframe}
 \end{figure}
 
-Another one of the essential pages is the one used for creating and editing an asset. This page has been illustrated with a few more elements than the list page, as it was important to show the client how it would look after an asset had been assigned several tags and fields. This was important, as the clutter a lot of fields could result in, has been the reason for the client to get a custom system, instead of going with an already existing solution \todo[inline]{Reference to the place where we define the clutter as a problem}. 
+Another one of the essential pages is the one used for creating and editing an asset. This page has been illustrated with a few more UI elements than the list page, as it was important to show the client how it would look after an asset has had several tags attached and fields added.
+This was important, as the clutter a lot of fields could result in, has been the reason for the client to get a custom system (see \autoref{sc:aalborgZoo}).
 \par
-The dark grey header and side navigation are consistent across all pages, as they contain functionality that should be available to the user at all times. The asset editor page also contains a number of fields and attached tags, as this is another specific request from the client (see \autoref{fig:AssetEditor_Wireframe}).
+The dark grey header and side navigation are consistent across all pages, as they contain functionality that should be available to the user at all times. The asset editor page also contains a number of fields and attached tags (see \autoref{fig:AssetEditor_Wireframe}), as this is another specific request from the client.
 
 \begin{figure}[H]
     \centering
@@ -32,29 +32,29 @@ The dark grey header and side navigation are consistent across all pages, as the
     \label{fig:AssetEditor_Wireframe}
 \end{figure}
 
-The wireframes were well received by the client, as they were very simple and had low saturation. The relatively few elements on the pages also followed the requirements from the client (see \autoref{sc:requirements}).
+The wireframes were well received by the client, as they were very simple. The relatively few elements on the pages also followed the requirements from the client (see \autoref{sc:requirements}).
 
 \subsection{Prototypes}
-Based on the wireframes, multiple prototypes have been constructed to show the functionality in action. These prototypes include a visualization of the tagging of assets, which was written in Javascript (see \autoref{fig:PrototypeOfTagging}), as well as a limited, simple version of the system written in HTML, CSS, and Javascript (see \autoref{fig:PrototypeOfSystem}). This method of creating simple prototypes made it possible to show the client the system in a browser, as prototyping in HTML and Javascript is a faster way of creating a visual prototype.
+Based on the wireframes, multiple prototypes have been constructed to show the functionality in action. These prototypes include a visualization of the tagging of assets, which was written in JavaScript (see \autoref{fig:PrototypeOfTagging}), as well as a limited, simple version of the system written in HTML, CSS, and JavaScript (see \autoref{fig:PrototypeOfSystem}). This method of creating simple prototypes made it possible to show the client the system in a browser, and prototyping in HTML and JavaScript is a fast way of creating a visual prototype.
 \par
-The problem with this method was that the code had to be written in both C\# and Javascript, and two different programming languages might have different limitations. The implementation of certain functions might therefore be more difficult in one language compared to another.
+While the prototype was written in JavaScript, the code for the final system had to be written in C\#. The problem with this, is that two different programming languages might have different limitations, and the implementation of certain functions might therefore be more difficult in one language compared to the other. Here by, promising the client design elements, which could not be implemented in WPF in the same way.
 \par
-The tagging prototype (see \autoref{fig:PrototypeOfTagging}) was important, as the experience of tagging has been hard to depict. This is primarily because a similar tagging system haven't been found in another system, and therefore had to be made from scratch. Because of this the main purpose of this prototype has been to understand how the client intended to use the functionality in the final product. Especially the keyboard shortcuts that the client tried to use to accomplish different actions, were noted for later implementation in the system. Actions such as entering a parent tag to attach the child tags, stepping out of the parent tag when pressing backspace without anything in the field, and how to show attached tags beneath the field.
+The tagging prototype (see \autoref{fig:PrototypeOfTagging}) was important, as the experience of tagging has been hard to communicate. This is primarily because a similar tagging system has not been found in another asset management system, and therefore had to be made from scratch. Because of this the main purpose of this prototype has been to understand how the client intended to use the functionality in the final product. Especially the keyboard shortcuts that the client tried to use to accomplish different actions, were noted for later implementation.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/Prototypes/PrototypeOfTagging.png}
+    \includegraphics[width=0.7\textwidth]{figures/Prototypes/PrototypeOfTagging.png}
     \caption{Prototype of tagging}
     \label{fig:PrototypeOfTagging}
 \end{figure}
 
-The client had a few ideas related to the actions of different keyboard shortcuts, which were implemented in the final system. These include the list of suggestions beneath the field, which automatically updates itself every time a key is pressed, as well as pressing the tab key to auto fill with the first element in the shown list.
+The client had a few ideas related to the actions of different keyboard shortcuts, which were implemented in the final system. An example of this is the ability to navigate to the page for creating a new asset by pressing "Ctrl + N".
 \par
-To accompany the prototype of the tagging, the client has been shown a prototype of the overall design of the system as well. This prototype was, as mentioned above, written in HTML, CSS, and Javascript and implemented some overall functions such as adding an asset, viewing the information of an asset, and adding fields to the asset. The prototype was not connected to a database and the actions were only for illustrative purposes with no actual effects. \autoref{fig:PrototypeOfSystem} depicts the page for editing an asset in the prototype.
+To accompany the prototype of the tagging, the client has been shown a prototype of the overall design of the system as well. This prototype was, as mentioned above, written in HTML, CSS, and JavaScript and implemented some overall functions such as adding an asset, viewing the information of an asset, and adding fields to the asset. The prototype was not connected to a database and the actions were only for illustrative purposes with no actual effects. \autoref{fig:PrototypeOfSystem} depicts the page for editing an asset in the prototype.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/Prototypes/AssetEditor_Prototype.png}
+    \includegraphics[width=0.85\textwidth]{figures/Prototypes/AssetEditor_Prototype.png}
     \caption{Prototype of system}
     \label{fig:PrototypeOfSystem}
 \end{figure}
@@ -62,20 +62,22 @@ To accompany the prototype of the tagging, the client has been shown a prototype
 The client was very pleased with the designs of the prototypes and therefore they have been used as a basis for the final design.
 
 \subsection{Early usability tests}
-Based on the feedback from the wireframes and prototypes, the parts depicted in the wireframes and prototypes were developed. A usability test of the early version of the system was done with the client, before too many details and functionalities were implemented. This was done to ensure that the client agreed with the direction in which the functionality and design of the system was headed. 
+Based on the feedback from the wireframes and prototypes, the parts depicted in the these were developed. A usability test (see \autoref{sc:UsabilityTesting}) of the early version of the system was conducted with the client, before too many details and functionalities were implemented. This was done to ensure that the client agreed with the direction in which the functionality and design of the system was headed. 
 \par
-Another usability test was also performed on a participant with no previous knowledge of the system, but with experience within IT, in order to evaluate the usability of the design as a whole. This was done before the test with the client, which also provided some experience with doing usability tests before involving the client. A screenshot of the system during the usability tests can be seen below (see \autoref{fig:UsabilityTestsEditAssetPage}).
+Another usability test was also performed on a participant with no previous knowledge of the system, but with experience within IT, in order to evaluate the usability of the design as a whole. This was done before the test with the client, which also provided some experience with doing usability tests before involving the client. 
+
+% A screenshot of the system after the improvements, derived from the usability test, were implemented can be seen below (see \autoref{fig:UsabilityTestsEditAssetPage}).
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/PicturesOfTheSystem/Usabilitytest_editAsset.png}
-    \caption{A screen shot of the 'edit asset' page from the usability test}
+    \includegraphics[width=0.85\textwidth]{figures/PicturesOfTheSystem/Usabilitytest_editAsset.png}
+    \caption{A screen shot of the 'edit asset' page from before the remove button was added}
     \label{fig:UsabilityTestsEditAssetPage}
 \end{figure}
 
-One of the things that became clear through the usability tests in the early stages of the system development, was that our participants' intuition, when asked to remove an asset from the system, was to navigate to the edit page of the specific asset and then delete it from there. As seen in \autoref{fig:UsabilityTestsEditAssetPage}, there is no button on the edit page that supports this functionality.
+One issue became apparent through the usability tests in the early stages of the system development. When asked to remove an asset from the system, the participants navigated to the edit page of the specific asset and tried to delete it from there. As seen in \autoref{fig:UsabilityTestsEditAssetPage}, there is no button on the edit page that supports the functionality.
 \par
-The system only supported removal of an asset from the list page (see \autoref{fig:UsabilityTestsAssetListPage}), but this was not as intuitive to the test participants. Therefore a 'Remove' button was added to the 'Edit asset' page in the final design (see \todo{Insert reference to finished system design of edit asset page}).
+The system only supported removal of an asset from the list page (see \autoref{fig:UsabilityTestsAssetListPage}), but this was not as intuitive to the test participants. Therefore a 'Remove' button was added to the 'Edit asset' page in the final design (see \autoref{fig:FinalEditAssetPage}).
 
 \begin{figure}[H]
     \centering
@@ -84,46 +86,45 @@ The system only supported removal of an asset from the list page (see \autoref{f
     \label{fig:UsabilityTestsAssetListPage}
 \end{figure}
 
-Multiple other functionalities and alterations to the design have been implemented in the final product based on the usability tests and the above example is only one of them.
+Multiple other functionalities and alterations to the design have been implemented in the final product based on the usability tests. These include the manipulation of tags and assets, and navigating the list pages.
 \par
-The client was again very pleased with the design of the interface, even though multiple functions had yet to be added and updated to better accommodate usability and the workflow of the client.
+The client was again very pleased with the general concept, even though multiple functionalities had yet to be refined.
 
 \section{Final design}
-The final design of the user interface has been developed based on the feedback from the client and other usability test participants as well as the early sketches and prototypes.
+The final design of the user interface has been developed based on the feedback from the usability tests (see \autoref{sc:UsabilityTesting}).
 
 \subsection{Overall concepts}
-The UI has been designed with cohesion in mind to give the impression of a connected system. Some of the ways this has been achieved are through the color pallet, the simplicity across all the different pages, the left and top menu bars, the positions of buttons, and consistent fonts and font sizes.
+The UI has been designed with cohesion in mind to give the impression of a connected system. Some of the ways this has been achieved are through the color pallet, the similarity across all the different pages, the left and top menu bars, the position of buttons, and font sizes.
 \par
 The UI has also been developed to be as intuitive to the client as possible. Achieving this has been difficult, but as the client is a Windows user with experience in different enterprise applications, the system implements as many shortcuts and functions native to the Windows platform as possible, in order to support the client's natural workflow.
 \par
-The design has also been developed in such a way that it accommodates the user's memory and attention span. This is apparent in the way the user never needs to remember the previous steps when using the system. There are no pages, where the information from the previous page is crucial, and the tags make it possible to group similar assets, to make them easier to find through the search function on the list page. As well as making it easier to create similar assets.
+The design has also been developed in such a way that it accommodates the user's memory and attention span. This is apparent in the way the user never needs to remember their previous steps when using the system. There are no pages, where the information from the previous page is crucial, and the tags make it possible to group similar assets, to make them easier to find through the search function on the list page.
 \par
-The interface accommodates the attention span of the user by making it possible to save progress and return to the task later, in most of the scenarios. This is important, as the user might be distracted during their interactions with the system.
+The interface accommodates the attention span of the user by making it possible to save progress and return to the task later. This is important, as the user might be distracted during their interactions with the system (see \autoref{ssc:actors}).
 \par
-Some of the areas of the design have been described in further detail below.
+The key areas of the design have been described in further detail below.
 
 \subsubsection*{Navigation}
-Navigating the system is very important, as the system supports a few different elements, which are handled on different pages. To make the navigation faster and more intuitive to the client, the left menu bar is visible from anywhere within the application. Through this, the pages for the different elements are accessible. The navigation bar also ensures that each page is at most three clicks away from anywhere within the application (see \autoref{fig:UIStructure}).
+Navigating the system is very important, as the system supports various elements, which should be handled on different pages. To make the navigation faster and more intuitive to the client, the left menu bar is visible from anywhere within the application. Through this, the pages for the different elements are accessible. The navigation bar also ensures that each page is at most three clicks away from anywhere within the application (see \autoref{fig:UIStructure}).
 \par
-For example if the user wants to see a specific asset, they press the 'Assets' tab in the navigation menu which will take them to the 'Asset list' page. From here they can remove assets, or access the 'View' or 'Edit' pages for every asset. If the asset is too far down the list or difficult to find, the user can use the search bar to find the asset.
+For example if the user wants to see a specific asset, they press the 'Assets' tab in the navigation menu which will take them to the 'Asset list' page. From here they can remove assets, or access the 'View' or 'Edit' pages for every asset. If the asset is too far down the list or difficult to find, the user can use the search function to find the asset (see \autoref{fig:UsabilityTestsAssetListPage}).
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{figures/UIDesignElements/UI_Design_Structure.png}
-    \caption{Diagram of the navigation structure of the system}
+    \caption{Diagram of the navigation structure of the system.}
     \label{fig:UIStructure}
 \end{figure}
-\todo{Shortcuts?}
 
-Besides this, navigating to the subpages, such as the 'View asset' page, is possible in multiple ways. When the user wants to view an asset, they can double click the asset in the list, press the eye symbol in the right side of the list element, or select it and then press either 'Enter' or 'Ctrl' + 'W'. This gives the user the ability to navigate the interface in the way that is intuitive to them.
+Besides this, navigating to the subpages, such as the 'View asset' page, is possible in multiple ways. When the user wants to view an asset, they can double click the asset in the list, press the view button for the asset, or select it and then press either "Enter" or "Ctrl + W". This gives the user the ability to navigate the interface in the way that is intuitive to them.
 \par
 Because of the limited number of steps between the different pages, the only type of breadcrumb implemented is the highlighting of the page on the side bar that the user is currently on. If the page layout had multiple steps, a location-based page hierarchy could be shown in the top of the window \citep{Breadcrumbs}.
 
 \subsection{Design methods}
-In the design of the UI, a few different design methods and theories have been used. The usage of some of these have been described below.
+In the design of the UI, a few different design methods and theories have been used. The usage of the key methods have been described below.
 
 \subsubsection*{Color}
-The color pallet was heavily inspired by the GitHub desktop application and the Overleaf LaTeX editor \citep{GithubDesktop} \citep{Overleaf}. The inspirations have been drawn in order to save time on color selections for every part of the system, and these specific examples have been chosen due to their low saturation and very mild color pallet.
+The color pallet was heavily inspired by the GitHub desktop application (see \autoref{fig:GitHubDesktop}) and the Overleaf LaTeX editor \citep{GithubDesktop, Overleaf}. The inspirations have been drawn in order to save time on color selection for every part of the system, and these specific examples have been chosen due to their limited color pallet.
 
 \begin{figure}[H]
     \centering
@@ -134,7 +135,7 @@ The color pallet was heavily inspired by the GitHub desktop application and the 
 
 For the buttons of the application, the dark border and white center was chosen for buttons that did not need to draw a lot of attention. The border is to illustrate the boundaries of the buttons.
 \par
-When the user hovers over any of the buttons in the application, the color changes to the color of the top menu bar, except the "remove" buttons, as these needs to stand out. This gives the user clarity about whether or not the button is clickable and that the cursor is pointing at it (see \autoref{fig:HoverColorAndBorderedButtons}).
+When the user hovers over any of the buttons in the application, the color changes. This gives the user clarity about whether or not the button is clickable and that the cursor is pointing at it (see \autoref{fig:HoverColorAndBorderedButtons}).
 
 \begin{figure}[H]
     \centering
@@ -143,14 +144,14 @@ When the user hovers over any of the buttons in the application, the color chang
     \label{fig:HoverColorAndBorderedButtons}
 \end{figure}
 
-The 'Add' and 'Remove', buttons and icons have been colored green and red respectively. This is because the red color signifies danger and alarm, and the green color signifies additions and improvement.
+The 'Add' and 'Remove', buttons and icons have been colored green and red respectively. This is because the red color signifies danger and alarm, and the green color signifies additions and improvement \citep{ColorTheory}\citep[Page 277]{DEB}.
 
 \subsubsection*{Gestalt Laws}
-Buttons and other elements in the design have been implemented and placed in correlation with the Gestalt laws \citep{GestaltLaws}. This can be seen throughout the application, such as the way the search bar and 'Search' button are located right next to each other, to symbolize a connection between them (see \autoref{fig:UsabilityTestsAssetListPage}). Another example of the Gestalt laws, are the elements in the different lists in the application. The way that every other element is another color gives the experience of connection between the different columns in each row (see \autoref{fig:ChangingRowColors}).
+Buttons and other elements in the design have been implemented and placed in accordance with the Gestalt laws \citep{GestaltLaws}. This can be seen throughout the application, such as the way the search bar and 'Search' button are located right next to each other, to illustrate the connection between them (see \autoref{fig:UsabilityTestsAssetListPage}). Another example of the Gestalt laws, are the elements in the different lists in the application. The way that every other element is another color gives the experience of connection between the different columns in each row (see \autoref{fig:ChangingRowColors}).
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/UIDesignElements/DifferentColoredRows.png}
+    \includegraphics[width=0.85\textwidth]{figures/UIDesignElements/DifferentColoredRows.png}
     \caption{Screenshot of the rows in the 'Asset list' page}
     \label{fig:ChangingRowColors}
 \end{figure}
@@ -158,22 +159,30 @@ Buttons and other elements in the design have been implemented and placed in cor
 These are some of the elements in the system that have been created with the Gestalt laws in mind.
 
 \subsubsection*{Notifications}
-During a normal interaction period with the system, several things might happen that the user should be notified of. These things include the results of interactions with the system that can be hard to understand the effects of, such as saving an asset, where the user is simply sent to another page. \\
-Another thing that the user should be notified about, is limitations such as not being able to edit multiple assets at a time. To give the user clarity regarding these things, notifications are shown in the top of the application window.
+During a normal interaction period with the system, several things might occur that the user should be notified of. These include the results of interactions with the system that it can be hard to understand the effects of, such as saving an asset, where the user is simply sent to another page. \par
+Another condition that the user should be notified about, is limitations such as not being able to edit multiple assets at once. To give the user clarity regarding these events, notifications are shown in the top of the application window.
 \par
-Notifications have different meanings and causes, and therefore they are given different colors as well. Notifications about operations succeeding are green, failed ones are red, warnings are yellow, and one with other information are gray (see \autoref{fig:AssetAddedNotification}). These colors are derived from how other applications color notifications and the general understanding of how these colors are perceived.
+Notifications have different meanings and causes, and therefore they are given different colors as well. Notifications about operations succeeding are green, failed ones are red, warnings are yellow, and notifications with other information are gray (see \autoref{fig:AssetAddedNotification}). These colors are derived from how other applications color notifications and the general understanding of how these colors are perceived \citep{ColorTheory}\citep[Page 277]{DEB}.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{figures/UIDesignElements/GreenNotification.png}
+    \includegraphics[width=0.3\textwidth]{figures/UIDesignElements/GreenNotification.png}
     \caption{Screenshot of the 'Asset added' notification}
     \label{fig:AssetAddedNotification}
 \end{figure}
 
-The notifications appear, as mentioned above, in the top of the screen and disappear after a few seconds. This is to avoid cluttering the interface with error messages. This could be a problem, if the notification disappears before the user sees it, but the notifications are designed only to hold a short text with information about the result of the previous operation or interaction with the system.
+The notifications appear in the top of the screen and disappear after a few seconds. This is to avoid cluttering the interface with messages. This could be a problem, if the notification disappears before the user sees it, but the notifications are designed only to hold a short text with information about the result of the previous operation or interaction with the system.
+\par
+Based on this chapter a final UI design has been constructed. Below is a screenshot of the edit asset page (see \autoref{fig:FinalEditAssetPage}).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/PicturesOfTheSystem/FinalEditAssetPage.png}
+    \caption{Screenshot of the 'Edit asset' page from the final design}
+    \label{fig:FinalEditAssetPage}
+\end{figure}
 
 \section{Summary}
-The design has, as mentioned in the above sections, been developed in close cooperation with the client and with focus on supporting their workflow and intuition. Further design elements and functions have been created as the needs and wants of the client were discovered through the various tests and interviews.
+The design has been developed in close cooperation with the client and with focus on supporting their workflow and intuition. Additional design elements and functions have been created as the needs and wants of the client were discovered through the various tests (see \autoref{sc:UsabilityTesting}) and interviews.
 \par
-Through designing the UI, the Gestalt laws and other design philosophies have been implemented and used as reference to ensure a coherent and useful user-experience of the system, as well as keeping a minimalistic interface.
-\todo[inline]{Insert picture of final design and possibly final usability test}
+Through designing the UI, the Gestalt laws and other design philosophies have been implemented and used as reference to ensure a coherent and useful user-experience of the system, as well as keeping a minimalistic interface. (see \autoref{fig:FinalEditAssetPage})

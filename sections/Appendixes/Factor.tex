@@ -1,0 +1,28 @@
+\chapter{FACTOR} \label{app:factor}
+The most essential parts of the system definition have been presented as a FACTOR criterion \citep{OOAD}. This criterion consists of six elements describing the \textit{Functionality} of the system, the \textit{Application domain}, the \textit{Conditions} under which the system is used and developed, the \textit{Technology} on which the system will run and be developed, the \textit{Objects} present in the problem domain, and the \textit{Responsibility} that the system will have. These elements are important to take into consideration when designing a system.
+
+\begin{table}[H]
+    \centering
+    {
+    \renewcommand{\arraystretch}{2.0}
+    \begin{tabular}{ m{4cm} m{10cm} }
+        \hline
+        
+        \textbf{Functions} & The system will keep track of the zoo's assets with the ability to add, edit, and delete assets. Furthermore, the system will offer the ability to add custom tags to ease the process of adding new assets and updating attributes such as their condition, location, and the person currently in possession of them. All interactions will be logged with the changed values and who made the changes. The system will also offer the ability to search through and export the list of assets and the log.\\
+        
+        \textbf{Application Domain} & The system will be administrated and used by the IT department at Aalborg Zoo, but other departments can also use the system to manage their assets.\\
+        
+        \textbf{Conditions} & The system will be used primarily by the IT department, who has experience with computers and servers. The client has requested a simple user interface with only as many elements as needed. The computer running the application might be brought around the premises of the zoo.\\
+        
+        \textbf{Technology} & The system will be run on different Windows PC's, which can vary in age. The PC's will be equipped with current tools. The system will be programmed in C\# and communicate with a database.\\
+        
+        \textbf{Objects} & Asset, admin, and employee.\\
+        
+        \textbf{Responsibilities} & The system will be able to keep track of assets and give a department an overview of these. It will also be responsible for keeping a log of changes made to the system.\\
+        
+        \hline
+    \end{tabular}
+    \caption{FACTOR criterion for the system}
+    \label{tab:factor}
+    }
+\end{table}

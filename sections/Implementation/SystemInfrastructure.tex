@@ -1,28 +1,124 @@
-\section{System Infrastructure} \label{sc:system_infrastructure}
-% The starting point of the application can be found in \textit{App.xaml.cs}. Here the class \textit{Features} creates the main window, which in turn creates the main view model. \textit{MainViewModel} and \textit{Features} are responsible for everything going on behind the scenes, such as navigating and changing department. 
-% \par
-% Both of these classes have too much responsibility, but were designed this way in order to keep the program simple and understandable.
+\section{Features Class} \label{sc:features}
+The \textit{Features} class (see \autoref{code:Features}) acts as the composition root of the system. Through this class, it is possible to access the repositories (see \autoref{sc:RepositoryPatern}), a reference to the \textit{MainViewModel}, an instance of the \textit{Navigator} class, and an instance of the \textit{ContentCreator} class.
 
-\subsection{MainViewModel} \label{ssc:main_view_model}
-% System root / entry point of the program
+\begin{listing}[H]
+\begin{minted}[frame=lines, framesep=3mm, baselinestretch=1, linenos, bgcolor=LightGray, escapeinside='', breaklines]{Csharp}
 
-% View model for the window itself, showing menus and other stuff
+public static class Features 
+{
+    public static MainViewModel Main { get; set; }
+    
+    private static Navigator _navigator; '\label{line:4}'
+    public static Navigator Navigate => _navigator ?? = new Navigator(); '\label{line:5}'
 
-% Provides a Frame where all content is presented
+    private static ContentCreator _creator; '\label{line:10}'
+    public static ContentCreator Create => _creator ?? = new ContentCreator(); '\label{line:11}'
+    
+    private static IAssetRepository _assetRepository; '\label{line:2}'
+    
+    ...
+    
+    public static IAssetRepository AssetRepository => _assetRepository ?? = new AssetRepository(); '\label{line:3}'
+    
+    ...
+    
+    public static Session GetCurrentSession() => Main.CurrentSession; '\label{line:1}'
+    
+    ... 
+}
 
-% Exposes commands used to navigate between the primary pages.
-
-
-
-\subsection{Features Class} \label{ssc:features}
-% Main responsibility is Repositories
+\end{minted}
+\captionof{listing}{The \textit{Features} class that acts as the composition root.}
+\label{code:Features}
+\end{listing}
 
 % Simplifies the program, by being the single source to MainViewModel and its public properties/methods
+The class is static, as it should not be possible to create multiple instances of it. It was originally meant to be the access point to \textit{MainViewModel}, so that a reference to the view model would not have to be passed to all classes that needed to use functionality from it.
+\par
+\textit{MainViewModel} handles everything to do with starting and running the system, as well as making the five primary pages (see \autoref{fig:UIStructure}) available to the user. Because of this, it is widely used throughout the program, for controllers and repositories to get information about the current state of the system. This could be information about the user who is currently logged in, which is stored in \textit{MainViewModel} and can be accessed through \textit{Features} using the \textit{GetCurrentSession} method, as seen on line \ref{line:1} in \autoref{code:Features}.
+\par
 
-% Navigating to and from pages using History 
+% Repositories
+Over time \textit{Features} received more responsibilities. It also became the main access point to the repositories, so that only one instance of each existed in the program (see \autoref{code:Features} line \ref{line:2} and \ref{line:3}).
+\par
+
+% Navigating to and from pages using Main's History
+Aside from this, it also contains a reference to the \textit{PageNavigator} class (see \autoref{code:PageNavigatorClass}) which is called \textit{Navigate} (see \autoref{code:Features} line \ref{line:4} and \ref{line:5}). This class changes the content that is presented by \textit{MainViewModel}, through its \textit{ContentFrame} property (see \autoref{code:PageNavigatorClass} line \ref{line:6} and \ref{line:7}). 
+\par
+A simple page history has been implemented, using a stack in \textit{MainViewModel} called \textit{History}. This facilitates the ability go back to a previous page, e.g. when a change is saved or canceled in the \textit{AssetEditor} page. 
+\par
+The current page is pushed to \textit{History} when navigating to a new page (see \autoref{code:PageNavigatorClass} line \ref{line:8}), and a page is popped from \textit{History} when going back to a previous page (see \autoref{code:PageNavigatorClass} line \ref{line:9}). This also reuses pages, as new pages are created only when navigating forward, minimizing memory usage.
+
+
+\begin{listing}[H]
+\begin{minted}[frame=lines, framesep=3mm, baselinestretch=1, linenos, bgcolor=LightGray, escapeinside='', breaklines]{Csharp}
+
+public static class PageNavigator
+{
+    private static Page _currentPage;
+    
+    public static bool To(Page page)
+    {
+        Features.Main.ContentFrame.Navigate(page) '\label{line:6}'
+        
+        ...
+        
+        Features.Main.History.Push(_currentPage); '\label{line:8}'
+        _currentPage = page;
+        
+        ...
+    }
+    
+    public static bool Back() 
+    {
+        _currentPage = Features.Main.History.Pop(); '\label{line:9}'
+        
+        ...
+        
+        Features.Main.ContentFrame.Navigate(_currentPage); '\label{line:7}'
+        
+        ...
+    }
+    
+    ...
+}
+
+\end{minted}
+\captionof{listing}{The \textit{PageNavigator} class used by \textit{Features} that changes the content presented by MainViewModel.}
+\label{code:PageNavigatorClass}
+\end{listing}
 
 % Creating pages (and one window), providing the repositories and creating the controllers (And helpers)
+As mentioned \textit{Features} also contains a reference to the \textit{ContentCreator} class (see \autoref{code:ContentCreatorClass}), called \textit{Create} (see \autoref{code:Features} line \ref{line:10} and \ref{line:11}).
+\par
+This class is used to create new pages that the \textit{PageNavigator} can then navigate to (see \autoref{code:ContentCreatorClass} line \ref{line:ContentCreator_AssetList}). Part of creating pages, is also passing the pages the dependencies they need. \textit{ContentCreator} also handles this, by instantiating all the controllers and helpers in one place (see \autoref{code:ContentCreatorClass} line \ref{line:ContentCreator_TagHelper} and \ref{line:ContentCreator_AssetListController}), and giving these the helpers they need (see \autoref{code:ContentCreatorClass} line \ref{line:ContentCreator_PrintHelper}).
 
-% Miscellaneous stuff: Notifications, prompts, current session and department. The things that Main is used most for.
+\begin{listing}[H]
+\begin{minted}[frame=lines, framesep=3mm, baselinestretch=1, linenos, bgcolor=LightGray, escapeinside='', breaklines]{Csharp}
 
-% Problems: Too much responsibility, should be split up. => Singleton (Tests, good practice, dependency injection)
+public class ContentCreator 
+{
+    private static IExporter _printHelper { get; } = new PrintHelper(); '\label{line:ContentCreator_PrintHelper}'
+    
+    private static TagHelper CreateTagHelper() => new TagHelper(Features.TagRepository, Features.UserRepository); '\label{line:ContentCreator_TagHelper}'
+    
+    ...
+
+    private IAssetListController GetAssetListController() => new AssetListController(Features.AssetRepository, _printHelper); '\label{line:ContentCreator_AssetListController}'
+    
+    ...
+    
+    public Page AssetList() '\label{line:ContentCreator_AssetList}'
+    {
+        return new AssetList(GetAssetListController(), CreateTagHelper());
+    }
+    
+    ...
+}
+
+\end{minted}
+\captionof{listing}{The \textit{ContentCreator} class that creates pages and controllers.}
+\label{code:ContentCreatorClass}
+\end{listing}
+
+This approach tightens the coupling in the system, as all parts of the program now has access to \textit{MainViewModel}, the repositories, and navigating the UI pages. However, it also simplifies the code significantly and it still uses Dependency Injection (see \autoref{sc:DependencyInjection}). This balance was chosen over passing parameters around the program, which would instead decrease comprehensibility, maintainability and flexibility (see \autoref{sc:criteria}).

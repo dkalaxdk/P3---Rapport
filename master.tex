@@ -31,7 +31,7 @@
 \pdfbookmark[0]{Contents}{label:contents}
 \pagestyle{fancy} % enable headers and footers again
 \tableofcontents
-\listoftodos \todo[inline]{Fjern den her!} 
+% \listoftodos
 \input{sections/frontmatter/preface.tex}
 \cleardoublepage
 %mainmatter
@@ -45,11 +45,10 @@
 % Background
 \input{sections/Background/Introduction.tex}
 \input{sections/Background/AalborgZoo.tex}
-\input{sections/Background/ProblemDefinition.tex}
+% \input{sections/Background/ProblemDefinition.tex}
 \input{sections/Background/Requirements.tex}
 \input{sections/Background/SystemDefinition.tex}
-\input{sections/Background/Factor.tex}
-\input{sections/Background/Method.tex}
+% \input{sections/Background/Method.tex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Problem domain analysis
@@ -111,7 +110,7 @@
 \input{sections/Design/TechnicalPlatform/Introduction.tex}
 \input{sections/Design/TechnicalPlatform/Database.tex}
 \input{sections/Design/TechnicalPlatform/WPF.tex}
-\input{sections/Design/TechnicalPlatform/DotNETCore.tex}
+% \input{sections/Design/TechnicalPlatform/DotNETCore.tex}
 
 % Model component
 \input{sections/Design/ModelComponent.tex}
@@ -137,15 +136,15 @@
 
 \input{sections/Implementation/MVCVM/MvcvM.tex}
 \input{sections/Implementation/MVCVM/Models/Introduction.tex}
-\input{sections/Implementation/MVCVM/Models/Tag.tex}
 \input{sections/Implementation/MVCVM/Models/Fields.tex}
+\input{sections/Implementation/MVCVM/Models/Tag.tex}
 \input{sections/Implementation/MVCVM/Controllers.tex}
 \input{sections/Implementation/MVCVM/Viewmodels.tex}
 \input{sections/Implementation/MVCVM/Views.tex}
 
-\input{sections/Implementation/SystemInfrastructure.tex}
-
 \input{sections/Implementation/Repositories.tex}
+
+\input{sections/Implementation/SystemInfrastructure.tex}
 
 \input{sections/Implementation/Tagging.tex}
 
@@ -156,25 +155,38 @@
 \input{sections/Test/UnitTest.tex}
 \input{sections/Test/UsabilityTest.tex}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Discussion
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\input{sections/discussion.tex}
+\input{sections/Discussion/Introduction.tex}
+\input{sections/Discussion/Requirements.tex}
+\input{sections/Discussion/Criteria.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Work Method
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{sections/WorkMethod.tex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Conclusion
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{sections/conclusion.tex}
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Future work
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{sections/FutureWork.tex}
 
 %%% End of document
 
 %\bibliographystyle{plainnat}
 \bibliography{bib/mybib}
 \label{bib:mybiblio}
+
 \appendix
+\input{sections/Appendixes/Factor.tex}
 \input{sections/Appendixes/UsabilityTestTasks.tex}
-\input{sections/Appendixes/UsabilityProblems.tex}
+%\input{sections/Appendixes/UsabilityProblems.tex}
+\input{sections/Appendixes/Database.tex}
 \end{document}

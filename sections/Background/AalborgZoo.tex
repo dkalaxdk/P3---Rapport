@@ -1,25 +1,25 @@
-\section{Aalborg Zoo}\label{ch:problemdefinition}
-Focusing on a specific department at a specific company, has limited the magnitude of the project. The collaborator of this project has been the IT department at Aalborg Zoo, who asked for an Asset Management System that is more dynamic than the existing solutions. Therefore, the needs of Aalborg Zoo has been a high priority, as they are considered the customer of the finished product.
+\section{Aalborg Zoo}\label{sc:aalborgZoo}
+The collaboration with Aalborg Zoo has been based on a series of semi-structured interviews. These have been conducted with the head of the IT department, Morten Rom, and technician Kasper Andersen who make up the IT department at Aalborg Zoo. They have described a problem with keeping track of and maintaining assets within the zoo, due to the physical size of the zoo and the number of different assets, departments, and employees.
 \par
-The collaboration has been based on a series of semi-structured interviews, which have been conducted with the head of the IT department, Morten Rom, and technician Kasper Andersen who make up the IT department at Aalborg Zoo. They have described a problem with keeping track of and maintaining assets within the zoo, due to the physical size of the zoo and the number of different assets, departments, and employees. Their current system for managing their assets have been to add the relevant information about the assets to an excel document at the time of acquisition. This system is flawed, as the information added by different employees varies from asset to asset, and information about the assets is not being kept up to date. Therefore, a propper Asset Management System could be a good addition to the company.
+Their current system for managing their assets has been to add the relevant information about the assets to an Excel document at the time of acquisition. For the IT department this system is flawed, as the information added by different employees can vary from asset to asset, and this information is difficult to maintain.
 \par
-During the interviews, the representatives were asked, if they had looked for alternatives, as systems solving their problem already exists. To this they answered that the existing solutions provide too many required and predefined fields. Here a field could be a textbox, checkbox, date field, etc., meant to contain information about the asset. Instead they wanted a dynamic system with only the information they needed for every specific asset, resulting in a cleaner, more manageable interface for managing assets.
+During the interviews, the representatives were asked, if they had looked for alternatives, as systems solving their problem already exist. To this they answered that the existing solutions provide too many required and predefined fields. Here a field could be a text box, checkbox, date field, etc., meant to contain information about the asset. Instead they wanted an adaptable system with only the information they needed for every specific asset, resulting in a cleaner, more manageable interface. 
 \par
-They have also expressed interest in logging changes, made to assets, and the ability to export a list of assets as well as the log. 
-
-
-\todo[inline]{Overgang til problemformuleringen}
-
-% Knowing the location of each individual assets comes down to the different employees in the zoo. As a result, no one has a clear picture of the assets within the zoo. Therefore Aalborg Zoo has been looking at different asset management systems. Currently they do not have the resources to develop such a system for themselves, and has examined other options. However, none of these satisfy their requirements. They want a program that is cheap and easy to use, without presenting the user with a large number of fields to fill out for each new entry into the system. 
-
-%\begin{itemize}
-%    \item Make it possible for an administrator to record when employees borrow assets, or associate an asset with a location. This should be done by adding special tags, like a user or location tag.
-    
-%    \item Add uncategorized tags with additional relevant information to assets. This could be the status of the asset, if for example it is under maintenance. 
-    
-%    \item A log of the changes made to assets, along with information about who made the change and when it was made. It should also be logged when an asset is added or removed. 
-    
-%    \item Templates for assets, with only the necessary fields that all assets of that template need to have. For example a switch needs fields with ID, IP-address, and password. All other relevant information can be added through tags.
-%\end{itemize}
-
-%The reason for the small number of required fields, is due to the clients wishes. They expressed a dislike for other asset management systems that required too many fields to be filled for each asset. They also wanted as few clicks of the mouse as possible.
+To ensure adaptability in the system, the fields should be able to be added and removed as they are needed.
+\par
+During the interviews the representatives' ideas for the system were brought forward. These ideas included functionalities such as tagging, expiring assets and a log. \\
+Tagging was one of the first ideas which were mentioned by the representatives, as this would be an easy way to add descriptors and fields to assets, while still keeping the interface manageable and functional.
+\par
+Another functionality mentioned was the ability to add expiration dates to assets. This could be a way for Aalborg Zoo to ensure that specific assets were changed or maintained after a preset period of time.
+\par
+The representatives mentioned a log containing information on the changes made to assets and their properties, as they would like to know which of the system's users modified specific assets. This would allow them to find possible mistakes and fixing these. 
+\par
+To further expand on tagging, the idea came forth to add functionality to certain tags. This would allow the tags to perform actions, such as notifying the IT department about changes in the system. \\
+To make it easier to keep an overview of the tags added to the system, the idea of grouping tags into categories was mentioned.
+\par
+For the logging to be functional, there was an obvious need for a way to identify the individual users using the system. To solve this, and to restrict certain functionalities within the system, the head of the IT department mentioned that they could export a list of the employees in the zoo as a Comma Separated Values (CSV) file, so the application could use this to identify users. As a result the application would need a way of reading the exported file, and adding the employees to the system. 
+\par
+There was also a desire for the employees of the zoo to be able to leave comments on assets, hereby giving the IT department updates with information about an asset in the system.
+\par
+The ability to export a report of the assets was also mentioned, as a way of having documentation of the registered assets, outside the system. The export should be in a CSV file, as this can be read by multiple different programs.
+\newpage

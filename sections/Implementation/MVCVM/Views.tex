@@ -1,31 +1,24 @@
 \subsection{Views} \label{ssc:Views}
-As mentioned in \autoref{sc:MVCVM} the view handles the user interaction. The UI is made using a declarative markup language called \textit{XAML}. Files written in \textit{XAML} have the extension \textit{.xaml}. In a WPF application \textit{XAML} files usually have a file containing code-behind. Code-behind is any code directly parsing or manipulating data from specific \textit{XAML} elements. When written in C\# these files have the extension \textit{.xaml.cs} \citep{XamlOverview}.
+The view handles the user interaction. The UI is made using a declarative markup language called \textit{XAML}. In a WPF application \textit{XAML} files usually have a file containing code-behind. Code-behind is any code directly parsing or manipulating data from specific \textit{XAML} elements (see \autoref{code:CodeBehindExample}). \citep{XamlOverview}
 \par
-
-It is in the \textit{.xaml.cs} files that the views are assigned a \textit{DataContext}, which in this application is in the form of a view model.
-When using the \textit{MVVM} pattern, the code behind should contain only the most necessary functionality. The rest should be contained in the view model \citep{WPFandMVVM}.
+It is in the code-behind that the views are assigned a \textit{DataContext} (see \autoref{code:CodeBehindExample} line 3 to 7), which in this application is in the form of a view model. When using the \textit{MVVM} pattern, the code-behind should only contain functionality if absolutely necessary. The rest should be contained in the view model \citep{WPFandMVVM}.
 \par
+In this application the code-behind contains functionality to assign the \textit{DataContext}, as well as sorting lists by clicking column headers, and selecting multiple items (see \autoref{code:CodeBehindExample}).
 
-In this application the code behind contains functionality to assign the \textit{DataContext}, as well as sorting lists by clicking column headers, and selecting multiple items.
-
-% Kunne give et eksempel med AssetList.xaml.cs
-
+\subsubsection*{Binding}
+The view displays data from the view model. The data is accessed through the public properties of the \textit{DataContext}, which in this case is a view model. This data access is accomplished through data binding expressions \citep{Bindings}.
 \par
-
-% Skriv om bindings i WPF/xaml
-The view displays data from the view model. The data is accessed through the public properties of the \textit{DataContext}, which, as previously mentioned, in this case is a view model. This data access is accomplished with data binding expressions \citep{Bindings}.
-\par
-An example of such a data binding is shown in \autoref{code:DatabindingExample}. Here the text to be displayed in a \textit{TextBox} element is bound to the property \textit{Description} in the \textit{DataContext}.
+An example of such a data binding is shown in \autoref{code:DatabindingExample} line 2. Here the text to be displayed in a \textit{TextBox} element is bound to the property \textit{Description} in the view model.
 
 \begin{listing}[H]
 \begin{minted}[frame=lines, framesep=3mm, baselinestretch=1, linenos, bgcolor=LightGray, escapeinside='', breaklines]{xml}
 
 <TextBox Style="{StaticResource ParagraphTextBoxWithSpace}"
-    Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"
-    TextWrapping="Wrap"
-    AcceptsReturn="True"
-    AcceptsTab="True"
-    MinHeight="80" />
+         Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"
+         TextWrapping="Wrap"
+         AcceptsReturn="True"
+         AcceptsTab="True"
+         MinHeight="80" />
 
 \end{minted}
 \captionof{listing}{Example of a data binding in WPF. The code is taken from the file \textit{AssetEditor.xaml}.}
@@ -33,9 +26,9 @@ An example of such a data binding is shown in \autoref{code:DatabindingExample}.
 \end{listing}
 \par
 
-WPF binding works by connecting the "bound" value (see \autoref{code:DatabindingExample}) to a public property with a get and set accessor. This allows for the bound data to update the property and for the property to update the bound value. 
+WPF binding works by connecting the bound item (see \autoref{code:DatabindingExample} line 2) to a public property. This allows for the bound item to update the property and for the property to update the bound item. 
 \par
-By using WPF binding and implementing the MVVM pattern, it should theoretically be possible to eliminate any code behind, other than setting the data context within the \textit{xaml.cs} file. However when implementing MVVM and using WPF some circumstances arise where binding cannot get all the information needed. In these cases the code behind gets expanded to include some more direct logic (see \autoref{code:CodeBehindExample}).. As a result of this the MVVM pattern cannot be implemented fully, as some of the logic is handled within the view itself.
+By using WPF binding and implementing the MVVM pattern, it should theoretically be possible to eliminate any code-behind, other than setting the data context. However, when implementing MVVM and using WPF some circumstances arise where binding becomes unnecessarily complex. In these cases the code-behind gets expanded to include logic directly related to the view (see \autoref{code:CodeBehindExample} line 9 to 14). As a result of this the MVVM pattern cannot be implemented fully, as some of the logic is handled within the view itself.
 
 \begin{listing}[H]
 \begin{minted}[frame=lines, framesep=3mm, baselinestretch=1, linenos, bgcolor=LightGray, escapeinside='', breaklines]{Csharp}
@@ -52,6 +45,8 @@ public partial class TagList : Page
         TagListViewModel vm = this.DataContext as TagListViewModel;
         Tag tag = e.NewValue as Tag;
         vm.SelectedItem = tag;
+        
+        ...
     }
 }
 \end{minted}
@@ -59,4 +54,4 @@ public partial class TagList : Page
 \label{code:CodeBehindExample}
 \end{listing}
 
-When code behind is added to the view, it makes it harder to choose a new UI framework at a later date, as the view and the functionality are tightly connected, instead of the logic being handled by the view model alone.
+When code-behind is added to the view, it makes it harder to change the UI framework at a later date, as the view and the functionality are tightly connected, instead of the logic being handled by the view model alone.
